@@ -10,5 +10,8 @@ package PrenotareAula;
  * @author Federico
  */
 public class ReservationRegister {
+    public static void main(String[] args) {
+        System.out.println("test");
+    }
     
 }

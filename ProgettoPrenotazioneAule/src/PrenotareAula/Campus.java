@@ -34,7 +34,7 @@ public class Campus {
         }
         
         Collections.sort(classi);
-
+/*
         for (Classroom cl : classi) {
             if (cl.verifyReservation(capacity) == true) {
                 if (askUser()==true) {
@@ -47,7 +47,7 @@ public class Campus {
 
             }
         }
-
+*/
     }
     
     private boolean askUser() {

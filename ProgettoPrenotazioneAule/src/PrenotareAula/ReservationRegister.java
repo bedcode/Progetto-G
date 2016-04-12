@@ -5,13 +5,21 @@
  */
 package PrenotareAula;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Federico
  */
 public class ReservationRegister {
-    public static void main(String[] args) {
-        System.out.println("test");
+    String name;
+    List res;
+
+    public ReservationRegister(String name) {
+        this.name = name;
+        res = new ArrayList<Reservation>();
     }
+    
     
 }

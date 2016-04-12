@@ -11,4 +11,6 @@ package PrenotareAula;
  */
 public class Campus {
     
+    private String name;
+    
 }

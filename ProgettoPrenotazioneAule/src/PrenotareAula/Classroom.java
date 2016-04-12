@@ -9,7 +9,7 @@ package PrenotareAula;
  *
  * @author Federico
  */
-public class Classroom {
+public class Classroom implements Comparable{
 
     String name;
     int capacity;
@@ -23,6 +23,12 @@ public class Classroom {
 
     public ReservationRegister getResReg() {
         return rr;
+    }
+
+    @Override
+    public int compareTo(Object t) {
+        // mettere in ordine le classi da capacità più piccola a più grande
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

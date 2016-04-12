@@ -10,10 +10,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-import jdk.management.resource.ResourceType;
 
 /**
  *
@@ -32,6 +32,8 @@ public class Campus {
             Classroom cl = new Classroom(st.nextToken(), Integer.parseInt(st.nextToken()));
             classi.add(cl);
         }
+        
+        Collections.sort(classi);
 
         for (Classroom cl : classi) {
             if (cl.verifyReservation(capacity) == true) {

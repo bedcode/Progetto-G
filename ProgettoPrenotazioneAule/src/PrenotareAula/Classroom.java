@@ -10,5 +10,13 @@ package PrenotareAula;
  * @author Federico
  */
 public class Classroom {
-    
+
+    String name;
+    int capacity;
+
+    public Classroom(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
 }

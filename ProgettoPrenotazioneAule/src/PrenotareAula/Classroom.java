@@ -13,10 +13,17 @@ public class Classroom {
 
     String name;
     int capacity;
+    ReservationRegister rr;
 
     public Classroom(String name, int capacity) {
         this.name = name;
         this.capacity = capacity;
+        rr = new ReservationRegister(name);
     }
 
+    public ReservationRegister getResReg() {
+        return rr;
+    }
+
+    
 }

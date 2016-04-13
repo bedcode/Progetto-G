@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -24,7 +25,10 @@ public class Campus {
     private String name;
     List<Classroom> classi = new ArrayList();
 
-    private void askForReservation(int capacity) throws FileNotFoundException, IOException {
+    // il metodo ask for reservation accetta come parametri una capacità, un oggetto di tipo calendar con solo la data e un intero di inizio
+    // e fine prenotazione
+    
+    private void askForReservation(int capacity, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
         FileReader file = new FileReader("classi.txt");
         BufferedReader in = new BufferedReader(file);
         while (in.ready()) {

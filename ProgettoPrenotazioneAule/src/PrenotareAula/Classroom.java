@@ -24,9 +24,7 @@ public class Classroom implements Comparable<Classroom> {
     }
 
     /**
-     * This method verifies if a classroom respects the requirements (capacity)
-     * and if it is free by calling the methods checkRequirements() and
-     * isReserved().
+     * This method verifies if a classroom respects the requirements (capacity) and if it is free.
      *
      * @param capacity the capacity of the classroom
      * @param cal calendar which indicates day, month and year

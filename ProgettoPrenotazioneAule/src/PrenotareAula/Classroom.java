@@ -5,6 +5,8 @@
  */
 package PrenotareAula;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Andrea
@@ -27,10 +29,13 @@ public class Classroom implements Comparable<Classroom> {
      * isReserved().
      *
      * @param capacity the capacity of the classroom
+     * @param cal calendar which indicates day, month and year
+     * @param startTime start time of the request reservation
+     * @param endTime end time of the request reservation
      * @return boolean value
      */
-    public boolean verifyReservation(int capacity) {
-        if (checkRequirements(capacity) /*&& resReg.isReserved()*/) {
+    public boolean verifyReservation(int capacity, Calendar cal, int startTime, int endTime) {
+        if (checkRequirements(capacity) && resReg.isReserved(cal, startTime, endTime)) {
             System.out.println("Trovata aula libera che soddisfa i requisiti richiesti: " + this.name);
             return true;
         } else {

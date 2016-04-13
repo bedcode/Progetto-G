@@ -23,10 +23,18 @@ import java.util.StringTokenizer;
 public class Campus {
 
     private String name;
-    List<Classroom> classi = new ArrayList();
+    List<Classroom> classi;
 
-    // il metodo ask for reservation accetta come parametri una capacità, un oggetto di tipo calendar con solo la data e un intero di inizio
-    // e fine prenotazione
+    public Campus(String name) {
+        this.name = name;
+        classi = new ArrayList();
+    }
+    
+    
+
+    /* il metodo ask for reservation accetta come parametri una capacità, un oggetto di tipo calendar con solo la data e un intero di inizio
+    e fine prenotazione
+    */ 
     
     private void askForReservation(int capacity, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
         FileReader file = new FileReader("classi.txt");

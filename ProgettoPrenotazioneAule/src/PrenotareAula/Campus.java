@@ -29,14 +29,12 @@ public class Campus {
         this.name = name;
         classi = new ArrayList();
     }
-    
-    
 
-    /* il metodo ask for reservation accetta come parametri una capacità, un oggetto di tipo calendar con solo la data e un intero di inizio
-    e fine prenotazione
-    */ 
-    
-    private void askForReservation(int capacity, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
+    /* il metodo ask for reservation accetta come parametri una capacità, 
+     un oggetto di tipo calendar con solo la data e un intero di inizio
+     e fine prenotazione
+     */
+    public void askForReservation(int capacity, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
         FileReader file = new FileReader("classi.txt");
         BufferedReader in = new BufferedReader(file);
         while (in.ready()) {
@@ -44,33 +42,36 @@ public class Campus {
             Classroom cl = new Classroom(st.nextToken(), Integer.parseInt(st.nextToken()));
             classi.add(cl);
         }
-        
-        Collections.sort(classi);
-/*
-        for (Classroom cl : classi) {
-            if (cl.verifyReservation(capacity) == true) {
-                if (askUser()==true) {
-                cl.getResReg().makeReservation();
-                }
-                else
-                {
-                    System.out.println("prenotazione non effettuata");
-                }
 
-            }
-        }
-*/
+        Collections.sort(classi);
+        /*
+         for (Classroom cl : classi) {
+         if (cl.verifyReservation(capacity) == true) {
+         if (askUser()==true) {
+         cl.getResReg().makeReservation();
+         }
+         else
+         {
+         System.out.println("prenotazione non effettuata");
+         }
+
+         }
+         }
+         */
     }
-    
-    private boolean askUser() {
-        Scanner tastiera =new Scanner(System.in);
+
+    public boolean askUser() {
+        Scanner tastiera = new Scanner(System.in);
         System.out.println("è stata trovata un'aula adatta per la prenotazione confermare? (Y|N)");
         if (tastiera.next().equals("Y")) {
             return true;
+        } else {
+            return false;
         }
-        else {
-            return  false;
-        }
+    }
+
+    public List<Classroom> getClassi() {
+        return classi;
     }
 
 }

@@ -26,10 +26,12 @@ public class TestClassroom {
 
         Calendar cal = new GregorianCalendar(2016, 3, 5);
 
-        ef1.verifyReservation(0, cal, 9, 11);
-        ef1.verifyReservation(280, cal, 9, 11);
+        ef1.verifyReservation(300, cal, 9, 11); //classroom don't available for reservation
+        ef1.verifyReservation(280, cal, 9, 11); //classroom available for reservation
+        c5.verifyReservation(50, cal, 14, 16); //classroom don't available for reservation
+        c5.verifyReservation(18, cal, 14, 16); //classroom  available for reservation
 
-        List<Classroom> classi = new ArrayList();
+        List<Classroom> classi = new ArrayList<>();
         classi.add(ef1);
         classi.add(ef2);
         classi.add(c5);

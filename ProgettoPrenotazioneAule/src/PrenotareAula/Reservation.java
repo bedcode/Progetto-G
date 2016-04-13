@@ -4,26 +4,21 @@
  * and open the template in the editor.
  */
  package PrenotareAula;
- //import java.util.Date;
-/**
+ import java.util.Calendar;
+ /**
  *
  * @author Fabio
  */
 public class Reservation {
     private int id = 0;
-    //private Date date = null;
-    private int day = 0;
-    private int month = 0;
-    private int year = 0;
+    private Calendar cal = null;
     private int startTime = 0;
     private int endTime = 0;
     private static int nextId = 0; //The Id used the next time a new reservation is created
         
-    public Reservation(int day, int month, int year, int startTime, int endTime){
+    public Reservation(Calendar cal, int startTime, int endTime){
         this.id = nextId;
-        this.day = day;
-        this.month = month;
-        this.year = year;
+        this.cal = cal;
         this.startTime = startTime;
         this.endTime = endTime;
         nextId++;    
@@ -38,7 +33,9 @@ public class Reservation {
     public String toString(){
         String s;
         return s = "Reservation number: " + this.id + "\n" +
-                   "Date: " + this.day + "/" + this.month + "/" + this.year + "\n" + 
+                   "Date: " + this.cal.get(Calendar.DAY_OF_MONTH) + "/" +
+                              this.cal.get(Calendar.MONTH) + "/" + 
+                              this.cal.get(Calendar.YEAR) + "\n" +
                    "Time: " + this.startTime + ":00-" + this.endTime + ":00\n";
     }    
 
@@ -49,13 +46,22 @@ public class Reservation {
         return this.id;
     }
     
-    public String getDate(){
-        return this.day + "/" + this.month + "/" + this.year;
+    public Calendar getCa(){
+        return this.cal;
     }
     
+    public int getStartTime(){
+        return this.startTime;
+    }
+
+    public int getEndTime(){
+        return this.endTime;
+    }
+            
+/*            
     public String getTime(){
         return this.startTime + ":00-" + this.endTime + ":00";
     }
-    
+*/    
         
 }

@@ -11,7 +11,8 @@ import java.util.List;
 
 /**
  *
- * @author Federico
+ * @author Federica
+ * The Class deals with a Register of Reservations
  */
 public class ReservationRegister {
     private String name;
@@ -21,6 +22,15 @@ public class ReservationRegister {
         this.name = name;
         res = new ArrayList<Reservation>();
     }
+    
+    
+    /**
+     * this method verifies  if the the register is reserved in the date and time specified.
+     * @param ca date int dd int mm int yyyy
+     * @param startTime Start Time of the Reservation
+     * @param endTime   End Time of the Reservation
+     * @return false if is free, false if is reserved
+     */
     public boolean isReserved( Calendar ca, int startTime, int endTime) {
       for ( Reservation r : res)  {
           if( ca.compareTo(r.getCa()) == 0 && 
@@ -32,7 +42,13 @@ public class ReservationRegister {
        return false;
     }
     
-    
+    /**
+     * this method creates the specified reservation if it is free
+     * @param ca Date int dd int mm int yyyy
+     * @param startTime Start time of the reservation
+     * @param endTime   End time of the reservation
+     * @return true if the reservation is made, false if it isn't
+     */
     public boolean makeReservation(Calendar ca, int startTime, int endTime) {
         if(isReserved(ca,  startTime, endTime) == false){
           Reservation  newRes = new Reservation(ca, startTime, endTime);

@@ -6,6 +6,7 @@
 package PrenotareAula;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -13,13 +14,33 @@ import java.util.List;
  * @author Federico
  */
 public class ReservationRegister {
-    String name;
-    List res;
+    private String name;
+    private List<Reservation> res;
 
     public ReservationRegister(String name) {
         this.name = name;
         res = new ArrayList<Reservation>();
     }
+    public boolean isReserved( Calendar ca, int startTime, int endTime) {
+      for ( Reservation r : res)  {
+          if( ca.compareTo(r.getCa()) == 0 && 
+                  ((startTime >= r.getStartTime() && endTime<=r.getEndTime())|| (startTime <=r.getStartTime() && endTime>=r.getStartTime() &&endTime<=r.getEndTime())
+                  || startTime>= r.getStartTime() &&startTime<= r.getEndTime() && endTime >= r.getEndTime()))
+              return false;
+         
+      }
+       return true;
+    }
     
     
-}
+    public boolean makeReservation(Calendar ca, int startTime, int endTime) {
+        if(isReserved(ca,  startTime, endTime) ){
+          Reservation  newRes = new Reservation(ca, startTime, endTime);
+          res.add(newRes);
+          return true;
+        }
+          else
+          return false;
+    }
+    }
+

@@ -18,16 +18,17 @@ public class TestReservationRegister {
     public static void main(String[] args) {
         Calendar ca = new GregorianCalendar();
         ca.set(3, 5, 2016);
-        Reservation r1 = new Reservation(ca,9,11);
+        
         
         
         ReservationRegister r = new ReservationRegister("EF4");
         r.isReserved(ca, 9,11);
         System.out.println(r.isReserved(ca,9,11));
         System.out.println(r.makeReservation(ca,9,11));
-        r.makeReservation(ca ,9,11);
+        System.out.println(r.makeReservation(ca,9,11));
         r.isReserved(ca ,9,11);
         System.out.println(r.isReserved(ca ,9,11));
-        System.out.println(r.makeReservation(ca,9,11));
+        System.out.println(r.makeReservation(ca,11,12));
+        System.out.println(r.isReserved(ca ,9,11));
     }
 }

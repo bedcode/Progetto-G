@@ -25,16 +25,16 @@ public class ReservationRegister {
       for ( Reservation r : res)  {
           if( ca.compareTo(r.getCa()) == 0 && 
                   ((startTime >= r.getStartTime() && endTime<=r.getEndTime())|| (startTime <=r.getStartTime() && endTime>=r.getStartTime() &&endTime<=r.getEndTime())
-                  || startTime>= r.getStartTime() &&startTime<= r.getEndTime() && endTime >= r.getEndTime()))
-              return false;
+                  || startTime>= r.getStartTime() &&startTime< r.getEndTime() && endTime >= r.getEndTime()))
+              return true;
          
       }
-       return true;
+       return false;
     }
     
     
     public boolean makeReservation(Calendar ca, int startTime, int endTime) {
-        if(isReserved(ca,  startTime, endTime) ){
+        if(isReserved(ca,  startTime, endTime) == false){
           Reservation  newRes = new Reservation(ca, startTime, endTime);
           res.add(newRes);
           return true;

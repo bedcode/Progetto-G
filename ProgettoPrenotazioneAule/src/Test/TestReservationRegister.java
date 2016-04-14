@@ -30,5 +30,6 @@ public class TestReservationRegister {
         System.out.println(r.isReserved(ca ,9,11));
         System.out.println(r.makeReservation(ca,11,12));
         System.out.println(r.isReserved(ca ,9,11));
+        System.out.println(r.isReserved(ca ,7,10));
     }
 }

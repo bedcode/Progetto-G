@@ -8,6 +8,7 @@
  /**
  *
  * @author Fabio
+ * The class is used to create Reservations for Reservation Registers
  */
 public class Reservation {
     private int id = 0;
@@ -16,6 +17,12 @@ public class Reservation {
     private int endTime = 0;
     private static int nextId = 0; //The Id used the next time a new reservation is created
         
+    /**
+     * 
+     * @param cal The Calendar object describing the date of the reservation
+     * @param startTime The integer value representing the Start Time of the Reservation
+     * @param endTime The integer value representing the End Time of the Reservation
+     */
     public Reservation(Calendar cal, int startTime, int endTime){
         this.id = nextId;
         this.cal = cal;
@@ -24,11 +31,16 @@ public class Reservation {
         nextId++;    
     }
     
-    /* toString override. Format:
-    Reservation number:
-    Date:
-    Time:
-    */    
+    /**
+     * 
+     * @return A string representing the Reservation by listing the reservation
+     * ID number, the date and the time.
+     */
+    /*Format:
+    Reservation Number: ..
+    Date: ../../..
+    Time: ..-..    
+    */
     @Override
     public String toString(){
         String s;
@@ -42,18 +54,35 @@ public class Reservation {
     /*
         Getter methods
     */   
+    
+    /**
+     * 
+     * @return The integer ID of the reservation 
+     */
     public int getId(){
         return this.id;
     }
     
+    /**
+     * 
+     * @return The Calendar object representing the date of the reservation
+     */
     public Calendar getCa(){
         return this.cal;
     }
     
+    /**
+     * 
+     * @return The integer value representing the Start Time of the reservation
+     */
     public int getStartTime(){
         return this.startTime;
     }
 
+    /**
+     * 
+     * @return The integer value representing the End Time of the reservation
+     */
     public int getEndTime(){
         return this.endTime;
     }

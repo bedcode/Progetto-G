@@ -25,30 +25,23 @@ public class Campus {
     private String name;
     List<Classroom> classi;
 
-    public Campus(String name) {
+    public Campus(String name) throws IOException {
         this.name = name;
         classi = new ArrayList();
+        updateRegister();
     }
 
     /* il metodo ask for reservation accetta come parametri una capacità, 
      un oggetto di tipo calendar con solo la data e un intero di inizio
      e fine prenotazione
      */
-    public void askForReservation(int capacity, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
-        FileReader file = new FileReader("classi.txt");
-        BufferedReader in = new BufferedReader(file);
-        while (in.ready()) {
-            StringTokenizer st = new StringTokenizer(in.readLine());
-            Classroom cl = new Classroom(st.nextToken(), Integer.parseInt(st.nextToken()));
-            classi.add(cl);
-        }
-
-        Collections.sort(classi);
-        /*
+    public boolean askForReservation(int capacity, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
+        
          for (Classroom cl : classi) {
-         if (cl.verifyReservation(capacity) == true) {
+         if (cl.verifyReservation(capacity, ca, startHour, endHour) == true) {
          if (askUser()==true) {
-         cl.getResReg().makeReservation();
+         cl.getResReg().makeReservation(ca, startHour, endHour);
+         return true;
          }
          else
          {
@@ -57,7 +50,8 @@ public class Campus {
 
          }
          }
-         */
+         return false;
+         
     }
 
     public boolean askUser() {
@@ -72,6 +66,18 @@ public class Campus {
 
     public List<Classroom> getClassi() {
         return classi;
+    }
+    
+    public void updateRegister() throws FileNotFoundException, IOException {
+        FileReader file = new FileReader("classi.txt");
+        BufferedReader in = new BufferedReader(file);
+        while (in.ready()) {
+            StringTokenizer st = new StringTokenizer(in.readLine());
+            Classroom cl = new Classroom(st.nextToken(), Integer.parseInt(st.nextToken()));
+            classi.add(cl);
+        }
+
+        Collections.sort(classi);
     }
 
 }

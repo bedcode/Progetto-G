@@ -8,14 +8,18 @@
  /**
  *
  * @author Fabio
- * The class is used to create Reservations for Reservation Registers
+ * The class is used to manage Reservations by using a date and a start and end time.
  */
 public class Reservation {
+    
+    //Class variables
+    private static int nextId = 0; //The Id used the next time a new reservation is created
+    
+    //Instance variables
     private int id = 0;
     private Calendar cal = null;
     private int startTime = 0;
     private int endTime = 0;
-    private static int nextId = 0; //The Id used the next time a new reservation is created
         
     /**
      * 
@@ -33,13 +37,11 @@ public class Reservation {
     
     /**
      * 
-     * @return A string representing the Reservation by listing the reservation
-     * ID number, the date and the time.
-     */
-    /*Format:
-    Reservation Number: ..
-    Date: ../../..
-    Time: ..-..    
+     * @return A string representing the Reservation by listing the fields using
+     * the following format: <br>
+     * Reservation Number: ... <br>
+     * Date: dd/mm/yyyy <br>
+     * Time: hh:mm-hh:mm.   
     */
     @Override
     public String toString(){

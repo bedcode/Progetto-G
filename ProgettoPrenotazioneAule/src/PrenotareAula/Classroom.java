@@ -34,10 +34,10 @@ public class Classroom implements Comparable<Classroom> {
      */
     public boolean verifyReservation(int capacity, Calendar cal, int startTime, int endTime) {
         if (checkRequirements(capacity) && resReg.isReserved(cal, startTime, endTime)==false) {
-            System.out.println("Trovata aula libera che soddisfa i requisiti richiesti: " + this.name);
+            //System.out.println("Trovata aula libera che soddisfa i requisiti richiesti: " + this.name);
             return true;
         } else {
-            System.out.println("Aula non disponibile");
+            //System.out.println("Aula non disponibile");
             return false;
         }
     }
@@ -50,10 +50,10 @@ public class Classroom implements Comparable<Classroom> {
      */
     private boolean checkRequirements(int capacity) {
         if (this.capacity >= capacity) {
-            System.out.println("Trovata aula con il numero di posti richiesto (" + capacity + ")");
+            //System.out.println("Trovata aula con il numero di posti richiesto (" + capacity + ")");
             return true;
         } else {
-            System.out.println("L'aula non ha il numero di posti richiesto (" + capacity + ")");
+            //System.out.println("L'aula non ha il numero di posti richiesto (" + capacity + ")");
             return false;
         }
     }

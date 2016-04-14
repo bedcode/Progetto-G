@@ -33,9 +33,13 @@ public class ReservationRegister {
      */
     public boolean isReserved( Calendar ca, int startTime, int endTime) {
       for ( Reservation r : res)  {
-          if( ca.compareTo(r.getCa()) == 0 && 
-                  ((startTime >= r.getStartTime() && endTime<=r.getEndTime())|| (startTime <=r.getStartTime() && endTime>r.getStartTime() &&endTime<=r.getEndTime())
-                  || startTime>= r.getStartTime() &&startTime< r.getEndTime() && endTime >= r.getEndTime()))
+          if( ca.compareTo(r.getCa()) == 0 && // check dates are equals
+                  ((startTime >= r.getStartTime() && endTime<=r.getEndTime()) // Reservation is in the interval start-end time of the other reservation
+                  || (startTime <=r.getStartTime() && endTime>r.getStartTime() && endTime<=r.getEndTime()) // Reservation starts before or at the same time of an other Reservation 
+                                                                                                        //  and end before or at the same time
+                  || startTime>= r.getStartTime() &&startTime< r.getEndTime() && endTime >= r.getEndTime() //Reservation starts before the end of an other reservation and end after or in the same time of the other
+                  || (startTime< r.getStartTime() && endTime>= r.getEndTime()))) // Reservation starts before an other reservation and end after
+              
               return true;
          
       }

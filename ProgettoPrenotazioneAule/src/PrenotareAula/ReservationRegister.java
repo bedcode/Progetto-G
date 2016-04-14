@@ -29,12 +29,12 @@ public class ReservationRegister {
      * @param ca date int dd int mm int yyyy
      * @param startTime Start Time of the Reservation
      * @param endTime   End Time of the Reservation
-     * @return false if is free, false if is reserved
+     * @return false if is free, true if is reserved
      */
     public boolean isReserved( Calendar ca, int startTime, int endTime) {
       for ( Reservation r : res)  {
           if( ca.compareTo(r.getCa()) == 0 && 
-                  ((startTime >= r.getStartTime() && endTime<=r.getEndTime())|| (startTime <=r.getStartTime() && endTime>=r.getStartTime() &&endTime<=r.getEndTime())
+                  ((startTime >= r.getStartTime() && endTime<=r.getEndTime())|| (startTime <=r.getStartTime() && endTime>r.getStartTime() &&endTime<=r.getEndTime())
                   || startTime>= r.getStartTime() &&startTime< r.getEndTime() && endTime >= r.getEndTime()))
               return true;
          

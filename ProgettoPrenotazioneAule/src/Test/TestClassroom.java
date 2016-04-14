@@ -30,7 +30,14 @@ public class TestClassroom {
         ef1.verifyReservation(280, cal, 9, 11); //classroom available for reservation
         c5.verifyReservation(50, cal, 14, 16); //classroom don't available for reservation
         c5.verifyReservation(18, cal, 14, 16); //classroom  available for reservation
-
+        
+        System.out.println(c5.getResReg().isReserved(cal, 14, 16)); //false, classroom is not reserved
+        System.out.println(c5.getResReg().makeReservation(cal, 14, 16)); //true
+        System.out.println(c5.getResReg().isReserved(cal, 14, 15)); //true, classroom is reserved
+        System.out.println(c5.getResReg().makeReservation(cal, 14, 15)); //false
+        System.out.println(c5.getResReg().isReserved(cal, 15, 16)); //true
+        System.out.println(c5.getResReg().makeReservation(cal, 15, 16)); //false
+        
         List<Classroom> classi = new ArrayList<>();
         classi.add(ef1);
         classi.add(ef2);

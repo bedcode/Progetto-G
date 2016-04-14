@@ -33,7 +33,7 @@ public class Classroom implements Comparable<Classroom> {
      * @return boolean value
      */
     public boolean verifyReservation(int capacity, Calendar cal, int startTime, int endTime) {
-        if (checkRequirements(capacity) && resReg.isReserved(cal, startTime, endTime)) {
+        if (checkRequirements(capacity) && resReg.isReserved(cal, startTime, endTime)==false) {
             System.out.println("Trovata aula libera che soddisfa i requisiti richiesti: " + this.name);
             return true;
         } else {

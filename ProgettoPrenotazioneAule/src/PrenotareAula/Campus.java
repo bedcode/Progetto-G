@@ -31,10 +31,16 @@ public class Campus {
         updateRegister();
     }
 
-    /* il metodo ask for reservation accetta come parametri una capacità, 
-     un oggetto di tipo calendar con solo la data e un intero di inizio
-     e fine prenotazione
-     */
+   /**this method is used for asking the campus to make a reservation
+    * 
+    * @param capacity
+    * @param ca
+    * @param startHour
+    * @param endHour
+    * @return boolean value
+    * @throws FileNotFoundException
+    * @throws IOException 
+    */
     public boolean askForReservation(int capacity, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
         
          for (Classroom cl : classi) {
@@ -54,7 +60,10 @@ public class Campus {
          return false;
          
     }
-
+/**
+ * this method asks the User if campus has to make the reservation, the user must answer with yes (Y)  or no (N)
+ * @return boolean value
+ */
     public boolean askUser() {
         Scanner tastiera = new Scanner(System.in);
         System.out.println("è stata trovata un'aula adatta per la prenotazione confermare? (Y|N)");
@@ -68,6 +77,12 @@ public class Campus {
     public List<Classroom> getClassi() {
         return classi;
     }
+    /**
+     * this method is used for updating the classes of the campus
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
+    
     
     public void updateRegister() throws FileNotFoundException, IOException {
         FileReader file = new FileReader("classi.txt");

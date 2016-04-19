@@ -6,6 +6,7 @@
 package Test;
 
 import PrenotareAula.Campus;
+import PrenotareAula.Requirements;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -20,8 +21,9 @@ public class TestCampus {
        Campus cp=new Campus("unipv");
        Calendar ca=new GregorianCalendar();
        ca.set(1993, 2, 1);
-       cp.askForReservation(100, ca, 14, 16);
-       cp.askForReservation(100, ca, 10 , 18);
+       Requirements r= new Requirements(100, true, true, true, null);
+       cp.askForReservation(r, ca, 14, 16);
+       cp.askForReservation(r, ca, 10 , 18);
     }
     
 }

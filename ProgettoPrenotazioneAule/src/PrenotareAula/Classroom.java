@@ -68,9 +68,9 @@ public class Classroom implements Comparable<Classroom> {
      */
     @Override
     public int compareTo(Classroom cl) {
-        if (this.req.getCapacity() < req.getCapacity()) {
+        if (this.req.getCapacity() < cl.getRequirements().getCapacity()) {
             return -1;
-        } else if (this.req.getCapacity() == req.getCapacity()) {
+        } else if (this.req.getCapacity() == cl.getRequirements().getCapacity()) {
             return 0;
         } else {
             return 1;

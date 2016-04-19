@@ -10,11 +10,11 @@ package PrenotareAula;
  * @author Federico
  */
 public class Requirements {
-    int capacity;
-    boolean blackboard;
-    boolean whiteboard;
-    boolean projector;
-    String specialRequirements;
+    private int capacity;
+    private boolean blackboard;
+    private boolean whiteboard;
+    private boolean projector;
+    private String specialRequirements;
 
     public Requirements(int capacity, boolean blackboard, boolean whiteboard, boolean projector, String specialRequirements) {
         this.capacity = capacity;

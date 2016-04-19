@@ -31,43 +31,44 @@ public class Campus {
         updateRegister();
     }
 
-   /**this method is used for asking the campus to make a reservation
-    * 
-    * @param capacity
-    * @param ca
-    * @param startHour
-    * @param endHour
-    * @return boolean value
-    * @throws FileNotFoundException
-    * @throws IOException 
-    */
-    public boolean askForReservation(int capacity, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
-        if (this.checkTime(startHour, endHour)==true) {
-         for (Classroom cl : classi) {
-         if (cl.verifyReservation(capacity, ca, startHour, endHour) == true) {
-         if (askUser()==true) {
-         cl.getResReg().makeReservation(ca, startHour, endHour);
-         System.out.println("prenotazione effettuata aula: "+ cl.getName());
-         return true;
-         }
-         else
-         {
-         System.out.println("prenotazione non effettuata");
-         }
+    /**
+     * this method is used for asking the campus to make a reservation
+     *
+     * @param capacity
+     * @param ca
+     * @param startHour
+     * @param endHour
+     * @return boolean value
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public boolean askForReservation(Requirements req, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
+        if (this.checkTime(startHour, endHour) == true) {
+            for (Classroom cl : classi) {
+                if (cl.verifyReservation(req, ca, startHour, endHour) == true) {
+                    if (askUser() == true) {
+                        cl.getResReg().makeReservation(ca, startHour, endHour);
+                        System.out.println("prenotazione effettuata aula: " + cl.getName());
+                        return true;
+                    } else {
+                        System.out.println("prenotazione non effettuata");
+                    }
 
-         }
-         }
-         return false;
-        }
-        else {
+                }
+            }
+            return false;
+        } else {
             System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");
             return false;
-        }         
+        }
     }
-/**
- * this method asks the User if campus has to make the reservation, the user must answer with yes (Y)  or no (N)
- * @return boolean value
- */
+
+    /**
+     * this method asks the User if campus has to make the reservation, the user
+     * must answer with yes (Y) or no (N)
+     *
+     * @return boolean value
+     */
     public boolean askUser() {
         Scanner tastiera = new Scanner(System.in);
         System.out.println("è stata trovata un'aula adatta per la prenotazione confermare? (Y|N)");
@@ -81,13 +82,14 @@ public class Campus {
     public List<Classroom> getClassi() {
         return classi;
     }
+
     /**
      * this method is used for updating the classes of the campus
+     *
      * @throws FileNotFoundException
-     * @throws IOException 
+     * @throws IOException
      */
-    
-    
+
     public void updateRegister() throws FileNotFoundException, IOException {
         FileReader file = new FileReader("classi.txt");
         BufferedReader in = new BufferedReader(file);
@@ -99,26 +101,25 @@ public class Campus {
 
         Collections.sort(classi);
     }
-    
-    /** this method check if startHour and endHour are correct parameters
-     * 
+
+    /**
+     * this method check if startHour and endHour are correct parameters
+     *
      * @param startHour
      * @param endHour
-     * @return 
+     * @return
      */
-    
-    
     public boolean checkTime(int startHour, int endHour) {
-        if (endHour<=startHour) {
+        if (endHour <= startHour) {
             return false;
         }
-        if (startHour<9) {
+        if (startHour < 9) {
             return false;
         }
-        if (endHour>18) {
+        if (endHour > 18) {
             return false;
         }
-        return true;    
+        return true;
     }
 
 }

@@ -17,21 +17,21 @@ public class Reservation {
     
     //Instance variables
     private int id = 0;
-    private Calendar cal = null;
-    private int startTime = 0;
-    private int endTime = 0;
+    private Calendar c = null;
+    private int startHour = 0;
+    private int endHour = 0;
         
     /**
      * 
-     * @param cal The Calendar object describing the date of the reservation
-     * @param startTime The integer value representing the Start Time of the Reservation
-     * @param endTime The integer value representing the End Time of the Reservation
+     * @param c The Calendar object describing the date of the reservation
+     * @param startHour The integer value representing the Start Time of the Reservation
+     * @param endHour The integer value representing the End Time of the Reservation
      */
-    public Reservation(Calendar cal, int startTime, int endTime){
+    public Reservation(Calendar c, int startHour, int endHour){
         this.id = nextId;
-        this.cal = cal;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.c = c;
+        this.startHour = startHour;
+        this.endHour = endHour;
         nextId++;    
     }
     
@@ -47,10 +47,10 @@ public class Reservation {
     public String toString(){
         String s;
         return s = "Reservation number: " + this.id + "\n" +
-                   "Date: " + this.cal.get(Calendar.DAY_OF_MONTH) + "/" +
-                              this.cal.get(Calendar.MONTH) + "/" + 
-                              this.cal.get(Calendar.YEAR) + "\n" +
-                   "Time: " + this.startTime + ":00-" + this.endTime + ":00\n";
+                   "Date: " + this.c.get(Calendar.DAY_OF_MONTH) + "/" +
+                              this.c.get(Calendar.MONTH) + "/" + 
+                              this.c.get(Calendar.YEAR) + "\n" +
+                   "Time: " + this.startHour + ":00-" + this.endHour + ":00\n";
     }    
 
     /*
@@ -70,7 +70,7 @@ public class Reservation {
      * @return The Calendar object representing the date of the reservation
      */
     public Calendar getCa(){
-        return this.cal;
+        return this.c;
     }
     
     /**
@@ -78,7 +78,7 @@ public class Reservation {
      * @return The integer value representing the Start Time of the reservation
      */
     public int getStartTime(){
-        return this.startTime;
+        return this.startHour;
     }
 
     /**
@@ -86,7 +86,7 @@ public class Reservation {
      * @return The integer value representing the End Time of the reservation
      */
     public int getEndTime(){
-        return this.endTime;
+        return this.endHour;
     }
             
 /*            

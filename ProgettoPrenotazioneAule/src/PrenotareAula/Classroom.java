@@ -14,26 +14,26 @@ import java.util.Calendar;
 public class Classroom implements Comparable<Classroom> {
 
     private String name;
-    private int capacity;
+    private Requirements req;
     private ReservationRegister resReg;
 
-    public Classroom(String name, int capacity) {
+    public Classroom(String name, Requirements req) {
         this.name = name;
-        this.capacity = capacity;
+        this.req = req;
         resReg = new ReservationRegister(name);
     }
 
     /**
      * This method verifies if a classroom respects the requirements (capacity) and if it is free.
      *
-     * @param capacity the capacity of the classroom
+     * @param req the requirements of the classroom
      * @param cal calendar which indicates day, month and year
-     * @param startTime start time of the request reservation
-     * @param endTime end time of the request reservation
+     * @param startHour start time of the request reservation
+     * @param endHour end time of the request reservation
      * @return boolean value
      */
-    public boolean verifyReservation(int capacity, Calendar cal, int startTime, int endTime) {
-        if (checkRequirements(capacity) && resReg.isReserved(cal, startTime, endTime)==false) {
+    public boolean verifyReservation(Requirements req, Calendar cal, int startHour, int endHour) {
+        if (checkRequirements(req) && resReg.isReserved(cal, startHour, endHour)==false) {
             //System.out.println("Trovata aula libera che soddisfa i requisiti richiesti: " + this.name);
             return true;
         } else {
@@ -48,8 +48,8 @@ public class Classroom implements Comparable<Classroom> {
      * @param capacity the capacity of the classroom
      * @return boolean value
      */
-    private boolean checkRequirements(int capacity) {
-        if (this.capacity >= capacity) {
+    private boolean checkRequirements(Requirements req) {
+        if (this.req.getCapacity() >= req.getCapacity()) {
             //System.out.println("Trovata aula con il numero di posti richiesto (" + capacity + ")");
             return true;
         } else {
@@ -68,9 +68,9 @@ public class Classroom implements Comparable<Classroom> {
      */
     @Override
     public int compareTo(Classroom cl) {
-        if (this.capacity < cl.capacity) {
+        if (this.req.getCapacity() < req.getCapacity()) {
             return -1;
-        } else if (this.capacity == cl.capacity) {
+        } else if (this.req.getCapacity() == req.getCapacity()) {
             return 0;
         } else {
             return 1;
@@ -81,8 +81,8 @@ public class Classroom implements Comparable<Classroom> {
         return name;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public Requirements getRequirements() {
+        return req;
     }
 
     public ReservationRegister getResReg() {

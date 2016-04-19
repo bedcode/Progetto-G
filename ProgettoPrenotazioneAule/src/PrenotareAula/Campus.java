@@ -41,7 +41,7 @@ public class Campus {
          if (cl.verifyReservation(capacity, ca, startHour, endHour) == true) {
          if (askUser()==true) {
          cl.getResReg().makeReservation(ca, startHour, endHour);
-         System.out.println("prenotazione effettuata");
+         System.out.println("prenotazione effettuata aula: "+ cl.getName());
          return true;
          }
          else

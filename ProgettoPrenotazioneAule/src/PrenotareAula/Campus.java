@@ -42,7 +42,7 @@ public class Campus {
     * @throws IOException 
     */
     public boolean askForReservation(int capacity, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
-        
+        if (this.checkTime(startHour, endHour)==true) {
          for (Classroom cl : classi) {
          if (cl.verifyReservation(capacity, ca, startHour, endHour) == true) {
          if (askUser()==true) {
@@ -58,7 +58,11 @@ public class Campus {
          }
          }
          return false;
-         
+        }
+        else {
+            System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");
+            return false;
+        }         
     }
 /**
  * this method asks the User if campus has to make the reservation, the user must answer with yes (Y)  or no (N)
@@ -94,6 +98,27 @@ public class Campus {
         }
 
         Collections.sort(classi);
+    }
+    
+    /** this method check if startHour and endHour are correct parameters
+     * 
+     * @param startHour
+     * @param endHour
+     * @return 
+     */
+    
+    
+    public boolean checkTime(int startHour, int endHour) {
+        if (endHour<=startHour) {
+            return false;
+        }
+        if (startHour<9) {
+            return false;
+        }
+        if (endHour>18) {
+            return false;
+        }
+        return true;    
     }
 
 }

@@ -21,9 +21,17 @@ public class TestReservation {
         System.out.println(r2);
         System.out.println(r3);
         
-        //esempio per accedere ai campi della data
-        Calendar test = r1.getCa();
-        System.out.println(test.get(Calendar.DAY_OF_MONTH));
+        //date field
+        Calendar test = r1.getDate();
+        System.out.println(test.get(Calendar.DAY_OF_MONTH) + "\n\n");
+        
+        //compare
+        Reservation r4 = new Reservation(new GregorianCalendar(2016,04,27),14,16);
+        Reservation r5 = new Reservation(new GregorianCalendar(2016,04,27),14,18);
+        System.out.println(r1.compareTo(r2));
+        System.out.println(r3.compareTo(r2));
+        System.out.println(r4.compareTo(r5));
+                
     }
 
     

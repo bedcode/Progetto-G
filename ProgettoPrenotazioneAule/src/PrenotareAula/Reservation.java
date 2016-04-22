@@ -10,7 +10,7 @@
  * @author Fabio
  * The class is used to manage Reservations by using a date and a start and end time.
  */
-public class Reservation {
+public class Reservation implements Comparable<Reservation>{
     
     //Class variables
     private static int nextId = 0; //The Id used the next time a new reservation is created
@@ -69,7 +69,7 @@ public class Reservation {
      * 
      * @return The Calendar object representing the date of the reservation
      */
-    public Calendar getCa(){
+    public Calendar getDate(){
         return this.c;
     }
     
@@ -77,7 +77,7 @@ public class Reservation {
      * 
      * @return The integer value representing the Start Time of the reservation
      */
-    public int getStartTime(){
+    public int getStartHour(){
         return this.startHour;
     }
 
@@ -85,14 +85,34 @@ public class Reservation {
      * 
      * @return The integer value representing the End Time of the reservation
      */
-    public int getEndTime(){
+    public int getEndHour(){
         return this.endHour;
     }
+    
+    /**
+     * 
+     * @param res The reservation to be compared by date and time
+     * @return An integer number representing the comparison result <br>
+     * -1: res is at a later date and time than this reservation <br>
+     * +1: res is at an earlier date and time <br>
+     *  0: res is at the same date and time <br>
+     */
+    @Override
+    public int compareTo(Reservation res){
+        
+        int day = this.getDate().compareTo(res.getDate());            
+        if (day != 0)    //if the day is diferent return -1 or 1
+            return day;
+            else{            //else check the time also
+                if (this.getStartHour() < res.getStartHour())
+                    return -1;
+                else if (this.getStartHour() > res.getStartHour())
+                         return 1;
+                else
+                    return 0;
+            }
             
-/*            
-    public String getTime(){
-        return this.startTime + ":00-" + this.endTime + ":00";
+        
     }
-*/    
         
 }

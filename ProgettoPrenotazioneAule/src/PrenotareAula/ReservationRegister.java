@@ -33,12 +33,12 @@ public class ReservationRegister {
      */
     public boolean isReserved( Calendar c, int startHour, int endHour) {
       for ( Reservation r : res)  {
-          if( c.compareTo(r.getCa()) == 0 && // check dates are equals
-                  ((startHour >= r.getStartTime() && endHour<=r.getEndTime()) // Reservation is in the interval start-end time of the other reservation
-                  || (startHour <=r.getStartTime() && endHour>r.getStartTime() && endHour<=r.getEndTime()) // Reservation starts before or at the same time of an other Reservation 
+          if( c.compareTo(r.getDate()) == 0 && // check dates are equals
+                  ((startHour >= r.getStartHour() && endHour<=r.getEndHour()) // Reservation is in the interval start-end time of the other reservation
+                  || (startHour <=r.getStartHour() && endHour>r.getStartHour() && endHour<=r.getEndHour()) // Reservation starts before or at the same time of an other Reservation 
                                                                                                         //  and end before or at the same time
-                  || startHour>= r.getStartTime() &&startHour< r.getEndTime() && endHour >= r.getEndTime() //Reservation starts before the end of an other reservation and end after or in the same time of the other
-                  || (startHour< r.getStartTime() && endHour>= r.getEndTime()))) // Reservation starts before an other reservation and end after
+                  || startHour>= r.getStartHour() &&startHour< r.getEndHour() && endHour >= r.getEndHour() //Reservation starts before the end of an other reservation and end after or in the same time of the other
+                  || (startHour< r.getStartHour() && endHour>= r.getEndHour()))) // Reservation starts before an other reservation and end after
               
               return true;
          

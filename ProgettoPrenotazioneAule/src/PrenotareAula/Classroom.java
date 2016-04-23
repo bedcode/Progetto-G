@@ -52,79 +52,21 @@ public class Classroom implements Comparable<Classroom> {
      * @param req the requirements of the classroom
      * @return integer value: 0 -> all requirements are present in the classroom
      * -1 -> capacity not respected, -2 -> no blackboard, -3 -> no projector, -4
-     * -> no whiteboard, -5 -> only requirements with low priority are request
-     * (for example teacher only asks for whiteboard)
+     * -> no whiteboard
      */
     private int checkRequirements(Requirements req) {
-        int i = -5;
-        i = this.checkGoodRequirements(req);
-        if (this.req.getCapacity() < req.getCapacity()) {
-            i = -1; //no capacity
-        } else if ((this.req.getCapacity() >= req.getCapacity())
-                && ((this.req.isBlackboard() == false) && req.isBlackboard())) {
-            i = -2; //no blackboard
-        } else if ((this.req.getCapacity() >= req.getCapacity())
-                && (this.req.isBlackboard() && (this.req.isBlackboard() == req.isBlackboard()))
-                && ((this.req.isProjector() == false) && req.isProjector())) {
-            i = -3; //no projector
-        } else if ((this.req.getCapacity() >= req.getCapacity())
-                && (this.req.isBlackboard() && (this.req.isBlackboard() == req.isBlackboard()))
-                && (this.req.isProjector() && (this.req.isProjector() == req.isProjector()))
-                && ((this.req.isWhiteboard() == false) && req.isWhiteboard())) {
+        int i = 0;
+        if ((this.req.isWhiteboard() == false) && req.isWhiteboard()) {
             i = -4; //no whiteboard
         }
-        return i;
-    }
-
-    /**
-     * Method for checking cases of success in the request.
-     *
-     * @param req the requirements of the classroom
-     * @return integer value: 0 -> the requirements are present and they are not
-     * request, -5 -> only requirements with low priority are request
-     */
-    private int checkGoodRequirements(Requirements req) {
-        int i = -5;
-        if ((this.req.getCapacity() >= req.getCapacity())
-                && (this.req.isBlackboard() == req.isBlackboard()) //request of blackboard and its availability are equal
-                && (this.req.isProjector() == req.isProjector())
-                && ((this.req.isWhiteboard() == req.isWhiteboard()))) {
-            i = 0;
-        } else if ((this.req.getCapacity() >= req.getCapacity()) //blackboard is not required
-                && (this.req.isBlackboard() && (req.isBlackboard() == false))
-                && (this.req.isProjector() == req.isProjector())
-                && ((this.req.isWhiteboard() == req.isWhiteboard()))) {
-            i = 0;
-        } else if ((this.req.getCapacity() >= req.getCapacity()) //projector is not required
-                && (this.req.isBlackboard() == req.isBlackboard())
-                && (this.req.isProjector() && (req.isProjector() == false))
-                && ((this.req.isWhiteboard() == req.isWhiteboard()))) {
-            i = 0;
-        } else if ((this.req.getCapacity() >= req.getCapacity()) //whiteboard is not required
-                && (this.req.isBlackboard() == req.isBlackboard())
-                && (this.req.isProjector() == req.isProjector())
-                && ((this.req.isWhiteboard() && (req.isWhiteboard() == false)))) {
-            i = 0;
-        } else if ((this.req.getCapacity() >= req.getCapacity()) //blackboard and projector are not required
-                && (this.req.isBlackboard() && (req.isBlackboard() == false))
-                && (this.req.isProjector() && (req.isProjector() == false))
-                && ((this.req.isWhiteboard() == req.isWhiteboard()))) {
-            i = 0;
-        } else if ((this.req.getCapacity() >= req.getCapacity()) //projector and whiteboard are not required
-                && (this.req.isBlackboard() == req.isBlackboard())
-                && (this.req.isProjector() && (req.isProjector() == false))
-                && (this.req.isWhiteboard() && (req.isWhiteboard() == false))) {
-            i = 0;
-        } else if ((this.req.getCapacity() >= req.getCapacity()) //blackboard and whiteboard are not required
-                && (this.req.isBlackboard() && (req.isBlackboard() == false))
-                && (this.req.isProjector() == req.isProjector())
-                && ((this.req.isWhiteboard() && (req.isWhiteboard() == false)))) {
-            i = 0;
-        } else if ((this.req.getCapacity() >= req.getCapacity()) //blackboard, projector and whiteboard are not required
-                && (this.req.isBlackboard() && (req.isBlackboard() == false))
-                && (this.req.isProjector() && (req.isProjector() == false))
-                && (this.req.isWhiteboard() && (req.isWhiteboard() == false))) {
-            i = 0;
+        if ((this.req.isProjector() == false) && req.isProjector()) {
+            i = -3; //no projector
+        }
+        if ((this.req.isBlackboard() == false) && req.isBlackboard()) {
+            i = -2; //no blackboard
+        }
+        if (this.req.getCapacity() < req.getCapacity()) {
+            i = -1; //no capacity
         }
         return i;
     }

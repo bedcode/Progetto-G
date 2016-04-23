@@ -56,12 +56,16 @@ public class TestClassroom {
         
         System.out.println(c5.verifyReservation(req6, cal, 14, 16)); //c5 is reserved 0
         
-        Requirements ref4 = new Requirements(280, true, false, true, "none");
-        Requirements req7 = new Requirements(200, false, true, false, "none");
-        Requirements req8 = new Requirements(200, false, false, true, "none");
+        Requirements ref4 = new Requirements(280, false, false, false, "none");
+        Requirements req7 = new Requirements(200, true, false, false, "none"); //no blackboard -2
+        Requirements req8 = new Requirements(200, false, false, true, "none"); //no projector -3
+        Requirements req9 = new Requirements(200, false, true, false, "none"); //no whiteboard -4
+        Requirements req10 = new Requirements(300, true, true, true, "none"); //no capacity -1
         Classroom ef4 = new Classroom("EF4", ref4);
         System.out.println(ef4.verifyReservation(req7, cal, 14, 16));
         System.out.println(ef4.verifyReservation(req8, cal, 14, 16));
+        System.out.println(ef4.verifyReservation(req9, cal, 14, 16));
+        System.out.println(ef4.verifyReservation(req10, cal, 14, 16));
         
         List<Classroom> classi = new ArrayList<>();
         classi.add(ef1);

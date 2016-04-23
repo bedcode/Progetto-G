@@ -5,8 +5,11 @@
  */
 package Test;
 import PrenotareAula.Reservation;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
 /**
  *
  * @author Fabio
@@ -31,6 +34,19 @@ public class TestReservation {
         System.out.println(r1.compareTo(r2));
         System.out.println(r3.compareTo(r2));
         System.out.println(r4.compareTo(r5));
+        
+        //list
+        System.out.println("\n\n ----Sort test----");
+        ArrayList<Reservation> reservations = new ArrayList<>();
+        reservations.add(r1);
+        reservations.add(r2);
+        reservations.add(r3);
+        reservations.add(r4);
+        reservations.add(r5);
+        Collections.sort(reservations);
+        for(Reservation r : reservations)
+            System.out.println(r);
+        
                 
     }
 

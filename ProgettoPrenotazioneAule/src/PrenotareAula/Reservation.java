@@ -101,7 +101,7 @@ public class Reservation implements Comparable<Reservation>{
     public int compareTo(Reservation res){
         
         int day = this.getDate().compareTo(res.getDate());            
-        if (day != 0)    //if the day is diferent return -1 or 1
+        if (day != 0)    //if the day is different return -1 or 1
             return day;
             else{            //else check the time also
                 if (this.getStartHour() < res.getStartHour())

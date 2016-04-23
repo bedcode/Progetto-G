@@ -45,7 +45,7 @@ public class Campus {
     public boolean askForReservation(Requirements req, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
         if (this.checkTime(startHour, endHour) == true) {
             for (Classroom cl : classi) {
-                if (cl.verifyReservation(req, ca, startHour, endHour) == true) {
+                if (cl.verifyReservation(req, ca, startHour, endHour) == 1) {
                     if (askUser() == true) {
                         cl.getResReg().makeReservation(ca, startHour, endHour);
                         System.out.println("prenotazione effettuata aula: " + cl.getName());

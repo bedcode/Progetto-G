@@ -20,21 +20,32 @@ import java.util.List;
 public class TestClassroom {
 
     public static void main(String[] args) {
-        Requirements ref1 = new Requirements(280, true, false, true, "none");
-        Requirements ref2 = new Requirements(250, true, false, true, "none");
-        Requirements rc5 = new Requirements(20, true, false, true, "none");
-        Requirements ra1 = new Requirements(180, true, false, true, "none");
+        Requirements ref1 = new Requirements(280, true, true, true, "none");
+        Requirements ra1 = new Requirements(180, false, false, true, "none"); //no blackboard
+        Requirements ref2 = new Requirements(250, true, true, false, "none"); //no projector
+        Requirements rc5 = new Requirements(20, true, false, true, "none"); //no whiteboard
+        
         Classroom ef1 = new Classroom("EF1", ref1);
+        Classroom a1 = new Classroom("A1", ra1);
         Classroom ef2 = new Classroom("EF2", ref2);
         Classroom c5 = new Classroom("C5", rc5);
-        Classroom a1 = new Classroom("A1", ra1);
         
         Calendar cal = new GregorianCalendar(2016, 3, 5);
-
-        ef1.verifyReservation(ref1, cal, 9, 11); //classroom don't available for reservation
-        ef1.verifyReservation(ref1, cal, 9, 11); //classroom available for reservation
-        c5.verifyReservation(rc5, cal, 14, 16); //classroom don't available for reservation
-        c5.verifyReservation(rc5, cal, 14, 16); //classroom  available for reservation
+        
+        Requirements req1 = new Requirements(280, true, true, true, "none");
+        Requirements req2 = new Requirements(300, true, true, true, "none");
+        Requirements req3 = new Requirements(100, true, true, false, "none");
+        Requirements req4 = new Requirements(200, true, false, true, "none");
+        Requirements req5 = new Requirements(20, true, true, true, "none");
+        
+        System.out.println(ef1.verifyReservation(req1, cal, 9, 11)); //all ok 1
+        System.out.println(ef1.verifyReservation(req2, cal, 9, 11)); //no capacity -1
+        System.out.println(a1.verifyReservation(req3, cal, 9, 11)); //no blackboard -2
+        System.out.println(ef2.verifyReservation(req4, cal, 9, 11)); //no projector -3
+        System.out.println(c5.verifyReservation(req5, cal, 14, 16)); //no whiteboard -4
+        
+        Requirements req6 = new Requirements(20, true, false, true, "none");
+        System.out.println(c5.verifyReservation(req6, cal, 14, 16)); //all ok 1
         
         System.out.println(c5.getResReg().isReserved(cal, 14, 16)); //false, classroom is not reserved
         System.out.println(c5.getResReg().makeReservation(cal, 14, 16)); //true
@@ -42,6 +53,15 @@ public class TestClassroom {
         System.out.println(c5.getResReg().makeReservation(cal, 14, 15)); //false
         System.out.println(c5.getResReg().isReserved(cal, 15, 16)); //true
         System.out.println(c5.getResReg().makeReservation(cal, 15, 16)); //false
+        
+        System.out.println(c5.verifyReservation(req6, cal, 14, 16)); //c5 is reserved 0
+        
+        Requirements ref4 = new Requirements(280, true, false, true, "none");
+        Requirements req7 = new Requirements(200, false, true, false, "none");
+        Requirements req8 = new Requirements(200, false, false, true, "none");
+        Classroom ef4 = new Classroom("EF4", ref4);
+        System.out.println(ef4.verifyReservation(req7, cal, 14, 16));
+        System.out.println(ef4.verifyReservation(req8, cal, 14, 16));
         
         List<Classroom> classi = new ArrayList<>();
         classi.add(ef1);

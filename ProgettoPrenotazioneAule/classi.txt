@@ -1,5 +1,5 @@
-E6 230
-A8 300
-A7 100
-EF6 400
-B3 60
+E6 230 true true false none
+A8 300 false false true none
+A7 100 true false true none
+EF6 400 false true true none
+B3 60 false false false none

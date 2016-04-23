@@ -7,6 +7,7 @@ package PrenotareAula;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -57,10 +58,20 @@ public class ReservationRegister {
         if(isReserved(c,  startHour, endHour) == false){
           Reservation  newRes = new Reservation(c, startHour, endHour);
           res.add(newRes);
+          Collections.sort(res);
+
           return true;
         }
           else
           return false;
+    }
+    /** this method prints the content details of the Reservation Register
+     * 
+     */
+    public void printRegister() {
+            for ( Reservation r : res)
+                System.out.println(r.toString());
+        
     }
     }
 

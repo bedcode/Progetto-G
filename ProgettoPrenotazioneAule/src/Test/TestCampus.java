@@ -21,7 +21,7 @@ public class TestCampus {
        Campus cp=new Campus("unipv");
        Calendar ca=new GregorianCalendar();
        ca.set(1993, 2, 1);
-       Requirements r= new Requirements(100, false, true, true, "none");
+       Requirements r= new Requirements(100, false, true, false, "none");
        cp.askForReservation(r, ca, 14, 16);
        cp.askForReservation(r, ca, 10 , 18);
     }

@@ -73,5 +73,17 @@ public class ReservationRegister {
                 System.out.println(r.toString());
         
     }
+    public boolean deleteReservation(int idReservation) {
+        for (int i = 0; i < res.size(); i ++){
+            if (idReservation == res.get(i).getId()){
+                res.remove(i);
+                Collections.sort(res);
+                return true;
+            }    
+                
+            
+        }
+        return false;
     }
+}
 

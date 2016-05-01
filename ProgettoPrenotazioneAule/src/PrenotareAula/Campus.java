@@ -46,21 +46,33 @@ public class Campus {
         if (this.checkTime(startHour, endHour) == true) {
             for (Classroom cl : classi) {
                 if (cl.verifyReservation(req, ca, startHour, endHour) == 1) {
-                    if (askUser() == true) {
+                    if (askUser(cl) == true) {
                         cl.getResReg().makeReservation(ca, startHour, endHour);
                         System.out.println("prenotazione effettuata aula: " + cl.getName());
                         return true;
                     } else {
                         System.out.println("prenotazione non effettuata");
                     }
-
                 }
             }
-            return false;
+            for (Classroom cl : classi) {
+                if (cl.verifyReservation(req, ca, startHour, endHour) == -3 || cl.verifyReservation(req, ca, startHour, endHour) == -4) {
+                    System.out.println("manca un requisito");
+                    if (askUser(cl) == true) {
+                        cl.getResReg().makeReservation(ca, startHour, endHour);
+                        System.out.println("prenotazione effettuata aula: " + cl.getName());
+                        return true;
+                    } else {
+                        System.out.println("prenotazione non effettuata");
+                    }
+                }
+            }
+            
         } else {
             System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");
             return false;
         }
+        return false;
     }
 
     /**
@@ -69,9 +81,9 @@ public class Campus {
      *
      * @return boolean value
      */
-    public boolean askUser() {
+    public boolean askUser(Classroom cl) {
         Scanner tastiera = new Scanner(System.in);
-        System.out.println("è stata trovata un'aula adatta per la prenotazione confermare? (Y|N)");
+        System.out.println("Si desidera prenotare l'aula " + cl.getName() + " ? (Y|N)");
         if (tastiera.next().equals("Y")) {
             return true;
         } else {

@@ -27,7 +27,7 @@ public class TestReservation {
         //date field
         Calendar test = r1.getDate();
         System.out.println(test.get(Calendar.DAY_OF_MONTH) + "\n\n");
-        
+          
         //compare
         Reservation r4 = new Reservation(new GregorianCalendar(2016,04,27),14,16);
         Reservation r5 = new Reservation(new GregorianCalendar(2016,04,27),14,18);
@@ -46,6 +46,14 @@ public class TestReservation {
         Collections.sort(reservations);
         for(Reservation r : reservations)
             System.out.println(r);
+        
+        //Adding date
+        System.out.println("Adding days to a date:");
+        Reservation r6 = new Reservation(new GregorianCalendar(2016,05,27),14,16);
+        System.out.println(r6);
+        r6.getDate().add(Calendar.DAY_OF_MONTH, 6);
+        System.out.println(r6);
+        
         
                 
     }

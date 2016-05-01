@@ -57,7 +57,7 @@ public class Campus {
             }
             for (Classroom cl : classi) {
                 if (cl.verifyReservation(req, ca, startHour, endHour) == -3 || cl.verifyReservation(req, ca, startHour, endHour) == -4) {
-                    System.out.println("manca un requisito");
+                    System.out.println("non è stata trovata un'aula con i requisiti richiesti, tuttavia è possibile prenotare " + cl.getName()+ " con " + cl.getRequirements().toString());
                     if (askUser(cl) == true) {
                         cl.getResReg().makeReservation(ca, startHour, endHour);
                         System.out.println("prenotazione effettuata aula: " + cl.getName());
@@ -67,6 +67,9 @@ public class Campus {
                     }
                 }
             }
+            
+            
+            
             
         } else {
             System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");

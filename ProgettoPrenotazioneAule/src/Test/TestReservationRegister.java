@@ -36,5 +36,7 @@ public class TestReservationRegister {
         System.out.println(r.makeReservation(ca,13,17)); //false
         System.out.println(r.makeReservation(ca,9,17));  //false
         r.printRegister();
+        System.out.println(r.deleteReservation(1));
+        r.printRegister();
     }
 }

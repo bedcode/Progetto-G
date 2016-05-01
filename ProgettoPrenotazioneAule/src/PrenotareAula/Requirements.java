@@ -44,5 +44,10 @@ public class Requirements {
         return specialRequirements;
     }
     
+    @Override
+    public String toString() {
+        return "capacità:" + capacity + ", lavagna: " + blackboard+ ", lavagna lucidi: "+ whiteboard+ ", proiettore: "+ projector;
+    }
+    
     
 }

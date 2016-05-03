@@ -30,20 +30,21 @@ public class Campus {
         classi = new ArrayList();
         updateRegister();
     }
-
     /**
      * this method is used for asking the campus to make a reservation, if there aren't classrooms with the specified requirements available
      * the campus suggests a classroom which has similar requirements
      * If the user doesn't find a classroom suitable for his needs, he must ask again for a reservation with different parameters
-     *
-     * @param capacity
+     * 
+     * 
+     * @param req
      * @param ca
      * @param startHour
      * @param endHour
-     * @return boolean value
+     * @return
      * @throws FileNotFoundException
-     * @throws IOException
+     * @throws IOException 
      */
+
     public boolean askForReservation(Requirements req, Calendar ca, int startHour, int endHour) throws FileNotFoundException, IOException {
         if (this.checkTime(startHour, endHour) == true) {
             for (Classroom cl : classi) {

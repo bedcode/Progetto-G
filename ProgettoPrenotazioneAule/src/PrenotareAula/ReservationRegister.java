@@ -67,6 +67,7 @@ public class ReservationRegister {
     }
     /** this method prints the content details of the Reservation Register
      * 
+     * @return a String with the details of the register
      */
     public String printRegister() {
         String s = "";
@@ -74,6 +75,13 @@ public class ReservationRegister {
                 s += r.toString();
         return s;
     }
+    /**this method delete an existent Reservation  
+     * 
+     * @param idReservation the id of a Reservation 
+     * @return true if the Reservation is deleted, false if it isn't (the Reservation 
+     * doesn't exist)
+     */
+    
     public boolean deleteReservation(int idReservation) {
         for (int i = 0; i < res.size(); i ++){
             if (idReservation == res.get(i).getId()){

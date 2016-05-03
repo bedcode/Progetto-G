@@ -90,7 +90,17 @@ public class Classroom implements Comparable<Classroom> {
             return 1;
         }
     }
-
+    
+    public String printClassroom(){
+        String s = this.name + "\n";
+        if (resReg.printRegister() == ""){
+            s += "Nessuna prenotazione effettuata";
+        } else {
+            s += this.resReg.printRegister();
+        }
+        return s;
+    }
+            
     public String getName() {
         return name;
     }

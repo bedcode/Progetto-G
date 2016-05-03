@@ -68,10 +68,11 @@ public class ReservationRegister {
     /** this method prints the content details of the Reservation Register
      * 
      */
-    public void printRegister() {
+    public String printRegister() {
+        String s = "";
             for ( Reservation r : res)
-                System.out.println(r.toString());
-        
+                s += r.toString();
+        return s;
     }
     public boolean deleteReservation(int idReservation) {
         for (int i = 0; i < res.size(); i ++){

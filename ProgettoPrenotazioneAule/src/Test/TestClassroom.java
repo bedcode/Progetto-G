@@ -76,5 +76,7 @@ public class TestClassroom {
         for (Classroom cl : classi) {
             System.out.println(cl.getName() + " : " + cl.getRequirements().getCapacity());
         }
+        System.out.println(ef1.printClassroom());
+        System.out.println(c5.printClassroom());
     }
 }

@@ -32,7 +32,9 @@ public class Campus {
     }
 
     /**
-     * this method is used for asking the campus to make a reservation
+     * this method is used for asking the campus to make a reservation, if there aren't classrooms with the specified requirements available
+     * the campus suggests a classroom which has similar requirements
+     * If the user doesn't find a classroom suitable for his needs, he must ask again for a reservation with different parameters
      *
      * @param capacity
      * @param ca
@@ -101,7 +103,7 @@ public class Campus {
     }
 
     /**
-     * this method is used for updating the classes of the campus
+     * this method is used for updating the classrooms of the campus
      *
      * @throws FileNotFoundException
      * @throws IOException

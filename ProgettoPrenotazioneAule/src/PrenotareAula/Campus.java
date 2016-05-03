@@ -68,7 +68,9 @@ public class Campus {
                 }
             }
             
+            System.out.println("non è disponibile un'aula con i requisiti specificati o con requisiti simili, effettuare una nuova prenotazione in orari differenti");
             
+                   
             
             
         } else {

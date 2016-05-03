@@ -38,7 +38,8 @@ public class Classroom implements Comparable<Classroom> {
         if ((checkRequirements(req) == 0) && resReg.isReserved(cal, startHour, endHour) == false) {
             //System.out.println("Trovata aula libera che soddisfa i requisiti richiesti: " + this.name);
             return 1;
-        } if ((checkRequirements(req) != 0) && resReg.isReserved(cal, startHour, endHour) == false) {
+        }
+        if ((checkRequirements(req) != 0) && resReg.isReserved(cal, startHour, endHour) == false) {
             //System.out.println("Aula non disponibile");
             return checkRequirements(req);
         }
@@ -90,17 +91,23 @@ public class Classroom implements Comparable<Classroom> {
             return 1;
         }
     }
-    
-    public String printClassroom(){
-        String s = this.name + "\n";
-        if (resReg.printRegister() == ""){
+
+    /**
+     * If there exists at least one reservation, the method prints the
+     * reservation register of the classroom.
+     *
+     * @return a string with the details of each reservation of the classroom
+     */
+    public String printClassroom() {
+        String s = "*****************\nAula: " + this.name + "\n";
+        if (this.resReg.printRegister().equals("")) {
             s += "Nessuna prenotazione effettuata";
         } else {
             s += this.resReg.printRegister();
         }
         return s;
     }
-            
+
     public String getName() {
         return name;
     }

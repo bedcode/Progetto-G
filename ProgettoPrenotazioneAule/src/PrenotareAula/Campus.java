@@ -82,6 +82,13 @@ public class Campus {
         }
         return false;
     }
+    
+    
+    public void printAllClassroomReservation() {
+            for (Classroom cl : classi) {
+                cl.getResReg().printRegister();
+            }       
+    }
 
     /**
      * this method asks the User if campus has to make the reservation, the user

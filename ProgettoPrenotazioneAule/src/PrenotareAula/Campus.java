@@ -83,10 +83,13 @@ public class Campus {
         return false;
     }
     
+    /**
+     * method for printing all the reservation that was made in all the classroom of the campus
+     */
     
     public void printAllClassroomReservation() {
             for (Classroom cl : classi) {
-                cl.getResReg().printRegister();
+                System.out.println(cl.printClassroom());
             }       
     }
 

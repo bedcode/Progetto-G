@@ -84,6 +84,24 @@ public class Campus {
     }
     
     /**
+     * this method deletes a reservation that was made previously
+     * 
+     * @param id
+     * @return 
+     */
+    
+    public boolean deleteReservation(int id) {
+        for (Classroom cl : classi) {
+            if(cl.getResReg().deleteReservation(id)==true) {
+                return true;
+            }       
+        }
+        return false;
+    }
+            
+            
+    
+    /**
      * method for printing all the reservation that was made in all the classroom of the campus
      */
     

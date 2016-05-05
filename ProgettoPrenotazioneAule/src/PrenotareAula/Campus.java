@@ -92,6 +92,11 @@ public class Campus {
                 System.out.println(cl.printClassroom());
             }       
     }
+    
+    public void printSingleClassroom(Classroom cl) {
+        System.out.println(cl.printClassroom());
+        
+    }
 
     /**
      * this method asks the User if campus has to make the reservation, the user

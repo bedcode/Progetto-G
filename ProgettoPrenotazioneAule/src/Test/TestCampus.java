@@ -18,7 +18,7 @@ import java.util.GregorianCalendar;
 public class TestCampus {
      
     public static void main(String[] args) throws IOException {
-       Campus cp=new Campus("unipv");
+       Campus cp=Campus.getInstance();
        Calendar ca=new GregorianCalendar();
        ca.set(2000, 2, 1);
        Requirements r= new Requirements(200, true, true, true, "none");

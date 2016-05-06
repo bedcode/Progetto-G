@@ -20,15 +20,25 @@ import java.util.StringTokenizer;
  *
  * @author Federico
  */
-public class Campus {
+public class Campus  {
 
+    private static Campus instance=new Campus("unipv");
     private String name;
     List<Classroom> classi;
 
-    public Campus(String name) throws IOException {
+    private Campus(String name) {
         this.name = name;
         classi = new ArrayList();
+        try {
         updateRegister();
+        }
+        catch(IOException e) {
+            System.out.println("file non trovato");
+        }
+    }
+    
+    public static Campus getInstance() {
+        return instance;
     }
     /**
      * this method is used for asking the campus to make a reservation, if there aren't classrooms with the specified requirements available

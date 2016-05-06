@@ -20,7 +20,7 @@ import java.util.StringTokenizer;
 public class TextUserInterface {
     public static void main(String[] args) throws IOException {
         boolean exit=false;
-        Campus cp=new Campus("XClassLiveCampus");
+        Campus cp=Campus.getInstance();
         Calendar ca=new GregorianCalendar();
         System.out.println("benvenuto in XClassLive, software di prenotazione aule, selezionare un opzione:");
         Scanner tastiera=new Scanner(System.in);
@@ -58,7 +58,7 @@ public class TextUserInterface {
         System.out.println("inserire la data in cui si vuole effettuare la prenotazione aaaa/mm/dd");
         String data=tastieraPrenotazione.next();
         StringTokenizer st= new StringTokenizer(data);
-        ca.set(Integer.parseInt(st.nextToken("/"))+1900, Integer.parseInt(st.nextToken("/"))-1, Integer.parseInt(st.nextToken("/"))-1);
+        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/"))-1, Integer.parseInt(st.nextToken("/")));
         System.out.println("inserire ora inizio prenotazione");
         int startHour=tastieraPrenotazione.nextInt();
         System.out.println("inserire ora fine prenotazione");

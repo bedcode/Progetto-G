@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
  package PrenotareAula;
- import java.util.Calendar;
+import java.util.Date;
  /**
  *
  * @author Fabio
@@ -17,9 +17,9 @@ public class Reservation implements Comparable<Reservation>{
     
     //Instance variables
     private int id = 0;
-    private Calendar c = null;
     private int startHour = 0;
     private int endHour = 0;
+    private Date d=null;
         
     /**
      * 
@@ -27,9 +27,9 @@ public class Reservation implements Comparable<Reservation>{
      * @param startHour The integer value representing the Start Time of the Reservation
      * @param endHour The integer value representing the End Time of the Reservation
      */
-    public Reservation(Calendar c, int startHour, int endHour){
+    public Reservation(Date d, int startHour, int endHour){
         this.id = nextId;
-        this.c = c;
+        this.d=d;
         this.startHour = startHour;
         this.endHour = endHour;
         nextId++;    
@@ -47,9 +47,7 @@ public class Reservation implements Comparable<Reservation>{
     public String toString(){
         String s;
         return s = "Reservation number: " + this.id + "\n" +
-                   "Date: " + this.c.get(Calendar.DAY_OF_MONTH) + "/" +
-                              this.c.get(Calendar.MONTH) + "/" + 
-                              this.c.get(Calendar.YEAR) + "\n" +
+                   "Date: " + this.d.toString()+                                                       
                    "Time: " + this.startHour + ":00-" + this.endHour + ":00\n";
     }    
 
@@ -69,8 +67,8 @@ public class Reservation implements Comparable<Reservation>{
      * 
      * @return The Calendar object representing the date of the reservation
      */
-    public Calendar getDate(){
-        return this.c;
+    public Date getDate(){
+        return this.d;
     }
     
     /**

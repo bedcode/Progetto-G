@@ -21,6 +21,7 @@ public class TextUserInterface {
     public static void main(String[] args) throws IOException {
         boolean exit=false;
         Campus cp=new Campus("XClassLiveCampus");
+        Calendar ca=new GregorianCalendar();
         System.out.println("benvenuto in XClassLive, software di prenotazione aule, selezionare un opzione:");
         Scanner tastiera=new Scanner(System.in);
         while (exit==false) {
@@ -31,7 +32,7 @@ public class TextUserInterface {
         
         switch(tastiera.nextInt()) {
             case(1): 
-                prenotazione(cp);
+                prenotazione(cp, ca);
                 break;
             case(2): 
                 rimuoviPrenotazione(cp);
@@ -49,7 +50,7 @@ public class TextUserInterface {
         }
     }
     
-    public static void prenotazione(Campus cp) throws IOException {
+    public static void prenotazione(Campus cp, Calendar ca) throws IOException {
         Scanner tastieraPrenotazione=new Scanner(System.in);
         System.out.println("inserire la capacità dell'aula che si vuole prenotare");
         int capacity=tastieraPrenotazione.nextInt();
@@ -57,8 +58,7 @@ public class TextUserInterface {
         System.out.println("inserire la data in cui si vuole effettuare la prenotazione aaaa/mm/dd");
         String data=tastieraPrenotazione.next();
         StringTokenizer st= new StringTokenizer(data);
-        Calendar ca=new GregorianCalendar();
-        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")));
+        ca.set(Integer.parseInt(st.nextToken("/"))+1900, Integer.parseInt(st.nextToken("/"))-1, Integer.parseInt(st.nextToken("/"))-1);
         System.out.println("inserire ora inizio prenotazione");
         int startHour=tastieraPrenotazione.nextInt();
         System.out.println("inserire ora fine prenotazione");

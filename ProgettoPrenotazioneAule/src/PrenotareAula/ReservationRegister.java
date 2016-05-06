@@ -8,6 +8,7 @@ package PrenotareAula;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,9 +33,9 @@ public class ReservationRegister {
      * @param endHour   End Time of the Reservation
      * @return false if is free, true if is reserved
      */
-    public boolean isReserved( Calendar c, int startHour, int endHour) {
+    public boolean isReserved( Date d, int startHour, int endHour) {
       for ( Reservation r : res)  {
-          if( c.compareTo(r.getDate()) == 0 && // check dates are equals
+          if( d.compareTo(r.getDate()) == 0 && // check dates are equals
                   ((startHour >= r.getStartHour() && endHour<=r.getEndHour()) // Reservation is in the interval start-end time of the other reservation
                   || (startHour <=r.getStartHour() && endHour>r.getStartHour() && endHour<=r.getEndHour()) // Reservation starts before or at the same time of an other Reservation 
                                                                                                         //  and end before or at the same time
@@ -54,9 +55,9 @@ public class ReservationRegister {
      * @param endHour   End time of the reservation
      * @return true if the reservation is made, false if it isn't
      */
-    public boolean makeReservation(Calendar c, int startHour, int endHour) {
-        if(isReserved(c,  startHour, endHour) == false){
-          Reservation  newRes = new Reservation(c, startHour, endHour);
+    public boolean makeReservation(Date d, int startHour, int endHour) {
+        if(isReserved(d,  startHour, endHour) == false){
+          Reservation  newRes = new Reservation(d, startHour, endHour);
           res.add(newRes);
           Collections.sort(res);
 

@@ -6,6 +6,7 @@
 package PrenotareAula;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -28,18 +29,17 @@ public class Classroom implements Comparable<Classroom> {
      * is free.
      *
      * @param req the requirements of the classroom
-     * @param cal calendar which indicates day, month and year
      * @param startHour start time of the request reservation
      * @param endHour end time of the request reservation
      * @return integer value: 1 -> the classroom respects the requirements and
      * is free, for other return values see checkRequirements() documentation
      */
-    public int verifyReservation(Requirements req, Calendar cal, int startHour, int endHour) {
-        if ((checkRequirements(req) == 0) && resReg.isReserved(cal, startHour, endHour) == false) {
+    public int verifyReservation(Requirements req, Date d, int startHour, int endHour) {
+        if ((checkRequirements(req) == 0) && resReg.isReserved(d, startHour, endHour) == false) {
             //System.out.println("Trovata aula libera che soddisfa i requisiti richiesti: " + this.name);
             return 1;
         }
-        if ((checkRequirements(req) != 0) && resReg.isReserved(cal, startHour, endHour) == false) {
+        if ((checkRequirements(req) != 0) && resReg.isReserved(d, startHour, endHour) == false) {
             //System.out.println("Aula non disponibile");
             return checkRequirements(req);
         }

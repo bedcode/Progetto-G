@@ -95,5 +95,22 @@ public class ReservationRegister {
         }
         return false;
     }
+     public boolean makeSemestralReservation(Date d1, Date d2, int startHour, int endHour) {
+         Date d = d1;
+         boolean i = false;
+         while ( d.getTime() < d2.getTime()){
+        if(isReserved(d,  startHour, endHour) == false){
+          Reservation  newRes = new Reservation(d, startHour, endHour);
+          res.add(newRes);
+          Collections.sort(res);
+          long s = d.getTime() + (24 * 7 * 60 * 60* 1000);
+          d = new Date (s);
+          i = true;
+        }
+          else
+          return false;
+         }
+         return i;
+    }
 }
 

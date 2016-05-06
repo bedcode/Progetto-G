@@ -7,8 +7,8 @@ package Test;
 import PrenotareAula.Reservation;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -16,24 +16,13 @@ import java.util.GregorianCalendar;
  */
 public class TestReservation {    
     public static void main(String[] args){
+     
         
-        Reservation r1 = new Reservation(new GregorianCalendar(2016,04,27),9,11);
-        Reservation r2 = new Reservation(new GregorianCalendar(2016,04,28),11,13);
-        Reservation r3 = new Reservation(new GregorianCalendar(2016,05,02),14,16);
-        System.out.println(r1);
-        System.out.println(r2);
-        System.out.println(r3);
-        
-        //date field
-        Calendar test = r1.getDate();
-        System.out.println(test.get(Calendar.DAY_OF_MONTH) + "\n\n");
-          
-        //compare
-        Reservation r4 = new Reservation(new GregorianCalendar(2016,04,27),14,16);
-        Reservation r5 = new Reservation(new GregorianCalendar(2016,04,27),14,18);
-        System.out.println(r1.compareTo(r2));
-        System.out.println(r3.compareTo(r2));
-        System.out.println(r4.compareTo(r5));
+        Date now = new Date();
+        Reservation r1 = new Reservation(now,9,11);
+        Reservation r2 = new Reservation(now,14,16);
+        Reservation r3 = new Reservation(now,11,13);
+        Reservation r4 = new Reservation(now,16,18);
         
         //list
         System.out.println("\n\n ----Sort test----");
@@ -42,20 +31,28 @@ public class TestReservation {
         reservations.add(r2);
         reservations.add(r3);
         reservations.add(r4);
-        reservations.add(r5);
         Collections.sort(reservations);
         for(Reservation r : reservations)
             System.out.println(r);
         
-        //Adding date
-        System.out.println("Adding days to a date:");
-        Reservation r6 = new Reservation(new GregorianCalendar(2016,05,27),14,16);
-        System.out.println(r6);
-        r6.getDate().add(Calendar.DAY_OF_MONTH, 6);
-        System.out.println(r6);
+        System.out.println("\n\n ----Date format test----");
+        
+        System.out.println("Default format");
+        for(Reservation r : reservations)
+            System.out.println(r);
+        
+        System.out.println("\n\ndd MMMM yyyy format");
+        Reservation.setDateFormat("dd MMMM yyyy");
+        for(Reservation r : reservations)
+            System.out.println(r);
+        
+        System.out.println("\n\nEEE dd MMMM yyyy format");
+        Reservation.setDateFormat("EEE dd MMMM yyyy");
+        for(Reservation r : reservations)
+            System.out.println(r);
+       
         
         
-                
     }
 
     

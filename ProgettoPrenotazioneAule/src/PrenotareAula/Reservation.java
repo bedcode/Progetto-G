@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- package PrenotareAula;
+package PrenotareAula;
 import java.util.Date;
+import java.text.SimpleDateFormat;
  /**
  *
  * @author Fabio
@@ -13,23 +14,23 @@ import java.util.Date;
 public class Reservation implements Comparable<Reservation>{
     
     //Class variables
-    private static int nextId = 0; //The Id used the next time a new reservation is created
-    
+    private static int nextId = 0; //The ID used the next time a reservation is created
+    private static String dateFormat = "dd/MM/yyyy"; //The date format used to display the reservations
     //Instance variables
     private int id = 0;
+    private Date date = null;
     private int startHour = 0;
     private int endHour = 0;
-    private Date d=null;
-        
+           
     /**
      * 
-     * @param c The Calendar object describing the date of the reservation
+     * @param date The Date object representing the date of the reservation
      * @param startHour The integer value representing the Start Time of the Reservation
      * @param endHour The integer value representing the End Time of the Reservation
      */
-    public Reservation(Date d, int startHour, int endHour){
+    public Reservation(Date date, int startHour, int endHour){
         this.id = nextId;
-        this.d=d;
+        this.date = date;
         this.startHour = startHour;
         this.endHour = endHour;
         nextId++;    
@@ -45,9 +46,10 @@ public class Reservation implements Comparable<Reservation>{
     */
     @Override
     public String toString(){
-        String s;
+        String s = null;
+        SimpleDateFormat format = new SimpleDateFormat(dateFormat);
         return s = "Reservation number: " + this.id + "\n" +
-                   "Date: " + this.d.toString()+                                                       
+                   "Date: " + format.format(this.date) + "\n" +                                                 
                    "Time: " + this.startHour + ":00-" + this.endHour + ":00\n";
     }    
 
@@ -65,10 +67,10 @@ public class Reservation implements Comparable<Reservation>{
     
     /**
      * 
-     * @return The Calendar object representing the date of the reservation
+     * @return The Date object representing the date of the reservation
      */
     public Date getDate(){
-        return this.d;
+        return this.date;
     }
     
     /**
@@ -112,5 +114,15 @@ public class Reservation implements Comparable<Reservation>{
             
         
     }
+    
+    /**
+     * 
+     * @param d The new date format to be used (example: "dd/MM/yyyy")
+     */
+    public static void setDateFormat(String d){
+        dateFormat = d;    
+    }
+    
+    
         
 }

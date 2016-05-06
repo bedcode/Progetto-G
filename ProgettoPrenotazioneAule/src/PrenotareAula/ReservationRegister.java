@@ -6,7 +6,6 @@
 package PrenotareAula;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +27,7 @@ public class ReservationRegister {
     
     /**
      * this method verifies  if the the register is reserved in the date and time specified.
-     * @param c date int dd int mm int yyyy
+     * @param d date int yyyy, mm, dd
      * @param startHour Start Time of the Reservation
      * @param endHour   End Time of the Reservation
      * @return false if is free, true if is reserved
@@ -50,7 +49,7 @@ public class ReservationRegister {
     
     /**
      * this method creates the specified reservation if it is free
-     * @param c Date int dd int mm int yyyy
+     * @param d Date int yyyy, mm, dd
      * @param startHour Start time of the reservation
      * @param endHour   End time of the reservation
      * @return true if the reservation is made, false if it isn't
@@ -95,7 +94,15 @@ public class ReservationRegister {
         }
         return false;
     }
-     public boolean makeSemestralReservation(Date d1, Date d2, int startHour, int endHour) {
+    /**
+     * this method make weekly Reservation between two dates
+     * @param d1 start date int yyyy, mm, dd
+     * @param d2 end date int yyyy, mm, dd
+     * @param startHour Start time of the reservation
+     * @param endHour   End time of the reservation
+     * @return 
+     */
+     public boolean makeWeeklyReservation(Date d1, Date d2, int startHour, int endHour) {
          Date d = d1;
          boolean i = false;
          while ( d.getTime() < d2.getTime()){

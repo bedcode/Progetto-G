@@ -100,7 +100,7 @@ public class ReservationRegister {
      * @param d2 end date int yyyy, mm, dd
      * @param startHour Start time of the reservation
      * @param endHour   End time of the reservation
-     * @return 
+     * @return true if there is the happy end, false if something goes wrong
      */
      public boolean makeWeeklyReservation(Date d1, Date d2, int startHour, int endHour) {
          Date d = d1;
@@ -119,5 +119,23 @@ public class ReservationRegister {
          }
          return i;
     }
+     /**
+      * this method edit a old reservation replacing it with a new
+      * @param id id of the (old) reservation to delete
+      * @param newd date for the new Reservation
+      * @param newStart Start time for the new reservation
+      * @param newEnd   End time for the new reservation
+      * @return 0 if all it's ok, 1 if it isn't 
+      */
+     public int editReservation ( int id, Date newd, int newStart, int newEnd ) {
+         boolean s = isReserved( newd, newStart, newEnd);
+         if (s == false) {
+             makeReservation( newd, newStart, newEnd);
+             deleteReservation(id);
+             return 0;
+         }
+         else
+       return 1;  
+     }
 }
 

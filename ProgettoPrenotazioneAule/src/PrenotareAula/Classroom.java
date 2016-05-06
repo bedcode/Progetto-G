@@ -5,11 +5,12 @@
  */
 package PrenotareAula;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**
- *
+ * This class represents a classroom with a name and its requirements.
+ * Classroom provides methods for verifying its availability, in the case of a request of reservation.
+ * 
  * @author Andrea
  */
 public class Classroom implements Comparable<Classroom> {
@@ -29,10 +30,12 @@ public class Classroom implements Comparable<Classroom> {
      * is free.
      *
      * @param req the requirements of the classroom
+     * @param d date of the request reservation
      * @param startHour start time of the request reservation
      * @param endHour end time of the request reservation
      * @return integer value: 1 -> the classroom respects the requirements and
-     * is free, for other return values see checkRequirements() documentation
+     * is free, 2 -> the classroom is not free, for other return values see
+     * checkRequirements() documentation
      */
     public int verifyReservation(Requirements req, Date d, int startHour, int endHour) {
         if ((checkRequirements(req) == 0) && resReg.isReserved(d, startHour, endHour) == false) {

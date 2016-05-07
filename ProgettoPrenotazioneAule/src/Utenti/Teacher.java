@@ -10,9 +10,14 @@ package Utenti;
  * @author Andrea
  */
 public class Teacher extends User{
-    
-    public Teacher(String name, String surname, String email, String password) {
-        super(name, surname, email, password);
+
+    public Teacher(String email) {
+        super(email);
     }
     
+    @Override
+    public String toString(){
+        String s = "Docente: " + super.toString();
+        return s;
+    }
 }

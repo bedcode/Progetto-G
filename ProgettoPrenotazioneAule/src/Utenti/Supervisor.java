@@ -11,8 +11,25 @@ package Utenti;
  */
 public class Supervisor extends User{
     
-    public Supervisor(String name, String surname, String email, String password) {
-        super(name, surname, email, password);
+//    private Account a = Account.getInstance();
+    
+    public Supervisor(String email) {
+        super(email);
     }
     
+//    public User addTeacherAccount(Teacher t) { 
+//        User u = new Teacher(t.getEmail());
+//        a.getUsers().put(t.getEmail(), u);
+//        return u;
+//    }
+
+//    public Account getA() {
+//        return a;
+//    }
+    
+    @Override
+    public String toString(){
+        String s = "Xclasslive supervisor: " + super.toString();
+        return s;
+    }
 }

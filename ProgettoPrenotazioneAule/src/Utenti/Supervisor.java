@@ -11,21 +11,15 @@ package Utenti;
  */
 public class Supervisor extends User{
     
-//    private Account a = Account.getInstance();
+    private Account a = Account.getInstance();
     
     public Supervisor(String email) {
         super(email);
     }
     
-//    public User addTeacherAccount(Teacher t) { 
-//        User u = new Teacher(t.getEmail());
-//        a.getUsers().put(t.getEmail(), u);
-//        return u;
-//    }
-
-//    public Account getA() {
-//        return a;
-//    }
+    public User addTeacherAccount(Teacher t) {
+        return a.addTeacherAccount(t);
+    }
     
     @Override
     public String toString(){

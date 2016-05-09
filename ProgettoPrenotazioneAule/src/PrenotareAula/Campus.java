@@ -5,6 +5,7 @@
  */
 package PrenotareAula;
 
+import Utenti.Account;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -25,10 +26,12 @@ public class Campus  {
     private static Campus instance=new Campus("unipv");
     private String name;
     List<Classroom> classi;
+    List<Account> accounts;
 
     private Campus(String name) {
         this.name = name;
         classi = new ArrayList();
+        accounts=new ArrayList();
         try {
         updateRegister();
         }

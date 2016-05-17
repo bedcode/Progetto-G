@@ -19,9 +19,9 @@ public class TestReservation {
      
         
         Date now = new Date();
-        Reservation r1 = new Reservation(now,9,11);
-        Reservation r2 = new Reservation(now,14,16);
-        Reservation r3 = new Reservation(now,11,13);
+        Reservation r1 = new Reservation(now,9,11, "Info II");
+        Reservation r2 = new Reservation(now,14,16, "Gestione aziendale");
+        Reservation r3 = new Reservation(now,11,13, "Sistemi operativi");
         Reservation r4 = new Reservation(now,16,18);
         
         //list

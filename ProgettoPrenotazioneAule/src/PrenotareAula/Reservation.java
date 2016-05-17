@@ -14,31 +14,49 @@ import java.text.SimpleDateFormat;
 public class Reservation implements Comparable<Reservation>{
     
     //Class variables
-    private static int nextId = 0; //The ID used the next time a reservation is created
+    private static int nextId; //The ID used the next time a reservation is created
     private static String dateFormat = "dd/MM/yyyy"; //The date format used to display the reservations
     //Instance variables
-    private int id = 0;
-    private Date date = null;
-    private int startHour = 0;
-    private int endHour = 0;
-           
+    private int id;
+    private Date date;
+    private int startHour;
+    private int endHour;
+    private String description;      
+    
     /**
-     * 
      * @param date The Date object representing the date of the reservation
-     * @param startHour The integer value representing the Start Time of the Reservation
-     * @param endHour The integer value representing the End Time of the Reservation
+     * @param startHour The integer value representing the Start Time of the reservation
+     * @param endHour The integer value representing the End Time of the reservation
+     */  
+    public Reservation(Date date, int startHour, int endHour) {
+        this(nextId, date, startHour, endHour, "-");
+        nextId++;
+    }
+    
+    /**
+     * @param date The Date object representing the date of the reservation
+     * @param startHour The integer value representing the Start Time of the reservation
+     * @param endHour The integer value representing the End Time of the reservation
+     * @param description The string object representing a description of the reservation
+     */  
+    public Reservation(Date date, int startHour, int endHour, String description) {
+        this(nextId, date, startHour, endHour, description);
+        nextId++;
+    }
+    
+    /**
+     * @param id The integer value representing the ID of the reservation
+     * @param date The Date object representing the date of the reservation
+     * @param startHour The integer value representing the Start Time of the reservation
+     * @param endHour The integer value representing the End Time of the reservation
+     * @param description The string object representing a description of the reservation
      */
-    public Reservation(int id, Date date, int startHour, int endHour){
+    public Reservation(int id, Date date, int startHour, int endHour, String description){
         this.id = id;
         this.date = date;
         this.startHour = startHour;
         this.endHour = endHour;
-        //nextId++;    
-    }
-      
-    public Reservation(Date date, int startHour, int endHour) {
-        this(nextId, date, startHour, endHour);
-        nextId++;
+        this.description = description;        
     }
     
     /**
@@ -51,17 +69,22 @@ public class Reservation implements Comparable<Reservation>{
     */
     @Override
     public String toString(){
-        String s = null;
         SimpleDateFormat format = new SimpleDateFormat(dateFormat);
-        return s = "Reservation number: " + this.id + "\n" +
+        String s = "Reservation number: " + this.id + "\n" +
                    "Date: " + format.format(this.date) + "\n" +                                                 
-                   "Time: " + this.startHour + ":00-" + this.endHour + ":00\n";
+                   "Time: " + this.startHour + ":00-" + this.endHour + ":00\n";                   
+        
+        if(!(this.description.equals("-")))
+            s += "Description: " + this.description + "\n\n";
+        else
+            s += "\n";            
+        
+        return s;
     }    
 
     /*
-        Getter methods
-    */   
-    
+        Getter and setter methods
+    */       
     /**
      * 
      * @return The integer ID of the reservation 
@@ -93,6 +116,22 @@ public class Reservation implements Comparable<Reservation>{
     public int getEndHour(){
         return this.endHour;
     }
+    
+    /**
+     * 
+     * @return The String object representing the description of the reservation
+     */
+    public String getDescription(){
+        return this.description;
+    }
+    
+    /**
+     * @param id The new ID to be set
+     */
+    public void setId(int id){
+        this.id = id;
+    }   
+    
     
     /**
      * 
@@ -133,3 +172,5 @@ public class Reservation implements Comparable<Reservation>{
     
         
 }
+
+

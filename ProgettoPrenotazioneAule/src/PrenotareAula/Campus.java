@@ -33,11 +33,15 @@ public class Campus  {
         this.name = name;
         classi = DbFacadeHandler.getInstance().obtainClassroom();
         accounts=DbFacadeHandler.getInstance().obtainAccount();
-        DbFacadeHandler.getInstance().UpdateReservation();
     }
     
     public static Campus getInstance() {
         return instance;
+    }
+    
+    public void updateReservation() {
+                DbFacadeHandler.getInstance().UpdateReservation();
+
     }
     /**
      * this method is used for asking the campus to make a reservation, if there aren't classrooms with the specified requirements available

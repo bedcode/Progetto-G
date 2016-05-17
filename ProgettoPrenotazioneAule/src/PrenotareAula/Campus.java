@@ -33,6 +33,7 @@ public class Campus  {
         this.name = name;
         classi = DbFacadeHandler.getInstance().obtainClassroom();
         accounts=DbFacadeHandler.getInstance().obtainAccount();
+        DbFacadeHandler.getInstance().UpdateReservation();
     }
     
     public static Campus getInstance() {

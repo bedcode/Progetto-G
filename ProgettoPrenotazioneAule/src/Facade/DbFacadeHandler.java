@@ -8,6 +8,7 @@ package Facade;
 import PrenotareAula.Campus;
 import PrenotareAula.Classroom;
 import PrenotareAula.Requirements;
+import PrenotareAula.Reservation;
 import Utenti.Account;
 import Utenti.Supervisor;
 import Utenti.Teacher;
@@ -99,7 +100,7 @@ public class DbFacadeHandler {
                 Teacher t=new Teacher(rs2.getString(1));
                 Account.getInstance().addTeacherAccount(t);
             }
-            rs.close();
+            rs2.close();
 
             stmt.close();
             conn.close();
@@ -110,6 +111,42 @@ public class DbFacadeHandler {
         }
 
         return accounts;
+
+    }
+    
+    
+        public void UpdateReservation() {
+
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+
+        try {
+
+            java.sql.Connection conn;
+
+            conn = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7112944?user=sql7112944&password=QavZjtyIJw");
+            Statement stmt = conn.createStatement();
+            for (Classroom cl :Campus.getInstance().getClassi()) {
+            String query="SELECT * from Reservation WHERE classroom= '"+cl.getName()+"'";
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                cl.getResReg().makeReservation(rs.getDate(2), rs.getInt(3), rs.getInt(4));
+            }
+            rs.close();
+            }
+            stmt.close();
+            conn.close();
+        } catch (SQLException E) {
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
+        }
 
     }
 

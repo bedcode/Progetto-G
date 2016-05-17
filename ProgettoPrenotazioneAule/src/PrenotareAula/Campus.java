@@ -32,7 +32,7 @@ public class Campus  {
     private Campus(String name) {
         this.name = name;
         classi = DbFacadeHandler.getInstance().obtainClassroom();
-        accounts=new ArrayList();
+        accounts=DbFacadeHandler.getInstance().obtainAccount();
     }
     
     public static Campus getInstance() {

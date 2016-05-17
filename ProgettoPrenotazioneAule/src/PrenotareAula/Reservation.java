@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 public class Reservation implements Comparable<Reservation>{
     
     //Class variables
-    private static int nextId = 0; //The ID used the next time a reservation is created
+    //private static int nextId = 0; //The ID used the next time a reservation is created
     private static String dateFormat = "dd/MM/yyyy"; //The date format used to display the reservations
     //Instance variables
     private int id = 0;
@@ -28,13 +28,14 @@ public class Reservation implements Comparable<Reservation>{
      * @param startHour The integer value representing the Start Time of the Reservation
      * @param endHour The integer value representing the End Time of the Reservation
      */
-    public Reservation(Date date, int startHour, int endHour){
-        this.id = nextId;
+    public Reservation(int id, Date date, int startHour, int endHour){
+        this.id = id;
         this.date = date;
         this.startHour = startHour;
         this.endHour = endHour;
-        nextId++;    
+        //nextId++;    
     }
+      
     
     /**
      * 

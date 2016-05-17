@@ -5,6 +5,7 @@
  */
 package PrenotareAula;
 
+import Facade.DbFacadeHandler;
 import Utenti.Account;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -30,14 +31,8 @@ public class Campus  {
 
     private Campus(String name) {
         this.name = name;
-        classi = new ArrayList();
+        classi = DbFacadeHandler.getInstance().obtainClassroom();
         accounts=new ArrayList();
-        try {
-        updateRegister();
-        }
-        catch(IOException e) {
-            System.out.println("file non trovato");
-        }
     }
     
     public static Campus getInstance() {

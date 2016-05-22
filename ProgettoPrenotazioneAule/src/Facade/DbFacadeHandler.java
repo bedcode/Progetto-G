@@ -90,14 +90,14 @@ public class DbFacadeHandler {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * from Supervisor");
             while (rs.next()) {
-                Supervisor s=new Supervisor(rs.getString(1));
+                Supervisor s=new Supervisor(rs.getString(1), rs.getString(4));
                 Account.getInstance().addSuperAccount(s);
                 
             }
             rs.close();
             ResultSet rs2 = stmt.executeQuery("SELECT * from Teacher");
             while (rs2.next()) {
-                Teacher t=new Teacher(rs2.getString(1));
+                Teacher t=new Teacher(rs2.getString(1), rs2.getString(4));
                 Account.getInstance().addTeacherAccount(t);
             }
             rs2.close();

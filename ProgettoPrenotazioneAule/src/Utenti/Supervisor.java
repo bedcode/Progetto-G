@@ -17,6 +17,10 @@ public class Supervisor extends User{
         super(email);
     }
     
+    public Supervisor(String email, String password){
+        super(email, password);
+    }
+            
     public User addTeacherAccount(Teacher t) {
         return a.addTeacherAccount(t);
     }

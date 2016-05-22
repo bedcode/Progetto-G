@@ -117,6 +117,14 @@ public class Account {
         return t;
     }
 
+    public boolean setNewPassword(String email, String oldp, String newp) {
+        if (users.get(email) == null) {
+            System.out.println("Email inserita non valida");
+            return false;
+        }
+        return users.get(email).setNewPassword(oldp, newp);
+    }
+
     public Map<String, User> getUsers() {
         return users;
     }

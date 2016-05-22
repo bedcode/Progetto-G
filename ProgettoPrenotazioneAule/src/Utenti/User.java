@@ -18,16 +18,22 @@ public abstract class User {
     private String surname;
     private String email;
     private String password = "";
-    int i, j;
+    private int i, j;
 
     public User(String email) {
         this.email = email;
         this.password = genPassword();
-        //this.password = "ciao";
         this.name = getName();
         this.surname = getSurname();
     }
 
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
+        this.name = getName();
+        this.surname = getSurname();
+    }
+    
     /**
      * This method starting from the e-mail derives the name of the user.
      * @return the name of the user
@@ -75,7 +81,7 @@ public abstract class User {
      * @param newPsw new password
      * @return the new password only if it respects this requirement: 8 to 20 alphanumeric characters
      */
-    public boolean setPassword(String oldPsw, String newPsw) {
+    public boolean setNewPassword(String oldPsw, String newPsw) {
         if (this.password.equals(oldPsw)) {
             if (newPsw.matches("((?=.*[0-9])(?=.*[a-zA-Z]).{8,20})")) {
                 this.password = newPsw;
@@ -85,7 +91,7 @@ public abstract class User {
             System.out.println("Password non sicura: deve contenere almeno 8 caratteri, tra cui un numero");
             return false;
         } else {
-            System.out.println("Password non aggiornata");
+            System.out.println("Password non aggiornata: errore nell'inserimento dei dati");
             return false;
         }
     }
@@ -96,6 +102,10 @@ public abstract class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

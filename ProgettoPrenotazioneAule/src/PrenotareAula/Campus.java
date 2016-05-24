@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -96,6 +97,46 @@ public class Campus  {
         return false;
     }
     
+    
+    
+    
+        public boolean askForWeeklyReservation(Requirements req, Date startDate, Date endDate, int startHour, int endHour) throws FileNotFoundException, IOException {
+        if (this.checkTime(startHour, endHour) == true) {
+            for (Classroom cl : classi) {
+                if (cl.verifyReservation(req, startDate, startHour, endHour) == 1) {
+                    if (askUser(cl) == true) {
+                        cl.getResReg().makeWeeklyReservation(startDate, endDate, startHour, endHour);
+                        System.out.println("prenotazione effettuata aula: " + cl.getName());
+                        return true;
+                    } else {
+                        System.out.println("prenotazione non effettuata");
+                    }
+                }
+            }
+            for (Classroom cl : classi) {
+                if (cl.verifyReservation(req, startDate, startHour, endHour) == -3 || cl.verifyReservation(req, startDate, startHour, endHour) == -4) {
+                    System.out.println("non è stata trovata un'aula con i requisiti richiesti, tuttavia è possibile prenotare " + cl.getName()+ " con " + cl.getRequirements().toString());
+                    if (askUser(cl) == true) {
+                        cl.getResReg().makeWeeklyReservation(startDate, endDate,  startHour, endHour);
+                        System.out.println("prenotazione effettuata aula: " + cl.getName());
+                        return true;
+                    } else {
+                        System.out.println("prenotazione non effettuata");
+                    }
+                }
+            }
+            
+            System.out.println("non è disponibile un'aula con i requisiti specificati o con requisiti simili, effettuare una nuova prenotazione in orari differenti");
+            
+                   
+            
+            
+        } else {
+            System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");
+            return false;
+        }
+        return false;
+    }
     /**
      * this method deletes a reservation that was made previously
      * 
@@ -185,6 +226,15 @@ public class Campus  {
             return false;
         }
         return true;
+    }
+    
+        public boolean editReservation(int id, Date startDate, int startHour, int endHour ) {
+        for (Classroom cl : classi) {
+            if(cl.getResReg().editReservation(id, startDate , startHour, endHour)==0) {
+                return true;
+            }       
+        }
+        return false;
     }
 
 }

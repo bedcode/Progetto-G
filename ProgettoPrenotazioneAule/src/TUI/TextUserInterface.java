@@ -10,6 +10,7 @@ import PrenotareAula.Requirements;
 import Utenti.*;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -131,7 +132,18 @@ public class TextUserInterface {
                     rimuoviPrenotazione(cp);
                     break;
                 case (4):
-                    System.out.println("\nfunzione al momento non disponibile\n");
+                    System.out.println("inserire id classe");
+                    int id=tastiera.nextInt();
+                    System.out.println("inserire data prenotazione");
+                    System.out.println("inserire la nuova data della prenotazione aaaa/mm/dd");
+                    String data = tastiera.next();
+                    StringTokenizer st = new StringTokenizer(data);
+                    ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")));
+                    System.out.println("inserire la nuova ora d'inizio della prenotazione");
+                    int startHour=tastiera.nextInt();
+                    System.out.println("inserire la nuova ora di fine prenotazione");
+                    int endHour=tastiera.nextInt();
+                    cp.editReservation(id, ca.getTime(), startHour, endHour);            
                     break;
                 case (5):
                     cp.updateReservation();

@@ -130,13 +130,14 @@ public class DbFacadeHandler {
             String query = "SELECT * from Reservation";
             ResultSet rs = stmt.executeQuery(query);
             for (Classroom cl : Campus.getInstance().getClassi()) {
+                rs.beforeFirst();
                 while (rs.next()) {
-                    if (cl.getName().equals(rs.getString(1))) {
+                    if (cl.getName().equals(rs.getString(6))) {
                         cl.getResReg().makeReservation(rs.getDate(2), rs.getInt(3), rs.getInt(4));
                     }
                 }
-                rs.close();
             }
+            rs.close();
             stmt.close();
         } catch (SQLException E) {
             System.out.println("SQLException: " + E.getMessage());

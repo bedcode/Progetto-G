@@ -9,7 +9,7 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 
 /**
- *
+ * This class represents the users of the software and manages their data.
  * @author Andrea
  */
 public abstract class User {

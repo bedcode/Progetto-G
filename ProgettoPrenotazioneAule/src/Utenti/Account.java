@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- *
+ * This class manages accounts and login logic.
  * @author Andrea
  */
 public class Account {

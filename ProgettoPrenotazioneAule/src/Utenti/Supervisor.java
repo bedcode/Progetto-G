@@ -6,7 +6,8 @@
 package Utenti;
 
 /**
- *
+ * Supervisor is a subclass of User.
+ * This class allows the supervisor to add teacher accounts.
  * @author Andrea
  */
 public class Supervisor extends User{

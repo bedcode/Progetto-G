@@ -6,7 +6,7 @@
 package Utenti;
 
 /**
- *
+ * Teacher is a subclass of User.
  * @author Andrea
  */
 public class Teacher extends User {

@@ -23,7 +23,7 @@ public class Supervisor extends User{
     }
             
     public User addTeacherAccount(Teacher t) {
-        return a.addTeacherAccount(t);
+        return a.addNewTeacherAccount(t);
     }
     
     @Override

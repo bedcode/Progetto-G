@@ -172,7 +172,7 @@ public class TextUserInterface {
                 case (6):
                     System.out.println("Inserire email Teacher");
                     Teacher t = new Teacher(tastiera.next());
-                    a.addTeacherAccount(t);
+                    a.addNewTeacherAccount(t);
                     System.out.println("\nOperazione effettuata con successo\n");
                     break;
                 case (7):

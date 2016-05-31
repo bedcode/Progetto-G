@@ -5,6 +5,7 @@
  */
 package Utenti;
 
+import Facade.DbFacadeHandler;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -117,6 +118,12 @@ public class Account {
         return t;
     }
 
+    public User addNewTeacherAccount(Teacher t) {
+        users.put(t.getEmail(), t);
+        DbFacadeHandler.getInstance().insertAccount(t);
+        return t;
+    }
+    
     public boolean setNewPassword(String email, String oldp, String newp) {
         if (users.get(email) == null) {
             System.out.println("Email inserita non valida");

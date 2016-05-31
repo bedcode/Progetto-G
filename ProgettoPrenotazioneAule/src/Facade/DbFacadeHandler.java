@@ -147,4 +147,22 @@ public class DbFacadeHandler {
 
     }
 
+    public void insertAccount(Teacher t) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+        try {
+            Statement stmt = conn.createStatement();
+            String query = "insert into Teacher values('" + t.getEmail() + "', '" + t.getName() + "', '" + t.getSurname() + "', '" + t.getPassword() + "')";
+            stmt.executeUpdate(query);
+        } catch (SQLException E) {
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
+        }
+    }
+
 }

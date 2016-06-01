@@ -200,7 +200,7 @@ public class DbFacadeHandler {
         try {
 
             Statement stmt = conn.createStatement();
-            String query = "INSERT into Reservation values('6', '" + r.getDate().getYear() + "-" + r.getDate().getMonth() + "-" + r.getDate().getDay() + "', '" + r.getStartHour() + "', '" + r.getEndHour() + "', 'default', '" + cl + "', null, null)";
+            String query = "INSERT into Reservation values('12', '" + r.getDBDate() + "', '" + r.getStartHour() + "', '" + r.getEndHour() + "', 'default', '" + cl + "', null, null)";
             stmt.executeUpdate(query);
             stmt.close();
         } catch (SQLException E) {

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Test;
+import Facade.DbFacadeHandler;
 import PrenotareAula.Reservation;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,6 +51,9 @@ public class TestReservation {
         Reservation.setDateFormat("EEE dd MMMM yyyy");
         for(Reservation r : reservations)
             System.out.println(r);
+        
+        Reservation r5 = new Reservation(now,9,11, "Informatica II");
+        DbFacadeHandler.getInstance().writeReservation(r5, "Aula1");
        
         
         

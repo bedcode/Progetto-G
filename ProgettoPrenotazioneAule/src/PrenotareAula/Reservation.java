@@ -103,6 +103,15 @@ public class Reservation implements Comparable<Reservation>{
     
     /**
      * 
+     * @return A string representing the date of the reservation in SQL format    
+     */
+    public String getDBDate(){                
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);        
+    }
+    
+    /**
+     * 
      * @return The integer value representing the Start Time of the reservation
      */
     public int getStartHour(){

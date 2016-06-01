@@ -5,14 +5,19 @@
  */
 package GUI;
 
+import PrenotareAula.Campus;
+import Utenti.Account;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -31,10 +36,12 @@ public class Login extends JFrame {
     private JLabel email;
     private JLabel password;
     private JTextField emailField;
-    private JTextField passwordField;
+    private JPasswordField passwordField;
     private JButton login;
 
     public Login() {
+        Account a = Account.getInstance();
+        Campus cp = Campus.getInstance();
         main = new JPanel(new BorderLayout());
         upperArea = new JPanel(new BorderLayout());
         lowerArea = new JPanel(new GridLayout(12,1));
@@ -45,7 +52,7 @@ public class Login extends JFrame {
         email = new JLabel("e-mail");
         password = new JLabel("password");
         emailField = new JTextField();
-        passwordField = new JTextField();
+        passwordField = new JPasswordField();
         login = new JButton("Login");
         initComponents();
     }
@@ -68,8 +75,28 @@ public class Login extends JFrame {
         lowerArea.add(emailField);
         lowerArea.add(password);
         lowerArea.add(passwordField);
+        lowerArea.add(new JPanel());
         lowerArea.add(login);
         benvenuto.setHorizontalAlignment(JLabel.CENTER);
+        
+        
+        ActionListener loginAl=new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String email=emailField.getText();
+                String password=passwordField.getText();
+                switch (Account.getInstance().login(email, password)) {
+                    case 0:
+                        break;
+                    default:
+                        break;                                           
+                }
+                
+            }
+        };
+        login.addActionListener(loginAl);
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     }

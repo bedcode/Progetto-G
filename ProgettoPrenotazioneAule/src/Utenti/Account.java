@@ -117,13 +117,13 @@ public class Account {
         users.put(t.getEmail(), t);
         return t;
     }
-
+    //javadoc!!!
     public User addNewTeacherAccount(Teacher t) {
         users.put(t.getEmail(), t);
         DbFacadeHandler.getInstance().insertAccount(t);
         return t;
     }
-    
+    //javadoc!!!
     public boolean setNewPassword(String email, String oldp, String newp) {
         if (users.get(email) == null) {
             System.out.println("Email inserita non valida");

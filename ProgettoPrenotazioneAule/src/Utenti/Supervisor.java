@@ -21,11 +21,11 @@ public class Supervisor extends User{
     public Supervisor(String email, String password){
         super(email, password);
     }
-            
+    //javadoc!!!        
     public User addTeacherAccount(Teacher t) {
         return a.addNewTeacherAccount(t);
     }
-    
+    //javadoc!!!
     @Override
     public String toString(){
         String s = "Xclasslive supervisor: " + super.toString();

@@ -109,7 +109,7 @@ public abstract class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    //javadoc!!!
     @Override
     public String toString() {
         String s = this.name + " " + this.surname + "\nE-mail: " + this.email;

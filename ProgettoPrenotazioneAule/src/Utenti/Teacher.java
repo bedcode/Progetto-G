@@ -18,7 +18,7 @@ public class Teacher extends User {
     public Teacher(String email, String password) {
         super(email, password);
     }
-
+    //javadoc!!!
     @Override
     public String toString() {
         String s = "Docente: " + super.toString();

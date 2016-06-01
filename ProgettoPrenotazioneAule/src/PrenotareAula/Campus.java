@@ -39,7 +39,7 @@ public class Campus  {
     public static Campus getInstance() {
         return instance;
     }
-    
+    //manca javadoc
     public void updateReservation() {
                 DbFacadeHandler.getInstance().UpdateReservation();
 
@@ -98,7 +98,7 @@ public class Campus  {
     }
     
     
-    
+    //javadoc!!!!
     
         public boolean askForWeeklyReservation(Requirements req, Date startDate, Date endDate, int startHour, int endHour) throws FileNotFoundException, IOException {
         if (this.checkTime(startHour, endHour) == true) {
@@ -227,7 +227,7 @@ public class Campus  {
         }
         return true;
     }
-    
+    //javadoc!!!!
         public boolean editReservation(int id, Date startDate, int startHour, int endHour ) {
         for (Classroom cl : classi) {
             if(cl.getResReg().editReservation(id, startDate , startHour, endHour)==0) {

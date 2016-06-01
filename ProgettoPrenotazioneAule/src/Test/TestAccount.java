@@ -25,9 +25,9 @@ public class TestAccount {
         a.addSuperAccount(s1);
         s1.addTeacherAccount(t1);
 
-        t1.setNewPassword(t1.getPassword(), "nuova", 0);
+        t1.setNewPassword(t1.getPassword(), "nuova");
         System.out.println(t1.getPassword());
-        t1.setNewPassword(t1.getPassword(), "Nuova2016", 0);
+        t1.setNewPassword(t1.getPassword(), "Nuova2016");
         System.out.println(t1.getPassword());
 
         System.out.println(a.login("ederico.alfeo@unipv.it", "")); // 2 account not existing

@@ -8,7 +8,10 @@ package Facade;
 import PrenotareAula.Campus;
 import PrenotareAula.Classroom;
 import PrenotareAula.Requirements;
-import Utenti.*;
+import PrenotareAula.Reservation;
+import Utenti.Account;
+import Utenti.Supervisor;
+import Utenti.Teacher;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -162,28 +165,4 @@ public class DbFacadeHandler {
         }
     }
 
-    public void changePassword(String email, String newPassword, int u) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (Exception E) {
-            System.err.println("Non trovo il driver da caricare.");
-            E.printStackTrace();
-        }
-        String query = null;
-        try {
-            Statement stmt = conn.createStatement();
-            if (u == 0) {
-                query = "update Teacher set passw = '" + newPassword + "' where mail = '" + email + "'";
-            }
-            if (u == 1) {
-                query = "update Supervisor set passw = '" + newPassword + "' where mail = '" + email + "'";
-            }
-            stmt.executeUpdate(query);
-        } catch (SQLException E) {
-            System.out.println("SQLException: " + E.getMessage());
-            System.out.println("SQLState:     " + E.getSQLState());
-            System.out.println("VendorError:  " + E.getErrorCode());
-        }
-    }
-    
 }

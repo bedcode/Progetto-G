@@ -129,7 +129,10 @@ public class Account {
             System.out.println("Email inserita non valida");
             return false;
         }
-        return users.get(email).setNewPassword(oldp, newp);
+        if (users.get(email) instanceof Teacher)
+            return users.get(email).setNewPassword(oldp, newp, 0);
+        else
+            return users.get(email).setNewPassword(oldp, newp, 1);
     }
 
     public Map<String, User> getUsers() {

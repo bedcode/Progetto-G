@@ -5,6 +5,7 @@
  */
 package Utenti;
 
+import Facade.DbFacadeHandler;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
@@ -81,10 +82,11 @@ public abstract class User {
      * @param newPsw new password
      * @return the new password only if it respects this requirement: 8 to 20 alphanumeric characters
      */
-    public boolean setNewPassword(String oldPsw, String newPsw) {
+    public boolean setNewPassword(String oldPsw, String newPsw, int u) {
         if (this.password.equals(oldPsw)) {
             if (newPsw.matches("((?=.*[0-9])(?=.*[a-zA-Z]).{8,20})")) {
                 this.password = newPsw;
+                DbFacadeHandler.getInstance().changePassword(this.email, newPsw, u);
                 System.out.println("Password aggiornata");
                 return true;
             }

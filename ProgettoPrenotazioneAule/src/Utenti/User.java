@@ -11,6 +11,7 @@ import java.security.SecureRandom;
 
 /**
  * This class represents the users of the software and manages their data.
+ *
  * @author Andrea
  */
 public abstract class User {
@@ -28,15 +29,16 @@ public abstract class User {
         this.surname = getSurname();
     }
 
-    public User(String email, String password){
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
         this.name = getName();
         this.surname = getSurname();
     }
-    
+
     /**
      * This method starting from the e-mail derives the name of the user.
+     *
      * @return the name of the user
      */
     public String getName() {
@@ -51,6 +53,7 @@ public abstract class User {
 
     /**
      * This method starting from the e-mail derives the surname of the user.
+     *
      * @return the surname of the user
      */
     public String getSurname() {
@@ -65,6 +68,7 @@ public abstract class User {
 
     /**
      * Method for automatic generation of password.
+     *
      * @return a new password only at the first invocation of a user.
      */
     public String genPassword() {
@@ -78,15 +82,18 @@ public abstract class User {
 
     /**
      * Method for modifying password
+     *
      * @param oldPsw old password
      * @param newPsw new password
-     * @return the new password only if it respects this requirement: 8 to 20 alphanumeric characters
+     * @param user integer value to identify user type
+     * @return the new password only if it respects this requirement: 8 to 20
+     * alphanumeric characters
      */
-    public boolean setNewPassword(String oldPsw, String newPsw, int u) {
+    public boolean setNewPassword(String oldPsw, String newPsw, int user) {
         if (this.password.equals(oldPsw)) {
             if (newPsw.matches("((?=.*[0-9])(?=.*[a-zA-Z]).{8,20})")) {
                 this.password = newPsw;
-                DbFacadeHandler.getInstance().changePassword(this.email, newPsw, u);
+                DbFacadeHandler.getInstance().changePassword(this.email, newPsw, user);
                 System.out.println("Password aggiornata");
                 return true;
             }
@@ -96,6 +103,16 @@ public abstract class User {
             System.out.println("Password non aggiornata: errore nell'inserimento dei dati");
             return false;
         }
+    }
+
+    /**
+     * @return string to describe user, identifying him with name, surname and
+     * email.
+     */
+    @Override
+    public String toString() {
+        String s = this.name + " " + this.surname + "\nE-mail: " + this.email;
+        return s;
     }
 
     public String getEmail() {
@@ -108,11 +125,5 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-    //javadoc!!!
-    @Override
-    public String toString() {
-        String s = this.name + " " + this.surname + "\nE-mail: " + this.email;
-        return s;
     }
 }

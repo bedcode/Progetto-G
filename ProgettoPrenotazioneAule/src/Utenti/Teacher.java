@@ -7,6 +7,7 @@ package Utenti;
 
 /**
  * Teacher is a subclass of User.
+ *
  * @author Andrea
  */
 public class Teacher extends User {
@@ -18,7 +19,10 @@ public class Teacher extends User {
     public Teacher(String email, String password) {
         super(email, password);
     }
-    //javadoc!!!
+
+    /**
+     * @return string to show information about a teacher.
+     */
     @Override
     public String toString() {
         String s = "Docente: " + super.toString();

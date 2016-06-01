@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 /**
  * This class manages accounts and login logic.
+ *
  * @author Andrea
  */
 public class Account {
@@ -97,10 +98,10 @@ public class Account {
     }
 
     /**
-     * Method to add supervisor account.
+     * Method to add supervisor account in local instance.
      *
      * @param s
-     * @return supervisor
+     * @return supervisor instance
      */
     public User addSuperAccount(Supervisor s) {
         users.put(s.getEmail(), s);
@@ -108,31 +109,48 @@ public class Account {
     }
 
     /**
-     * Method to add teacher account.
+     * Method to add teacher account in local instance.
      *
      * @param t
-     * @return teacher
+     * @return teacher instance
      */
     public User addTeacherAccount(Teacher t) {
         users.put(t.getEmail(), t);
         return t;
     }
-    //javadoc!!!
+
+    /**
+     * Method to add teacher account in local instance and in the database.
+     *
+     * @param t a teacher
+     * @return teacher instance
+     */
     public User addNewTeacherAccount(Teacher t) {
         users.put(t.getEmail(), t);
         DbFacadeHandler.getInstance().insertAccount(t);
         return t;
     }
-    //javadoc!!!
+
+    /**
+     * This method sets a new password. A user can modify his password only if he
+     * writes the email address, the actual password and the new one. The setting
+     * is effective only if the new password meets security parameters.
+     *
+     * @param email email of a user
+     * @param oldp old password of a user
+     * @param newp new password of a user
+     * @return boolean value
+     */
     public boolean setNewPassword(String email, String oldp, String newp) {
         if (users.get(email) == null) {
             System.out.println("Email inserita non valida");
             return false;
         }
-        if (users.get(email) instanceof Teacher)
+        if (users.get(email) instanceof Teacher) {
             return users.get(email).setNewPassword(oldp, newp, 0);
-        else
+        } else {
             return users.get(email).setNewPassword(oldp, newp, 1);
+        }
     }
 
     public Map<String, User> getUsers() {

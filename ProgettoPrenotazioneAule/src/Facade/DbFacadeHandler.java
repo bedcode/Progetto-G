@@ -163,7 +163,7 @@ public class DbFacadeHandler {
         }
     }
 
-    public void changePassword(String email, String newPassword, int u) {
+    public void changePassword(String email, String newPassword, int user) {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
         } catch (Exception E) {
@@ -173,10 +173,10 @@ public class DbFacadeHandler {
         String query = null;
         try {
             Statement stmt = conn.createStatement();
-            if (u == 0) {
+            if (user == 0) {
                 query = "update Teacher set passw = '" + newPassword + "' where mail = '" + email + "'";
             }
-            if (u == 1) {
+            if (user == 1) {
                 query = "update Supervisor set passw = '" + newPassword + "' where mail = '" + email + "'";
             }
             stmt.executeUpdate(query);
@@ -186,7 +186,7 @@ public class DbFacadeHandler {
             System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
-//metodo da sistemare, trovare modo alternativo per inserire le date
+    // modificare ID e descrizione nella insert
     public void writeReservation(Reservation r, String cl) {
 
         try {

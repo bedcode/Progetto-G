@@ -8,6 +8,7 @@ package Facade;
 import PrenotareAula.Campus;
 import PrenotareAula.Classroom;
 import PrenotareAula.Requirements;
+import PrenotareAula.Reservation;
 import Utenti.*;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -185,5 +186,29 @@ public class DbFacadeHandler {
             System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
-    
+//metodo da sistemare, trovare modo alternativo per inserire le date
+    public void writeReservation(Reservation r, String cl) {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+
+        try {
+
+            Statement stmt = conn.createStatement();
+            String query = "INSERT into Reservation values('6', '" + r.getDate().getYear() + "-" + r.getDate().getMonth() + "-" + r.getDate().getDay() + "', '" + r.getStartHour() + "', '" + r.getEndHour() + "', 'default', '" + cl + "', null, null)";
+            stmt.executeUpdate(query);
+            stmt.close();
+        } catch (SQLException E) {
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
+        }
+
+    }
+
 }

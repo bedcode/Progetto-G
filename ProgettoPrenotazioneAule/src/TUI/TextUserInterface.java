@@ -56,8 +56,12 @@ public class TextUserInterface {
         int startHour = tastieraPrenotazione.nextInt();
         System.out.println("Inserire ora fine prenotazione");
         int endHour = tastieraPrenotazione.nextInt();
+        System.out.println("Inserire la descrizione della prenotazione");
+        tastieraPrenotazione.useDelimiter("\n");
+        String description = tastieraPrenotazione.next();
         cp.updateReservation();
-        cp.askForReservation(req, ca, startHour, endHour);
+        System.out.println(description);
+        cp.askForReservation(req, ca, startHour, endHour, description);
     }
 
     /**

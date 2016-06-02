@@ -25,17 +25,17 @@ public class TestReservationRegister {
         ReservationRegister r = new ReservationRegister("EF4");
         r.isReserved(ca, 9,11);
         System.out.println(r.isReserved(ca,9,11));//false
-        System.out.println(r.makeReservation(ca,9,11)); //true
-        System.out.println(r.makeReservation(ca,9,11)); //false
+        System.out.println(r.makeReservation(ca,9,11,"-")); //true
+        System.out.println(r.makeReservation(ca,9,11,"-")); //false
         r.isReserved(ca ,9,11);     
         System.out.println(r.isReserved(ca ,9,11)); //true
-        System.out.println(r.makeReservation(ca,11,12)); //true
+        System.out.println(r.makeReservation(ca,11,12,"-")); //true
         System.out.println(r.isReserved(ca ,9,11));     //true
         System.out.println(r.isReserved(ca ,7,10));     //true
-        System.out.println(r.makeReservation(ca,7,11));//false
-        System.out.println(r.makeReservation(ca,12,14));//true
-        System.out.println(r.makeReservation(ca,13,17)); //false
-        System.out.println(r.makeReservation(ca,9,17));  //false
+        System.out.println(r.makeReservation(ca,7,11,"-"));//false
+        System.out.println(r.makeReservation(ca,12,14,"-"));//true
+        System.out.println(r.makeReservation(ca,13,17,"-")); //false
+        System.out.println(r.makeReservation(ca,9,17,"-"));  //false
         System.out.println(r.printRegister());
         System.out.println(r.deleteReservation(1));
         System.out.println(r.printRegister());

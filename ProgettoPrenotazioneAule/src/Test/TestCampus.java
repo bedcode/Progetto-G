@@ -23,9 +23,9 @@ public class TestCampus {
        Calendar ca=new GregorianCalendar();
        ca.set(2000, 2, 1);
        Requirements r= new Requirements(200, true, true, true, "none");
-       cp.askForReservation(r, ca, 12, 14);
+       cp.askForReservation(r, ca, 12, 14, "-");
        ca.set(1990, 2, 1);
-       cp.askForReservation(r, ca, 12 , 14);
+       cp.askForReservation(r, ca, 12 , 14, "-");
        cp.printAllClassroomReservation();
     }
     

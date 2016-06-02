@@ -50,11 +50,11 @@ public class TestClassroom {
         System.out.println(c5.verifyReservation(req6, d, 14, 16)); //all ok 1
         
         System.out.println(c5.getResReg().isReserved(d, 14, 16)); //false, classroom is not reserved
-        System.out.println(c5.getResReg().makeReservation(d, 14, 16)); //true
+        System.out.println(c5.getResReg().makeReservation(d, 14, 16, "-")); //true
         System.out.println(c5.getResReg().isReserved(d, 14, 15)); //true, classroom is reserved
-        System.out.println(c5.getResReg().makeReservation(d, 14, 15)); //false
+        System.out.println(c5.getResReg().makeReservation(d, 14, 15, "-")); //false
         System.out.println(c5.getResReg().isReserved(d, 15, 16)); //true
-        System.out.println(c5.getResReg().makeReservation(d, 15, 16)); //false
+        System.out.println(c5.getResReg().makeReservation(d, 15, 16, "-")); //false
         
         System.out.println(c5.verifyReservation(req6, d, 14, 16)); //c5 is reserved 2
         

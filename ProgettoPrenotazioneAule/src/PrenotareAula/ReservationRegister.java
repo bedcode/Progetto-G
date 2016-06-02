@@ -53,11 +53,12 @@ public class ReservationRegister {
      * @param d Date int yyyy, mm, dd
      * @param startHour Start time of the reservation
      * @param endHour   End time of the reservation
+     * @param description Description of the reservation
      * @return true if the reservation is made, false if it isn't
      */
-    public boolean makeReservation(Date d, int startHour, int endHour) {
+    public boolean makeReservation(Date d, int startHour, int endHour, String description) {
         if(isReserved(d,  startHour, endHour) == false){
-          Reservation  newRes = new Reservation(d, startHour, endHour);
+          Reservation  newRes = new Reservation(d, startHour, endHour, description);
           res.add(newRes);
           Collections.sort(res);
           return true;
@@ -73,6 +74,7 @@ public class ReservationRegister {
      * @param d Date int yyyy, mm, dd
      * @param startHour Start time of the reservation
      * @param endHour   End time of the reservation
+     * @param description Description of the reservation
      * @return true if the reservation is made, false if it isn't
      */
     public boolean makeReservation(int id, Date d, int startHour, int endHour, String description) {
@@ -151,7 +153,7 @@ public class ReservationRegister {
      public int editReservation ( int id, Date newd, int newStart, int newEnd ) {
          boolean s = isReserved( newd, newStart, newEnd);
          if (s == false) {
-             makeReservation( newd, newStart, newEnd);
+             makeReservation( newd, newStart, newEnd, "-");
              deleteReservation(id);
              return 0;
          }

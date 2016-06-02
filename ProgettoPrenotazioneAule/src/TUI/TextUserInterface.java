@@ -111,6 +111,7 @@ public class TextUserInterface {
                     a.setNewPassword(email, oldPass, newPass);
                     break;
                 case (4):
+                    cp.closeConnection();
                     exit = true;
                     break;
                 default:
@@ -185,6 +186,7 @@ public class TextUserInterface {
                     a.setNewPassword(email, oldPass, newPass);
                     break;
                 case (8):
+                    cp.closeConnection();
                     exit = true;
                     break;
                 default:

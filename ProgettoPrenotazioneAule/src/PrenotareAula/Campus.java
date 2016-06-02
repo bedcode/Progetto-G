@@ -237,4 +237,7 @@ public class Campus  {
         return false;
     }
 
+    public void closeConnection() {
+        DbFacadeHandler.getInstance().closeConnection();
+    }
 }

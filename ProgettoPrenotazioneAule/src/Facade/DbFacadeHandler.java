@@ -16,6 +16,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,6 +40,14 @@ public class DbFacadeHandler {
         }
     }
 
+    public void closeConnection() {
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+    }
+    
     public List<Classroom> obtainClassroom() {
 
         List<Classroom> classi = new ArrayList();
@@ -144,7 +154,7 @@ public class DbFacadeHandler {
         }
 
     }
-
+    
     public void insertAccount(Teacher t) {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();

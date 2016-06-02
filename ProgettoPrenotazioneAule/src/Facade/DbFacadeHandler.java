@@ -16,8 +16,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -141,7 +139,7 @@ public class DbFacadeHandler {
                 rs.beforeFirst();
                 while (rs.next()) {
                     if (cl.getName().equals(rs.getString(6))) {
-                        cl.getResReg().makeReservation(rs.getDate(2), rs.getInt(3), rs.getInt(4));
+                        cl.getResReg().makeReservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4));
                     }
                 }
             }
@@ -153,6 +151,31 @@ public class DbFacadeHandler {
             System.out.println("VendorError:  " + E.getErrorCode());
         }
 
+    }
+    
+    public void readId() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+        try {
+            Statement stmt = conn.createStatement();
+            String query = "select max(id) from Reservation";
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                Reservation r = new Reservation(id);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException E) {
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
+        }
     }
     
     public void insertAccount(Teacher t) {

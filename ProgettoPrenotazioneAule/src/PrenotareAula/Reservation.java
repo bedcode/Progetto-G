@@ -60,6 +60,14 @@ public class Reservation implements Comparable<Reservation>{
     }
     
     /**
+     * @param id The integer value representing the ID of the reservation
+     */
+    public Reservation(int id) {
+        this.nextId = id;
+        this.nextId++;
+    }
+    
+    /**
      * 
      * @return A string representing the Reservation by listing the fields using
      * the following format: <br>

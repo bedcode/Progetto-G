@@ -34,6 +34,7 @@ public class Campus  {
         this.name = name;
         classi = DbFacadeHandler.getInstance().obtainClassroom();
         accounts=DbFacadeHandler.getInstance().obtainAccount();
+        this.readMaxId();
     }
     
     public static Campus getInstance() {
@@ -41,9 +42,16 @@ public class Campus  {
     }
     //manca javadoc
     public void updateReservation() {
-                DbFacadeHandler.getInstance().UpdateReservation();
-
+        DbFacadeHandler.getInstance().UpdateReservation();
     }
+    
+    /**
+     * This method reads the maximum ID reservation from the database.
+     */
+    private void readMaxId() {
+        DbFacadeHandler.getInstance().readId();
+    }
+    
     /**
      * this method is used for asking the campus to make a reservation, if there aren't classrooms with the specified requirements available
      * the campus suggests a classroom which has similar requirements

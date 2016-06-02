@@ -65,6 +65,18 @@ public class ReservationRegister {
           else
           return false;
     }
+    
+    public boolean makeReservation(int id, Date d, int startHour, int endHour) {
+        if(isReserved(d,  startHour, endHour) == false){
+          Reservation  newRes = new Reservation(id, d, startHour, endHour, "-");
+          res.add(newRes);
+          Collections.sort(res);
+          return true;
+        }
+          else
+          return false;
+    }
+    
     /** this method prints the content details of the Reservation Register
      * 
      * @return a String with the details of the register

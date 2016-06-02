@@ -75,9 +75,9 @@ public class ReservationRegister {
      * @param endHour   End time of the reservation
      * @return true if the reservation is made, false if it isn't
      */
-    public boolean makeReservation(int id, Date d, int startHour, int endHour) {
+    public boolean makeReservation(int id, Date d, int startHour, int endHour, String description) {
         if(isReserved(d,  startHour, endHour) == false){
-          Reservation  newRes = new Reservation(id, d, startHour, endHour, "-");
+          Reservation  newRes = new Reservation(id, d, startHour, endHour, description);
           res.add(newRes);
           Collections.sort(res);
           return true;

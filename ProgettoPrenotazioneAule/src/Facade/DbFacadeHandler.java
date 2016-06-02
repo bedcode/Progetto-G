@@ -139,7 +139,7 @@ public class DbFacadeHandler {
                 rs.beforeFirst();
                 while (rs.next()) {
                     if (cl.getName().equals(rs.getString(6))) {
-                        cl.getResReg().makeReservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4));
+                        cl.getResReg().makeReservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
                     }
                 }
             }

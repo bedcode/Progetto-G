@@ -66,6 +66,15 @@ public class ReservationRegister {
           return false;
     }
     
+    /**
+     * this method creates the specified reservation if it is free
+     * informations about reservation are taken from the database
+     * @param id Id of the reservation
+     * @param d Date int yyyy, mm, dd
+     * @param startHour Start time of the reservation
+     * @param endHour   End time of the reservation
+     * @return true if the reservation is made, false if it isn't
+     */
     public boolean makeReservation(int id, Date d, int startHour, int endHour) {
         if(isReserved(d,  startHour, endHour) == false){
           Reservation  newRes = new Reservation(id, d, startHour, endHour, "-");

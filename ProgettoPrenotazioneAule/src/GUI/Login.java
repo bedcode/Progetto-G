@@ -8,6 +8,7 @@ package GUI;
 import PrenotareAula.Campus;
 import Utenti.Account;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -35,6 +36,7 @@ public class Login extends JFrame {
     private JLabel benvenuto;
     private JLabel email;
     private JLabel password;
+    private JLabel errpassword;
     private JTextField emailField;
     private JPasswordField passwordField;
     private JButton login;
@@ -51,6 +53,7 @@ public class Login extends JFrame {
         benvenuto = new JLabel("Benvenuto in XClassLive, inserisci e-mail e password");
         email = new JLabel("e-mail");
         password = new JLabel("password");
+        errpassword=new JLabel("combinazione nome utente password errata!");
         emailField = new JTextField();
         passwordField = new JPasswordField();
         login = new JButton("Login");
@@ -77,6 +80,10 @@ public class Login extends JFrame {
         lowerArea.add(passwordField);
         lowerArea.add(new JPanel());
         lowerArea.add(login);
+        lowerArea.add(errpassword);
+        errpassword.setHorizontalAlignment(JLabel.CENTER);
+        errpassword.setForeground(Color.red);
+        errpassword.setVisible(false);
         benvenuto.setHorizontalAlignment(JLabel.CENTER);
         
         
@@ -85,9 +92,20 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String email=emailField.getText();
-                String password=passwordField.getText();
+                String password=String.valueOf(passwordField.getPassword());
                 switch (Account.getInstance().login(email, password)) {
                     case 0:
+                        TeacherFrame tr=new TeacherFrame();
+                        setVisible(false);
+                        tr.setVisible(true);
+                        break;
+                    case 1:
+                        SupervisorFrame sr=new SupervisorFrame(email);
+                        setVisible(false);
+                        sr.setVisible(true);
+                        break;
+                    case 2:
+                        errpassword.setVisible(true);
                         break;
                     default:
                         break;                                           

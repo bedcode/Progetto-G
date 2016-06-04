@@ -45,6 +45,8 @@ public class DbFacadeHandler {
             System.out.println("SQLException: " + ex.getMessage());
         }
     }
+
+    // methods which read informations from database
     
     public List<Classroom> obtainClassroom() {
 
@@ -152,6 +154,8 @@ public class DbFacadeHandler {
         }
 
     }
+
+    // methods which write, update and delete informations in database
     
     public void readId() {
         try {
@@ -177,8 +181,8 @@ public class DbFacadeHandler {
             System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
-    
-    public void insertAccount(Teacher t) {
+
+    public void insertTeacherAccount(Teacher t) {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
         } catch (Exception E) {
@@ -188,6 +192,24 @@ public class DbFacadeHandler {
         try {
             Statement stmt = conn.createStatement();
             String query = "insert into Teacher values('" + t.getEmail() + "', '" + t.getName() + "', '" + t.getSurname() + "', '" + t.getPassword() + "')";
+            stmt.executeUpdate(query);
+        } catch (SQLException E) {
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
+        }
+    }
+
+    public void deleteTeacherAccount(String email) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+        try {
+            Statement stmt = conn.createStatement();
+            String query = "delete from Teacher where mail = '" + email + "'";
             stmt.executeUpdate(query);
         } catch (SQLException E) {
             System.out.println("SQLException: " + E.getMessage());
@@ -219,6 +241,7 @@ public class DbFacadeHandler {
             System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
+
     // modificare ID e descrizione nella insert
     public void writeReservation(Reservation r, String cl) {
 
@@ -244,4 +267,21 @@ public class DbFacadeHandler {
 
     }
 
+    public void deleteReservation(int id) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+        try {
+            Statement stmt = conn.createStatement();
+            String query = "delete from Reservation where id = " + id;
+            stmt.executeUpdate(query);
+        } catch (SQLException E) {
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
+        }
+    }
 }

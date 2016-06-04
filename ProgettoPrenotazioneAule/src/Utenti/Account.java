@@ -31,8 +31,8 @@ public class Account {
     /**
      * Method for log in the system of reservation.
      *
-     * @param email
-     * @param password
+     * @param email email of a user
+     * @param password password of a user
      * @return 0 if a teacher logs in, 1 if a supervisor logs in, 2 if there are
      * problems
      */
@@ -85,7 +85,7 @@ public class Account {
     /**
      * This method check if an account exists.
      *
-     * @param email to check
+     * @param email email to check
      * @return a user or null
      */
     private User checkAccount(String email) {
@@ -100,7 +100,7 @@ public class Account {
     /**
      * Method to add supervisor account in local instance.
      *
-     * @param s
+     * @param s a supervisor
      * @return supervisor instance
      */
     public User addSuperAccount(Supervisor s) {
@@ -111,7 +111,7 @@ public class Account {
     /**
      * Method to add teacher account in local instance.
      *
-     * @param t
+     * @param t a teacher
      * @return teacher instance
      */
     public User addTeacherAccount(Teacher t) {
@@ -126,11 +126,31 @@ public class Account {
      * @return teacher instance
      */
     public User addNewTeacherAccount(Teacher t) {
-        users.put(t.getEmail(), t);
-        DbFacadeHandler.getInstance().insertAccount(t);
-        return t;
+        if (checkAccount(t.getEmail()) == null) {
+            users.put(t.getEmail(), t);
+            DbFacadeHandler.getInstance().insertTeacherAccount(t);
+            System.out.println("\nOperazione effettuata con successo\n");
+            return t;
+        }
+        else {
+            System.out.println("\nAccount già esistente\n");
+            return null;
+        }
     }
 
+    /**
+     * Method to delete a teacher account from local instance and database.
+     * 
+     * @param email email of a teacher
+     */
+    public void deleteTeacherAccount(String email) {
+        if (checkAccount(email) != null) {
+            users.remove(email);
+            DbFacadeHandler.getInstance().deleteTeacherAccount(email);
+            System.out.println("\nOperazione effettuata con successo\n");
+        }
+    }
+    
     /**
      * This method sets a new password. A user can modify his password only if he
      * writes the email address, the actual password and the new one. The setting

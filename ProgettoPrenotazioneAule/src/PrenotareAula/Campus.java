@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -156,6 +155,7 @@ public class Campus  {
     public boolean deleteReservation(int id) {
         for (Classroom cl : classi) {
             if(cl.getResReg().deleteReservation(id)==true) {
+                //DbFacadeHandler.getInstance().deleteReservation(id);
                 return true;
             }       
         }
@@ -236,16 +236,32 @@ public class Campus  {
         }
         return true;
     }
-    //javadoc!!!!
-        public boolean editReservation(int id, Date startDate, int startHour, int endHour ) {
+    
+    /**
+     * This method edits reservations with a new date.
+     * 
+     * @param id id of the reservation to be modified
+     * @param startDate new date of the reservation to be modified
+     * @param startHour new start hour of the reservation to be modified
+     * @param endHour new end hour of the reservation to be modified
+     * @return boolean value
+     */
+    public boolean editReservation(int id, Date startDate, int startHour, int endHour) {
+        String name = null;
         for (Classroom cl : classi) {
-            if(cl.getResReg().editReservation(id, startDate , startHour, endHour)==0) {
-                return true;
-            }       
+            name = cl.getResReg().searchNameFromId(id);
+            if (name != null && cl.getName().equals(name)) {
+                return cl.getResReg().editReservation(id, startDate, startHour, endHour);
+            }
         }
+        if (name == null)
+            System.out.println("Non è stata trovata una prenotazione con l'id specificato");
         return false;
     }
 
+    /**
+     * This method closes the database connection.
+     */
     public void closeConnection() {
         DbFacadeHandler.getInstance().closeConnection();
     }

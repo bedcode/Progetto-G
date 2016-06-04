@@ -39,6 +39,7 @@ public class TextUserInterface {
 
     /**
      * This method allows the user to make a reservation.
+     * 
      * @param cp an instance of campus
      * @param ca an instance of calendar
      * @throws IOException 
@@ -60,12 +61,12 @@ public class TextUserInterface {
         tastieraPrenotazione.useDelimiter("\n");
         String description = tastieraPrenotazione.next();
         cp.updateReservation();
-        System.out.println(description);
         cp.askForReservation(req, ca, startHour, endHour, description);
     }
 
     /**
      * This method allows the user to delete a reservation.
+     * 
      * @param cp an instance of campus
      */
     public static void removeReservation(Campus cp) {
@@ -74,14 +75,35 @@ public class TextUserInterface {
         int id = tastieraPrenotazione.nextInt();
         if (cp.deleteReservation(id) == true) {
             System.out.println("Prenotazione cancellata");
-
         } else {
             System.out.println("Non è stata trovata una prenotazione con l'id specificato");
         }
     }
 
     /**
+     * This method allows the user to edit a reservation.
+     * 
+     * @param cp an instance of campus
+     */
+    public static void editReservation(Campus cp) {
+        Calendar ca = new GregorianCalendar();
+        Scanner tastiera = new Scanner(System.in);
+        System.out.println("Inserire l'id della prenotazione");
+        int id = tastiera.nextInt();
+        System.out.println("Inserire la nuova data della prenotazione aaaa/mm/dd");
+        String data = tastiera.next();
+        StringTokenizer st = new StringTokenizer(data);
+        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")));
+        System.out.println("Inserire la nuova ora d'inizio della prenotazione");
+        int startHour = tastiera.nextInt();
+        System.out.println("Inserire la nuova ora di fine prenotazione");
+        int endHour = tastiera.nextInt();
+        cp.editReservation(id, ca.getTime(), startHour, endHour);
+    }
+    
+    /**
      * After login, a teacher can choose what to do.
+     * 
      * @throws IOException 
      */
     public static void teacherOptions() throws IOException {
@@ -127,6 +149,7 @@ public class TextUserInterface {
 
     /**
      * After login, a supervisor can choose what to do.
+     * 
      * @throws IOException 
      */
     public static void supervisorOptions() throws IOException {
@@ -142,9 +165,10 @@ public class TextUserInterface {
             System.out.println("3) Annullare una prenotazione");
             System.out.println("4) Modificare una prenotazione");
             System.out.println("5) Stampare tutte le prenotazioni");
-            System.out.println("6) Creare nuovo account Teacher");
-            System.out.println("7) Cambiare password");
-            System.out.println("8) Uscire dall'applicazione");
+            System.out.println("6) Creare nuovo account Teacher");            
+            System.out.println("7) Eliminare account Teacher");
+            System.out.println("8) Cambiare password");
+            System.out.println("9) Uscire dall'applicazione");
 
             switch (tastiera.nextInt()) {
                 case (1):
@@ -157,18 +181,7 @@ public class TextUserInterface {
                     removeReservation(cp);
                     break;
                 case (4):
-                    System.out.println("Inserire l'id della prenotazione");
-                    int id=tastiera.nextInt();
-                    System.out.println("Inserire la data della prenotazione");
-                    System.out.println("Inserire la nuova data della prenotazione aaaa/mm/dd");
-                    String data = tastiera.next();
-                    StringTokenizer st = new StringTokenizer(data);
-                    ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")));
-                    System.out.println("Inserire la nuova ora d'inizio della prenotazione");
-                    int startHour=tastiera.nextInt();
-                    System.out.println("Inserire la nuova ora di fine prenotazione");
-                    int endHour=tastiera.nextInt();
-                    cp.editReservation(id, ca.getTime(), startHour, endHour);            
+                    editReservation(cp); 
                     break;
                 case (5):
                     cp.updateReservation();
@@ -178,18 +191,22 @@ public class TextUserInterface {
                     System.out.println("Inserire email Teacher");
                     Teacher t = new Teacher(tastiera.next());
                     a.addNewTeacherAccount(t);
-                    System.out.println("\nOperazione effettuata con successo\n");
                     break;
                 case (7):
                     System.out.println("Inserire email");
                     String email = tastiera.next();
+                    a.deleteTeacherAccount(email);
+                    break;
+                case (8):
+                    System.out.println("Inserire email");
+                    email = tastiera.next();
                     System.out.println("Inserire password attuale");
                     String oldPass = tastiera.next();
                     System.out.println("Inserire password nuova");
                     String newPass = tastiera.next();
                     a.setNewPassword(email, oldPass, newPass);
                     break;
-                case (8):
+                case (9):
                     cp.closeConnection();
                     exit = true;
                     break;

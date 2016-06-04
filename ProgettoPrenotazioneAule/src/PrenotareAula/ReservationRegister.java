@@ -5,7 +5,6 @@
  */
 package PrenotareAula;
 
-import Facade.DbFacadeHandler;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -125,10 +124,10 @@ public class ReservationRegister {
      * @param endHour   End time of the reservation
      * @return true if there is the happy end, false if something goes wrong
      */
-     public boolean makeWeeklyReservation(Date d1, Date d2, int startHour, int endHour) {
-         Date d = d1;
-         boolean i = false;
-         while ( d.getTime() < d2.getTime()){
+    public boolean makeWeeklyReservation(Date d1, Date d2, int startHour, int endHour) {
+        Date d = d1;
+        boolean i = false;
+        while ( d.getTime() < d2.getTime()){
         if(isReserved(d,  startHour, endHour) == false){
           Reservation  newRes = new Reservation(d, startHour, endHour);
           res.add(newRes);
@@ -139,26 +138,42 @@ public class ReservationRegister {
         }
           else
           return false;
-         }
-         return i;
+        }
+        return i;
     }
-     /**
-      * this method edit a old reservation replacing it with a new
+    /**
+      * this method edits an old reservation replacing it with a new one
       * @param id id of the (old) reservation to delete
       * @param newd date for the new Reservation
       * @param newStart Start time for the new reservation
       * @param newEnd   End time for the new reservation
-      * @return 0 if all it's ok, 1 if it isn't 
-      */
-     public int editReservation ( int id, Date newd, int newStart, int newEnd ) {
-         boolean s = isReserved( newd, newStart, newEnd);
-         if (s == false) {
-             makeReservation( newd, newStart, newEnd, "-");
-             deleteReservation(id);
-             return 0;
-         }
-         else
-       return 1;  
-     }
+      * @return boolean value
+     */
+    public boolean editReservation ( int id, Date newd, int newStart, int newEnd ) {
+        boolean c = isReserved(newd, newStart, newEnd);
+        if ((c == false) && (deleteReservation(id) == true)) {
+                makeReservation(newd, newStart, newEnd, "-");
+                System.out.println("Operazione effettuata con successo");
+                return true;  
+        } else if (c == true) {
+            System.out.println("Aula non disponibile nel nuovo orario");
+            return false;
+        }       
+        return false;
+    }
+    
+    /**
+     * This method searches for the name of the register, where there is a
+     * reservation identified by the id.
+     * @param id id of a reservation
+     * @return name of the register of the searched reservation
+     */
+    public String searchNameFromId(int id) {
+        for (int i = 0; i < res.size(); i++) {
+            if (id == res.get(i).getId()) {
+                return this.name;
+            }
+        }
+        return null;
+    }
 }
-

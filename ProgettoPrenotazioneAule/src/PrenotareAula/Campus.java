@@ -39,9 +39,12 @@ public class Campus  {
     public static Campus getInstance() {
         return instance;
     }
-    //manca javadoc
+    
+    /**
+     * This method reads all the reservations from the database.
+     */
     public void updateReservation() {
-        DbFacadeHandler.getInstance().UpdateReservation();
+        DbFacadeHandler.getInstance().updateReservation();
     }
     
     /**
@@ -145,13 +148,13 @@ public class Campus  {
         }
         return false;
     }
+        
     /**
      * this method deletes a reservation that was made previously
      * 
-     * @param id
-     * @return 
+     * @param id id of a reservation
+     * @return boolean value
      */
-    
     public boolean deleteReservation(int id) {
         for (Classroom cl : classi) {
             if(cl.getResReg().deleteReservation(id)==true) {
@@ -160,23 +163,24 @@ public class Campus  {
             }       
         }
         return false;
-    }
-            
-            
+    }        
     
     /**
      * method for printing all the reservation that was made in all the classroom of the campus
      */
-    
     public void printAllClassroomReservation() {
             for (Classroom cl : classi) {
                 System.out.println(cl.printClassroom());
             }       
     }
     
+    /**
+     * Method for printing all the reservations that were made in a classroom of the campus.
+     * 
+     * @param cl a classroom
+     */
     public void printSingleClassroom(Classroom cl) {
         System.out.println(cl.printClassroom());
-        
     }
 
     /**
@@ -220,9 +224,9 @@ public class Campus  {
     /**
      * this method check if startHour and endHour are correct parameters
      *
-     * @param startHour
-     * @param endHour
-     * @return
+     * @param startHour start time of a reservation
+     * @param endHour end time of a reservation
+     * @return boolean value
      */
     public boolean checkTime(int startHour, int endHour) {
         if (endHour <= startHour) {

@@ -14,37 +14,61 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The class allows to use XClassLive software in textual mode.
- * 
+ *
  * @author Federico
  */
 public class TextUserInterface {
 
+    private static String email;
+    
     public static void main(String[] args) throws IOException {
-        Account a = Account.getInstance();
         Campus cp = Campus.getInstance();
         System.out.println("Benvenuto in XClassLive, software di prenotazione aule");
+        login();
+    }
+
+    /**
+     * Method for log in XClassLive.
+     */
+    public static void login() {
+        Account a = Account.getInstance();
         int i = 2;
         while (i == 2) {
-            i = a.login();
+            System.out.println("Inserire e-mail");
+            Scanner in = new Scanner(System.in);
+            email = in.nextLine();
+            System.out.println("Inserire password");
+            String password = in.nextLine();
+            i = a.login(email, password);
             if (i == 0) {
-                teacherOptions();
+                try {
+                    teacherOptions();
+                } catch (Exception ex) {
+                    System.out.println("Errore nell'input, si prega di riprovare");
+                }
             } else if (i == 1) {
-                supervisorOptions();
+                try {
+                    supervisorOptions();
+                } catch (Exception ex) {
+                    System.out.println("Errore nell'input, si prega di riprovare");
+                }
             }
         }
     }
 
     /**
      * This method allows the user to make a reservation.
-     * 
+     *
      * @param cp an instance of campus
      * @param ca an instance of calendar
-     * @throws IOException 
+     * @throws IOException
      */
-    public static void reservation(Campus cp, Calendar ca) throws IOException {
+    private static void reservation(Campus cp, Calendar ca) throws IOException {
         Scanner tastieraPrenotazione = new Scanner(System.in);
         System.out.println("Inserire la capacità dell'aula che si vuole prenotare");
         int capacity = tastieraPrenotazione.nextInt();
@@ -66,10 +90,10 @@ public class TextUserInterface {
 
     /**
      * This method allows the user to delete a reservation.
-     * 
+     *
      * @param cp an instance of campus
      */
-    public static void removeReservation(Campus cp) {
+    private static void removeReservation(Campus cp) {
         Scanner tastieraPrenotazione = new Scanner(System.in);
         System.out.println("Specificare l'id della prenotazione che si vuole rimuovere");
         int id = tastieraPrenotazione.nextInt();
@@ -82,10 +106,10 @@ public class TextUserInterface {
 
     /**
      * This method allows the user to edit a reservation.
-     * 
+     *
      * @param cp an instance of campus
      */
-    public static void editReservation(Campus cp) {
+    private static void editReservation(Campus cp) {
         Calendar ca = new GregorianCalendar();
         Scanner tastiera = new Scanner(System.in);
         System.out.println("Inserire l'id della prenotazione");
@@ -100,13 +124,13 @@ public class TextUserInterface {
         int endHour = tastiera.nextInt();
         cp.editReservation(id, ca.getTime(), startHour, endHour);
     }
-    
+
     /**
      * After login, a teacher can choose what to do.
-     * 
-     * @throws IOException 
+     *
+     * @throws IOException
      */
-    public static void teacherOptions() throws IOException {
+    private static void teacherOptions() throws IOException {
         Campus cp = Campus.getInstance();
         Account a = Account.getInstance();
         Calendar ca = new GregorianCalendar();
@@ -149,10 +173,10 @@ public class TextUserInterface {
 
     /**
      * After login, a supervisor can choose what to do.
-     * 
-     * @throws IOException 
+     *
+     * @throws IOException
      */
-    public static void supervisorOptions() throws IOException {
+    private static void supervisorOptions() throws IOException {
         Campus cp = Campus.getInstance();
         Account a = Account.getInstance();
         Calendar ca = new GregorianCalendar();
@@ -165,7 +189,7 @@ public class TextUserInterface {
             System.out.println("3) Annullare una prenotazione");
             System.out.println("4) Modificare una prenotazione");
             System.out.println("5) Stampare tutte le prenotazioni");
-            System.out.println("6) Creare nuovo account Teacher");            
+            System.out.println("6) Creare nuovo account Teacher");
             System.out.println("7) Eliminare account Teacher");
             System.out.println("8) Cambiare password");
             System.out.println("9) Uscire dall'applicazione");
@@ -181,7 +205,7 @@ public class TextUserInterface {
                     removeReservation(cp);
                     break;
                 case (4):
-                    editReservation(cp); 
+                    editReservation(cp);
                     break;
                 case (5):
                     cp.updateReservation();

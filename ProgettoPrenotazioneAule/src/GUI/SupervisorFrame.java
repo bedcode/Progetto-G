@@ -63,7 +63,7 @@ public class SupervisorFrame extends JFrame {
         Dimension d=new Dimension(600, 500);
         this.setSize(1300, 1000);        
         main = new JPanel(new BorderLayout());
-        upperArea = new JPanel(new GridLayout(5,1));
+        upperArea = new JPanel(new GridLayout(4,1));
         lowerArea = new JPanel();
         borderEast=new JPanel(new GridLayout(10,1));
         borderWest=new JPanel(new GridLayout(10,1));
@@ -80,12 +80,11 @@ public class SupervisorFrame extends JFrame {
         lowerArea.setPreferredSize(d);
         upperArea.setPreferredSize(s);
         upperArea.add(new JPanel());
-        name.setFont(new Font("Calibri", 27, 27));
+        name.setFont(new Font("Calibri", 24, 24));
         upperArea.add(name);        
         upperArea.add(new JPanel());
         selection.setFont(new Font("Calibri", 18, 18));
         upperArea.add(selection);
-        upperArea.add(new JPanel());
         
         borderWest.add(Box.createRigidArea(new Dimension(1,0)));
         borderWest.add(Box.createRigidArea(new Dimension(1,0)));

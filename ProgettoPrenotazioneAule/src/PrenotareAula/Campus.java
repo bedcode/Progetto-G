@@ -240,6 +240,28 @@ public class Campus  {
         }
         return true;
     }
+    
+    /**
+     * This method edits reservations with a new date.
+     * 
+     * @param id id of the reservation to be modified
+     * @param startDate new date of the reservation to be modified
+     * @param startHour new start hour of the reservation to be modified
+     * @param endHour new end hour of the reservation to be modified
+     * @return boolean value
+     */
+    public boolean editReservation(int id, Date startDate, int startHour, int endHour) {
+        String name = null;
+        for (Classroom cl : classi) {
+            name = cl.getResReg().searchNameFromId(id);
+            if (name != null && cl.getName().equals(name)) {
+                return cl.getResReg().editReservation(id, startDate, startHour, endHour);
+            }
+        }
+        if (name == null)
+            System.out.println("Non è stata trovata una prenotazione con l'id specificato");
+        return false;
+    }
 
     /**
      * This method closes the database connection.

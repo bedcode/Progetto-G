@@ -10,6 +10,7 @@ import PrenotareAula.Classroom;
 import PrenotareAula.Requirements;
 import PrenotareAula.Reservation;
 import Utenti.*;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ import java.util.List;
 public class DbFacadeHandler {
 
     private static final DbFacadeHandler instance = new DbFacadeHandler();
-    private java.sql.Connection conn;
+    private Connection conn;
 
     public static DbFacadeHandler getInstance() {
         return instance;

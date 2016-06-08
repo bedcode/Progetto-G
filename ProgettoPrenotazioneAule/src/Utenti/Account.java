@@ -143,10 +143,12 @@ public class Account {
      * @param email email of a teacher
      */
     public void deleteTeacherAccount(String email) {
-        if (checkAccount(email) != null) {
+        if ((checkAccount(email) != null) && (users.get(email) instanceof Teacher)) {
             users.remove(email);
             DbFacadeHandler.getInstance().deleteTeacherAccount(email);
             System.out.println("\nOperazione effettuata con successo\n");
+        } else {
+            System.out.println("\nOperazione non riuscita\n");
         }
     }
 

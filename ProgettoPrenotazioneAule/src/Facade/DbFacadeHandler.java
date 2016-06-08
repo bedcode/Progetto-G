@@ -33,6 +33,7 @@ public class DbFacadeHandler {
 
     private DbFacadeHandler() {
         try {
+            DriverManager.setLoginTimeout(10);
             conn = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7112944?user=sql7112944&password=QavZjtyIJw");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

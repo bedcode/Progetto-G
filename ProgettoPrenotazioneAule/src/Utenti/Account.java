@@ -156,21 +156,23 @@ public class Account {
      * writes the email address, the actual password and the new one. The setting
      * is effective only if the new password meets security parameters.
      *
+     * @param emailLogin email used for login by a user
      * @param email email of a user
      * @param oldp old password of a user
      * @param newp new password of a user
      * @return boolean value
      */
-    public boolean setNewPassword(String email, String oldp, String newp) {
-        if (users.get(email) == null) {
+    public boolean setNewPassword(String emailLogin,String email, String oldp, String newp) {
+            if ((emailLogin.equals(email) == false) || (users.get(email) == null)) {
             System.out.println("Email inserita non valida");
             return false;
         }
-        if (users.get(email) instanceof Teacher) {
+        if ((emailLogin.equals(email) == true) && (users.get(email) instanceof Teacher)) {
             return users.get(email).setNewPassword(oldp, newp, 0);
-        } else {
+        } else if ((emailLogin.equals(email) == true) && (users.get(email) instanceof Supervisor)){
             return users.get(email).setNewPassword(oldp, newp, 1);
         }
+        return false;
     }
 
     public Map<String, User> getUsers() {

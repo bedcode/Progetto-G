@@ -22,7 +22,7 @@ import java.util.StringTokenizer;
  */
 public class TextUserInterface {
 
-    private static String email;
+    private static String emailLogin;
     
     public static void main(String[] args) throws IOException {
         Campus cp = Campus.getInstance();
@@ -39,10 +39,10 @@ public class TextUserInterface {
         while (i == 2) {
             System.out.println("Inserire e-mail");
             Scanner in = new Scanner(System.in);
-            email = in.nextLine();
+            emailLogin = in.nextLine();
             System.out.println("Inserire password");
             String password = in.nextLine();
-            i = a.login(email, password);
+            i = a.login(emailLogin, password);
             if (i == 0) {
                 try {
                     teacherOptions();
@@ -156,7 +156,7 @@ public class TextUserInterface {
                     String oldPass = tastiera.next();
                     System.out.println("Inserire password nuova");
                     String newPass = tastiera.next();
-                    a.setNewPassword(email, oldPass, newPass);
+                    a.setNewPassword(emailLogin, email, oldPass, newPass);
                     break;
                 case (4):
                     cp.closeConnection();
@@ -226,7 +226,7 @@ public class TextUserInterface {
                     String oldPass = tastiera.next();
                     System.out.println("Inserire password nuova");
                     String newPass = tastiera.next();
-                    a.setNewPassword(email, oldPass, newPass);
+                    a.setNewPassword(emailLogin, email, oldPass, newPass);
                     break;
                 case (9):
                     cp.closeConnection();

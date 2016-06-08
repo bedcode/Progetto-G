@@ -41,8 +41,6 @@ public class TestReservationRegister {
         System.out.println(r.printRegister());
         System.out.println(r.makeWeeklyReservation(ca, c1, 15,17));  //true
         System.out.println(r.printRegister());
-        System.out.println(r.editReservation(2, ca, 17, 18)); //0
-        System.out.println(r.editReservation(3, ca, 14, 18)); //1
         System.out.println(r.printRegister());
     }
 }

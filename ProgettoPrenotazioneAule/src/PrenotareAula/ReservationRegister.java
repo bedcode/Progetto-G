@@ -140,40 +140,5 @@ public class ReservationRegister {
           return false;
         }
         return i;
-    }
-    /**
-      * this method edits an old reservation replacing it with a new one
-      * @param id id of the (old) reservation to delete
-      * @param newd date for the new Reservation
-      * @param newStart Start time for the new reservation
-      * @param newEnd   End time for the new reservation
-      * @return boolean value
-     */
-    public boolean editReservation ( int id, Date newd, int newStart, int newEnd ) {
-        boolean c = isReserved(newd, newStart, newEnd);
-        if ((c == false) && (deleteReservation(id) == true)) {
-                makeReservation(newd, newStart, newEnd, "-");
-                System.out.println("Operazione effettuata con successo");
-                return true;  
-        } else if (c == true) {
-            System.out.println("Aula non disponibile nel nuovo orario");
-            return false;
-        }       
-        return false;
-    }
-    
-    /**
-     * This method searches for the name of the register, where there is a
-     * reservation identified by the id.
-     * @param id id of a reservation
-     * @return name of the register of the searched reservation
-     */
-    public String searchNameFromId(int id) {
-        for (int i = 0; i < res.size(); i++) {
-            if (id == res.get(i).getId()) {
-                return this.name;
-            }
-        }
-        return null;
-    }
+    }    
 }

@@ -73,7 +73,7 @@ public class DbFacadeHandler {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select nome, capacita, blackboard, whiteboard, projector, laboratory from Classroom join Accessories A on nome=A.classroom");
             while (rs.next()) {
-                Requirements re = new Requirements(rs.getInt(2), rs.getBoolean(3),  rs.getBoolean(4),  rs.getBoolean(5), rs.getString(6));
+                Requirements re = new Requirements(rs.getInt(2), rs.getBoolean(3), rs.getBoolean(4), rs.getBoolean(5), rs.getString(6));
                 Classroom cl = new Classroom(rs.getString(1), re);
                 classi.add(cl);
             }

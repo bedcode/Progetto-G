@@ -131,8 +131,7 @@ public class Account {
             DbFacadeHandler.getInstance().insertTeacherAccount(t);
             System.out.println("\nOperazione effettuata con successo\n");
             return t;
-        }
-        else {
+        } else {
             System.out.println("\nAccount già esistente\n");
             return null;
         }
@@ -140,7 +139,7 @@ public class Account {
 
     /**
      * Method to delete a teacher account from local instance and database.
-     * 
+     *
      * @param email email of a teacher
      */
     public void deleteTeacherAccount(String email) {
@@ -150,11 +149,11 @@ public class Account {
             System.out.println("\nOperazione effettuata con successo\n");
         }
     }
-    
+
     /**
-     * This method sets a new password. A user can modify his password only if he
-     * writes the email address, the actual password and the new one. The setting
-     * is effective only if the new password meets security parameters.
+     * This method sets a new password. A user can modify his password only if
+     * he writes the email address, the actual password and the new one. The
+     * setting is effective only if the new password meets security parameters.
      *
      * @param emailLogin email used for login by a user
      * @param email email of a user
@@ -162,14 +161,14 @@ public class Account {
      * @param newp new password of a user
      * @return boolean value
      */
-    public boolean setNewPassword(String emailLogin,String email, String oldp, String newp) {
-            if ((emailLogin.equals(email) == false) || (users.get(email) == null)) {
+    public boolean setNewPassword(String emailLogin, String email, String oldp, String newp) {
+        if ((emailLogin.equals(email) == false) || (users.get(email) == null)) {
             System.out.println("Email inserita non valida");
             return false;
         }
         if ((emailLogin.equals(email) == true) && (users.get(email) instanceof Teacher)) {
             return users.get(email).setNewPassword(oldp, newp, 0);
-        } else if ((emailLogin.equals(email) == true) && (users.get(email) instanceof Supervisor)){
+        } else if ((emailLogin.equals(email) == true) && (users.get(email) instanceof Supervisor)) {
             return users.get(email).setNewPassword(oldp, newp, 1);
         }
         return false;

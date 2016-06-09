@@ -70,12 +70,12 @@ public class Campus  {
      * @throws IOException 
      */
 
-    public boolean askForReservation(Requirements req, Calendar ca, int startHour, int endHour, String description) throws FileNotFoundException, IOException {
+    public boolean askForReservation(Requirements req, Date ca, int startHour, int endHour, String description) throws FileNotFoundException, IOException {
         if (this.checkTime(startHour, endHour) == true) {
             for (Classroom cl : classi) {
-                if (cl.verifyReservation(req, ca.getTime(), startHour, endHour) == 1) {
+                if (cl.verifyReservation(req, ca, startHour, endHour) == 1) {
                     if (askUser(cl) == true) {
-                        cl.getResReg().makeReservation(ca.getTime(), startHour, endHour, description);
+                        cl.getResReg().makeReservation(ca, startHour, endHour, description);
                         System.out.println("prenotazione effettuata aula: " + cl.getName());
                         return true;
                     } else {
@@ -84,10 +84,10 @@ public class Campus  {
                 }
             }
             for (Classroom cl : classi) {
-                if (cl.verifyReservation(req, ca.getTime(), startHour, endHour) == -3 || cl.verifyReservation(req, ca.getTime(), startHour, endHour) == -4) {
+                if (cl.verifyReservation(req, ca, startHour, endHour) == -3 || cl.verifyReservation(req, ca, startHour, endHour) == -4) {
                     System.out.println("non è stata trovata un'aula con i requisiti richiesti, tuttavia è possibile prenotare " + cl.getName()+ " con " + cl.getRequirements().toString());
                     if (askUser(cl) == true) {
-                        cl.getResReg().makeReservation(ca.getTime(), startHour, endHour, description);
+                        cl.getResReg().makeReservation(ca, startHour, endHour, description);
                         System.out.println("prenotazione effettuata aula: " + cl.getName());
                         return true;
                     } else {

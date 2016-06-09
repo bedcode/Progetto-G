@@ -76,6 +76,7 @@ public class TextUserInterface {
         String data = tastieraPrenotazione.next();
         StringTokenizer st = new StringTokenizer(data);
         ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")));
+        Date date = ca.getTime();
         System.out.println("Inserire ora inizio prenotazione");
         int startHour = tastieraPrenotazione.nextInt();
         System.out.println("Inserire ora fine prenotazione");
@@ -84,7 +85,7 @@ public class TextUserInterface {
         tastieraPrenotazione.useDelimiter("\n");
         String description = tastieraPrenotazione.next();
         cp.updateReservation();
-        cp.askForReservation(req, ca, startHour, endHour, description);
+        cp.askForReservation(req, date, startHour, endHour, description);
     }
 
     private static void semestralReservation(Campus cp, Calendar ca) throws IOException {

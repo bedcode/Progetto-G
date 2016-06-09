@@ -11,6 +11,7 @@ import Utenti.Account;
 import Utenti.Teacher;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -86,6 +87,32 @@ public class TextUserInterface {
         cp.askForReservation(req, ca, startHour, endHour, description);
     }
 
+    private static void semestralReservation(Campus cp, Calendar ca) throws IOException {
+        Scanner tastieraPrenotazione = new Scanner(System.in);
+        System.out.println("Inserire la capacità dell'aula che si vuole prenotare");
+        int capacity = tastieraPrenotazione.nextInt();
+        Requirements req = new Requirements(capacity, true, true, true, null);
+        System.out.println("Inserire la data in cui si vuole iniziare la prenotazione aaaa/mm/dd");
+        String data = tastieraPrenotazione.next();
+        StringTokenizer st = new StringTokenizer(data);
+        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")));
+        Date startDate = ca.getTime();
+        System.out.println("Inserire la data in cui si vuole finire la prenotazione aaaa/mm/dd");
+        data = tastieraPrenotazione.next();
+        st = new StringTokenizer(data);
+        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")));
+        Date endDate = ca.getTime();
+        System.out.println("Inserire ora inizio prenotazione");
+        int startHour = tastieraPrenotazione.nextInt();
+        System.out.println("Inserire ora fine prenotazione");
+        int endHour = tastieraPrenotazione.nextInt();
+        System.out.println("Inserire la descrizione della prenotazione");
+        tastieraPrenotazione.useDelimiter("\n");
+        String description = tastieraPrenotazione.next();
+        cp.updateReservation();
+        cp.askForWeeklyReservation(req, startDate, endDate, startHour, endHour, description);
+    }
+    
     /**
      * This method allows the user to delete a reservation.
      *
@@ -175,7 +202,7 @@ public class TextUserInterface {
                     reservation(cp, ca);
                     break;
                 case (2):
-                    System.out.println("\nfunzione al momento non disponibile\n");
+                    semestralReservation(cp, ca);
                     break;
                 case (3):
                     removeReservation(cp);

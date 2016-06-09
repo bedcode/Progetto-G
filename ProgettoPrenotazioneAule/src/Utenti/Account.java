@@ -92,7 +92,6 @@ public class Account {
         if (users.containsKey(email)) {
             return users.get(email);
         } else {
-            System.out.println("Errore: account non esistente.\nRiprovare.");
             return null;
         }
     }

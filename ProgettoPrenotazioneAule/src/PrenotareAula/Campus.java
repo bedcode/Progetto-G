@@ -60,12 +60,12 @@ public class Campus  {
      * If the user doesn't find a classroom suitable for his needs, he must ask again for a reservation with different parameters
      * 
      * 
-     * @param req
-     * @param ca
-     * @param startHour
-     * @param endHour
-     * @param description
-     * @return
+     * @param req requirements of a classroom
+     * @param ca calendar to indicate the date of the reservation
+     * @param startHour start time of the reservation
+     * @param endHour end time of the reservation
+     * @param description description of the reservation
+     * @return boolean value
      * @throws FileNotFoundException
      * @throws IOException 
      */
@@ -108,15 +108,27 @@ public class Campus  {
         return false;
     }
     
-    
-    //javadoc!!!!
-    
-        public boolean askForWeeklyReservation(Requirements req, Date startDate, Date endDate, int startHour, int endHour) throws FileNotFoundException, IOException {
+    /**
+     * this method is used for asking the campus to make a semestral reservation, if there aren't classrooms with the specified requirements available
+     * the campus suggests a classroom which has similar requirements
+     * If the user doesn't find a classroom suitable for his needs, he must ask again for a reservation with different parameters
+     * 
+     * @param req requirements of a classroom
+     * @param startDate initial date of the reservation
+     * @param endDate final date of the reservation
+     * @param startHour start time of the reservation
+     * @param endHour end time of the reservation
+     * @param description description of the reservation
+     * @return boolean value
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
+    public boolean askForWeeklyReservation(Requirements req, Date startDate, Date endDate, int startHour, int endHour, String description) throws FileNotFoundException, IOException {
         if (this.checkTime(startHour, endHour) == true) {
             for (Classroom cl : classi) {
                 if (cl.verifyReservation(req, startDate, startHour, endHour) == 1) {
                     if (askUser(cl) == true) {
-                        cl.getResReg().makeWeeklyReservation(startDate, endDate, startHour, endHour);
+                        cl.getResReg().makeWeeklyReservation(startDate, endDate, startHour, endHour, description);
                         System.out.println("prenotazione effettuata aula: " + cl.getName());
                         return true;
                     } else {
@@ -126,9 +138,9 @@ public class Campus  {
             }
             for (Classroom cl : classi) {
                 if (cl.verifyReservation(req, startDate, startHour, endHour) == -3 || cl.verifyReservation(req, startDate, startHour, endHour) == -4) {
-                    System.out.println("non è stata trovata un'aula con i requisiti richiesti, tuttavia è possibile prenotare " + cl.getName()+ " con " + cl.getRequirements().toString());
+                    System.out.println("non è stata trovata un'aula con i requisiti richiesti, tuttavia è possibile prenotare " + cl.getName() + " con " + cl.getRequirements().toString());
                     if (askUser(cl) == true) {
-                        cl.getResReg().makeWeeklyReservation(startDate, endDate,  startHour, endHour);
+                        cl.getResReg().makeWeeklyReservation(startDate, endDate, startHour, endHour, description);
                         System.out.println("prenotazione effettuata aula: " + cl.getName());
                         return true;
                     } else {
@@ -136,12 +148,9 @@ public class Campus  {
                     }
                 }
             }
-            
+
             System.out.println("non è disponibile un'aula con i requisiti specificati o con requisiti simili, effettuare una nuova prenotazione in orari differenti");
-            
-                   
-            
-            
+
         } else {
             System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");
             return false;

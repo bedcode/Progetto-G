@@ -122,14 +122,15 @@ public class ReservationRegister {
      * @param d2 end date int yyyy, mm, dd
      * @param startHour Start time of the reservation
      * @param endHour   End time of the reservation
+     * @param description Description of the reservation
      * @return true if there is the happy end, false if something goes wrong
      */
-    public boolean makeWeeklyReservation(Date d1, Date d2, int startHour, int endHour) {
+    public boolean makeWeeklyReservation(Date d1, Date d2, int startHour, int endHour, String description) {
         Date d = d1;
         boolean i = false;
         while ( d.getTime() < d2.getTime()){
         if(isReserved(d,  startHour, endHour) == false){
-          Reservation  newRes = new Reservation(d, startHour, endHour);
+          Reservation  newRes = new Reservation(d, startHour, endHour, description);
           res.add(newRes);
           Collections.sort(res);
           long s = d.getTime() + (24 * 7 * 60 * 60* 1000);

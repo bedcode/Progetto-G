@@ -39,7 +39,7 @@ public class TestReservationRegister {
         System.out.println(r.printRegister());
         System.out.println(r.deleteReservation(1));
         System.out.println(r.printRegister());
-        System.out.println(r.makeWeeklyReservation(ca, c1, 15,17));  //true
+        System.out.println(r.makeWeeklyReservation(ca, c1, 15,17, "-"));  //true
         System.out.println(r.printRegister());
     }
 }

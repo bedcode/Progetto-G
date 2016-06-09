@@ -38,6 +38,10 @@ public class MakeReservationFrame extends JFrame {
     private JLabel whiteboard;
     private JLabel laboratori;
     private JTextField capacitaField;
+    private JLabel startHourLabel;
+    private JLabel endHourLabel;
+    private JComboBox startHour;
+    private JComboBox endHour;
     private JComboBox laboratoriBox;
     private Checkbox proiettoreCheck;
     private Checkbox blackboardCheck;
@@ -48,10 +52,11 @@ public class MakeReservationFrame extends JFrame {
     DateModel model;
     JDatePickerImpl datePicker;
     String[] labList={"Aula regolare", "Aula computer", "Aula materiale elettrico","Aula biologia"};
+    String[] hours={"9","10","11","12","13","14","15","16","17","18"};
     
 
     public MakeReservationFrame() {
-        main = new JPanel(new GridLayout(9, 2));
+        main = new JPanel(new GridLayout(11, 2));
         intestazione = new JLabel("compila i campi per fare una prenotazione");
         capacita = new JLabel("capacità");
         data = new JLabel("data");
@@ -61,6 +66,10 @@ public class MakeReservationFrame extends JFrame {
         laboratori = new JLabel("tipologia aula");
         capacitaField = new JTextField();
         laboratoriBox = new JComboBox(labList);
+        startHourLabel=new JLabel("ora d'inizio");
+        endHourLabel=new JLabel("ora fine");
+        startHour=new JComboBox(hours);
+        endHour=new JComboBox(hours);
         proiettoreCheck = new Checkbox();
         blackboardCheck = new Checkbox();
         whiteboardCheck = new Checkbox();
@@ -78,8 +87,10 @@ public class MakeReservationFrame extends JFrame {
     }
 
     private void initComponents() {
+        this.setTitle("prenotazione aula");
         this.add(main);
-        this.setSize(600,350);
+        this.setSize(600,400);
+        this.setResizable(false);
         Border padding = BorderFactory.createEmptyBorder(15, 15, 15, 15);
         main.setBorder(padding);
         main.add(intestazione);
@@ -90,6 +101,10 @@ public class MakeReservationFrame extends JFrame {
         main.add(capacitaField);
         main.add(data);
         main.add(datePicker);
+        main.add(startHourLabel);
+        main.add(startHour);
+        main.add(endHourLabel);
+        main.add(endHour);
         main.add(proiettore);
         main.add(proiettoreCheck);
         main.add(blackboard);

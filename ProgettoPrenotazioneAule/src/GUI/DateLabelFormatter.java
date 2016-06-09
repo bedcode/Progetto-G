@@ -6,6 +6,7 @@
 package GUI;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -29,7 +30,8 @@ class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
     public String valueToString(Object value) throws ParseException {
         if (value!=null) {
         Calendar data=(GregorianCalendar)value;
-        return data.getTime().toString();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(data.getTime());
         }
         else {
             return null;

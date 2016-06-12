@@ -24,7 +24,7 @@ import java.util.StringTokenizer;
 public class TextUserInterface {
 
     private static String emailLogin;
-    
+
     public static void main(String[] args) throws IOException {
         Campus cp = Campus.getInstance();
         System.out.println("Benvenuto in XClassLive, software di prenotazione aule");
@@ -34,7 +34,7 @@ public class TextUserInterface {
     /**
      * Method for log in XClassLive.
      */
-    public static void login() {
+    private static void login() {
         Account a = Account.getInstance();
         int i = 2;
         while (i == 2) {
@@ -71,6 +71,12 @@ public class TextUserInterface {
         Scanner tastieraPrenotazione = new Scanner(System.in);
         System.out.println("Inserire la capacità dell'aula che si vuole prenotare");
         int capacity = tastieraPrenotazione.nextInt();
+//        System.out.println("Inserire le caratteristiche dell'aula che si vuole prenotare");
+//        System.out.println("Utilizzare il formato true/true/false/null, per indicare lavagna/lucidi/proiettore/requisiti speciali");
+//        System.out.println("Legenda requisiti speciali: n -> aula normale, pc -> aula computer, ele -> aula materiale elettrico, bio -> aula biologia");
+//        String requirements = tastieraPrenotazione.next();
+//        StringTokenizer str = new StringTokenizer(requirements);
+//        Requirements req = new Requirements(capacity, Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), writeSpecial(str.nextToken("/")));
         Requirements req = new Requirements(capacity, true, true, true, null);
         System.out.println("Inserire la data in cui si vuole effettuare la prenotazione aaaa/mm/dd");
         String data = tastieraPrenotazione.next();
@@ -88,10 +94,23 @@ public class TextUserInterface {
         cp.askForReservation(req, date, startHour, endHour, description);
     }
 
+    /**
+     * This method allows the user to make a semestral reservation.
+     *
+     * @param cp an instance of campus
+     * @param ca an instance of calendar
+     * @throws IOException
+     */
     private static void semestralReservation(Campus cp, Calendar ca) throws IOException {
         Scanner tastieraPrenotazione = new Scanner(System.in);
         System.out.println("Inserire la capacità dell'aula che si vuole prenotare");
         int capacity = tastieraPrenotazione.nextInt();
+//        System.out.println("Inserire le caratteristiche dell'aula che si vuole prenotare");
+//        System.out.println("Utilizzare il formato true/true/false/null, per indicare lavagna/lucidi/proiettore/requisiti speciali");
+//        System.out.println("Legenda requisiti speciali: n -> aula normale, pc -> aula computer, ele -> aula materiale elettrico, bio -> aula biologia, dis -> disegno");
+//        String requirements = tastieraPrenotazione.next();
+//        StringTokenizer str = new StringTokenizer(requirements);
+//        Requirements req = new Requirements(capacity, Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), writeSpecial(str.nextToken("/")));
         Requirements req = new Requirements(capacity, true, true, true, null);
         System.out.println("Inserire la data in cui si vuole iniziare la prenotazione aaaa/mm/dd");
         String data = tastieraPrenotazione.next();
@@ -113,7 +132,31 @@ public class TextUserInterface {
         cp.updateReservation();
         cp.askForWeeklyReservation(req, startDate, endDate, startHour, endHour, description);
     }
-    
+
+    /**
+     * Method to identify special requirements written by keyboard.
+     *
+     * @param s string value
+     * @return string value: returns special requirements as: computer,
+     * materiale elettrico, biologia, disegno, otherwise returns null
+     */
+    private static String writeSpecial(String s) {
+        switch (s) {
+            case "n":
+                return null;
+            case "pc":
+                return "computer";
+            case "ele":
+                return "materiale elettrico";
+            case "bio":
+                return "biologia";
+            case "dis":
+                return "disegno";
+            default:
+                return null;
+        }
+    }
+
     /**
      * This method allows the user to delete a reservation.
      *

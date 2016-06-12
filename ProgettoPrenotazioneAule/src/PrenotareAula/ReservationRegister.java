@@ -59,8 +59,8 @@ public class ReservationRegister {
     public boolean makeReservation(Date d, int startHour, int endHour, String description) {
         if(isReserved(d,  startHour, endHour) == false){
           Reservation  newRes = new Reservation(d, startHour, endHour, description);
-          res.add(newRes);
-          Collections.sort(res);
+          res.add(newRes); //commentare per usare database
+          Collections.sort(res); //commentare per usare database
 //          DbFacadeHandler.getInstance().writeReservation(newRes, this.name);
 //          DbFacadeHandler.getInstance().updateReservation();
           return true;
@@ -134,8 +134,8 @@ public class ReservationRegister {
         while ( d.getTime() < d2.getTime()){
         if(isReserved(d,  startHour, endHour) == false){
           Reservation  newRes = new Reservation(d, startHour, endHour, description);
-          res.add(newRes);
-          Collections.sort(res);
+          res.add(newRes); //commentare per usare database
+          Collections.sort(res); //commentare per usare database
 //          DbFacadeHandler.getInstance().writeReservation(newRes, this.name);
 //          DbFacadeHandler.getInstance().updateReservation();
           long s = d.getTime() + (24 * 7 * 60 * 60* 1000);

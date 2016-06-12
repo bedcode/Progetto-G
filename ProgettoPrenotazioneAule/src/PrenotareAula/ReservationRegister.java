@@ -5,6 +5,7 @@
  */
 package PrenotareAula;
 
+import Facade.DbFacadeHandler;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -60,6 +61,8 @@ public class ReservationRegister {
           Reservation  newRes = new Reservation(d, startHour, endHour, description);
           res.add(newRes);
           Collections.sort(res);
+//          DbFacadeHandler.getInstance().writeReservation(newRes, this.name);
+//          DbFacadeHandler.getInstance().updateReservation();
           return true;
         }
           else
@@ -133,6 +136,8 @@ public class ReservationRegister {
           Reservation  newRes = new Reservation(d, startHour, endHour, description);
           res.add(newRes);
           Collections.sort(res);
+//          DbFacadeHandler.getInstance().writeReservation(newRes, this.name);
+//          DbFacadeHandler.getInstance().updateReservation();
           long s = d.getTime() + (24 * 7 * 60 * 60* 1000);
           d = new Date (s);
           i = true;

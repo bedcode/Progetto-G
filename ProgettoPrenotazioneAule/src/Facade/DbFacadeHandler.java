@@ -275,7 +275,6 @@ public class DbFacadeHandler {
      * @param r a reservation
      * @param cl classroom where you book
      */
-    // modificare ID e descrizione nella insert
     public void writeReservation(Reservation r, String cl) {
 
         try {
@@ -287,7 +286,7 @@ public class DbFacadeHandler {
         
         try {
             Statement stmt = conn.createStatement();
-            String query = "INSERT into Reservation values('12', '" + r.getDBDate() + "', '" + r.getStartHour() + "', '" + r.getEndHour() + "', 'default', '" + cl + "', null, null)";
+            String query = "INSERT into Reservation values('" + r.getId() + "', '" + r.getDBDate() + "', '" + r.getStartHour() + "', '" + r.getEndHour() + "', '" + r.getDescription() + "', '" + cl + "', null, null)";
             stmt.executeUpdate(query);
             stmt.close();
         } catch (SQLException E) {

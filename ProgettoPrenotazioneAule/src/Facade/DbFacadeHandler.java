@@ -161,8 +161,6 @@ public class DbFacadeHandler {
             System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
-
-    // methods which write, update and delete informations in database
     
     /**
      * Method to read maximum id from database.
@@ -192,6 +190,8 @@ public class DbFacadeHandler {
         }
     }
 
+    // methods which write, update and delete informations in database
+    
     /**
      * This method allows the supervisor to add teacher account in the database.
      * 

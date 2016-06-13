@@ -62,7 +62,6 @@ public class ReservationRegister {
           res.add(newRes); //commentare per usare database
           Collections.sort(res); //commentare per usare database
 //          DbFacadeHandler.getInstance().writeReservation(newRes, this.name);
-//          DbFacadeHandler.getInstance().updateReservation();
           return true;
         }
           else
@@ -137,7 +136,6 @@ public class ReservationRegister {
           res.add(newRes); //commentare per usare database
           Collections.sort(res); //commentare per usare database
 //          DbFacadeHandler.getInstance().writeReservation(newRes, this.name);
-//          DbFacadeHandler.getInstance().updateReservation();
           long s = d.getTime() + (24 * 7 * 60 * 60* 1000);
           d = new Date (s);
           i = true;

@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +32,6 @@ public class Campus  {
         this.name = name;
         classi = DbFacadeHandler.getInstance().obtainClassroom();
         accounts=DbFacadeHandler.getInstance().obtainAccount();
-        this.readMaxId();
     }
     
     public static Campus getInstance() {
@@ -41,17 +39,11 @@ public class Campus  {
     }
     
     /**
-     * This method reads all the reservations from the database.
+     * This method reads all the reservations and the maximum ID reservation from the database.
      */
     public void updateReservation() {
-        DbFacadeHandler.getInstance().updateReservation();
-    }
-    
-    /**
-     * This method reads the maximum ID reservation from the database.
-     */
-    private void readMaxId() {
         DbFacadeHandler.getInstance().readId();
+        DbFacadeHandler.getInstance().updateReservation();
     }
     
     /**

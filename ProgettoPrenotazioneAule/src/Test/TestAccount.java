@@ -34,9 +34,5 @@ public class TestAccount {
         System.out.println(a.login("andrea.bonandin@unipv.it", "abc")); // 2 wrong password
         System.out.println(a.login("andrea.bonandin@unipv.it", t1.getPassword())); // 0 teacher
         System.out.println(a.login("federico.alfeo@unipv.it", s1.getPassword())); // 1 supervisor
-
-        while (a.login() == 2) {
-            a.login();
-        }
     }
 }

@@ -54,35 +54,6 @@ public class Account {
     }
 
     /**
-     * Method for log in the system of reservation.
-     *
-     * @return 0 if a teacher logs in, 1 if a supervisor logs in, 2 if there are
-     * problems
-     */
-    public int login() {
-        System.out.println("Inserire e-mail");
-        Scanner in = new Scanner(System.in);
-        String email = in.nextLine();
-        User u = checkAccount(email);
-        if (u == null) {
-            return 2;
-        }
-        System.out.println("Inserire password");
-        String password = in.nextLine();
-        if ((u instanceof Teacher) && users.get(email).getPassword().equals(password)) {
-            System.out.println("Login effettuato con successo.\n" + u.getEmail());
-            return 0;
-        } else if ((u instanceof Supervisor) && users.get(email).getPassword().equals(password)) {
-            System.out.println("Login effettuato con successo.\n" + u.getEmail());
-            return 1;
-        } else if (!(users.get(email).getPassword().equals(password))) {
-            System.out.println("Login non effettuato: password errata.\nRiprovare.");
-            return 2;
-        }
-        return 2;
-    }
-
-    /**
      * This method check if an account exists.
      *
      * @param email email to check

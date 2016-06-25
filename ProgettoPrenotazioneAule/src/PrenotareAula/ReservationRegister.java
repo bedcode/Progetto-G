@@ -95,7 +95,7 @@ public class ReservationRegister {
      */
     public String printRegister() {
         String s = "";
-        List a = new ArrayList();
+        List<Integer> a = new ArrayList();
             for ( Reservation r : res)
                 if (a.contains(r.getId()) == false) {
                     s += r.toString();

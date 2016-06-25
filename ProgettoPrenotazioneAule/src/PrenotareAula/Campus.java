@@ -159,7 +159,7 @@ public class Campus  {
     public boolean deleteReservation(int id) {
         for (Classroom cl : classi) {
             if(cl.getResReg().deleteReservation(id)==true) {
-                //DbFacadeHandler.getInstance().deleteReservation(id);
+                DbFacadeHandler.getInstance().deleteReservation(id);
                 return true;
             }       
         }

@@ -59,9 +59,9 @@ public class ReservationRegister {
     public boolean makeReservation(Date d, int startHour, int endHour, String description) {
         if(isReserved(d,  startHour, endHour) == false){
           Reservation  newRes = new Reservation(d, startHour, endHour, description);
-          res.add(newRes); //commentare per usare database
-          Collections.sort(res); //commentare per usare database
-//          DbFacadeHandler.getInstance().writeReservation(newRes, this.name);
+          res.add(newRes);
+          Collections.sort(res);
+          DbFacadeHandler.getInstance().writeReservation(newRes, this.name);
           return true;
         }
           else
@@ -95,8 +95,13 @@ public class ReservationRegister {
      */
     public String printRegister() {
         String s = "";
+        List a = new ArrayList();
             for ( Reservation r : res)
-                s += r.toString();
+                if (a.contains(r.getId()) == false) {
+                    s += r.toString();
+                    a.add(r.getId());
+                }
+        a.clear();
         return s;
     }
     /**this method delete an existent Reservation  
@@ -133,16 +138,16 @@ public class ReservationRegister {
         while ( d.getTime() < d2.getTime()){
         if(isReserved(d,  startHour, endHour) == false){
           Reservation  newRes = new Reservation(d, startHour, endHour, description);
-          res.add(newRes); //commentare per usare database
-          Collections.sort(res); //commentare per usare database
-//          DbFacadeHandler.getInstance().writeReservation(newRes, this.name);
+          res.add(newRes);
+          Collections.sort(res);
+          DbFacadeHandler.getInstance().writeReservation(newRes, this.name);
           long s = d.getTime() + (24 * 7 * 60 * 60* 1000);
           d = new Date (s);
           i = true;
         }
           else
-          return false;
+                return false;
         }
         return i;
-    }    
+    }
 }

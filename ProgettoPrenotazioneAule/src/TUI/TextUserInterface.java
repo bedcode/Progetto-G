@@ -10,6 +10,7 @@ import PrenotareAula.Requirements;
 import Utenti.Account;
 import Utenti.Teacher;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -81,7 +82,7 @@ public class TextUserInterface {
         System.out.println("Inserire la data in cui si vuole effettuare la prenotazione aaaa/mm/dd");
         String data = tastieraPrenotazione.next();
         StringTokenizer st = new StringTokenizer(data);
-        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")));
+        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")), 0, 0, 0);
         Date date = ca.getTime();
         System.out.println("Inserire ora inizio prenotazione");
         int startHour = tastieraPrenotazione.nextInt();
@@ -115,12 +116,12 @@ public class TextUserInterface {
         System.out.println("Inserire la data in cui si vuole iniziare la prenotazione aaaa/mm/dd");
         String data = tastieraPrenotazione.next();
         StringTokenizer st = new StringTokenizer(data);
-        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")));
+        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")), 0, 0, 0);
         Date startDate = ca.getTime();
         System.out.println("Inserire la data in cui si vuole finire la prenotazione aaaa/mm/dd");
         data = tastieraPrenotazione.next();
         st = new StringTokenizer(data);
-        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")));
+        ca.set(Integer.parseInt(st.nextToken("/")), Integer.parseInt(st.nextToken("/")) - 1, Integer.parseInt(st.nextToken("/")), 0, 0, 0);
         Date endDate = ca.getTime();
         System.out.println("Inserire ora inizio prenotazione");
         int startHour = tastieraPrenotazione.nextInt();
@@ -166,6 +167,7 @@ public class TextUserInterface {
         Scanner tastieraPrenotazione = new Scanner(System.in);
         System.out.println("Specificare l'id della prenotazione che si vuole rimuovere");
         int id = tastieraPrenotazione.nextInt();
+        cp.updateReservation();
         if (cp.deleteReservation(id) == true) {
             System.out.println("Prenotazione cancellata");
         } else {

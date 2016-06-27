@@ -22,6 +22,7 @@ public class Account {
 
     private Account() {
         users = new LinkedHashMap();
+        
     }
 
     public static Account getInstance() {
@@ -60,6 +61,7 @@ public class Account {
      * @return a user or null
      */
     private User checkAccount(String email) {
+        DbFacadeHandler.getInstance().obtainAccount();
         if (users.containsKey(email)) {
             return users.get(email);
         } else {
@@ -96,6 +98,7 @@ public class Account {
      * @return teacher instance
      */
     public User addNewTeacherAccount(Teacher t) {
+       
         if (checkAccount(t.getEmail()) == null) {
             users.put(t.getEmail(), t);
             DbFacadeHandler.getInstance().insertTeacherAccount(t);

@@ -127,9 +127,15 @@ public class SupervisorFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-         if(ae.getActionCommand().equals("Nuova Prenotazione"))
+         if(ae.getActionCommand().equals("Nuova Prenotazione")){
              this.setVisible(false);
          MakeReservationFrame f = new MakeReservationFrame();
          f.setVisible(true);
+         }
+         if(ae.getActionCommand().equalsIgnoreCase("Inserisci Account Docente")) {
+             this.setVisible(false);
+             AddNewTeacherAccountFrame f = new AddNewTeacherAccountFrame();
+             f.setVisible(true);
+         }
     }
 }

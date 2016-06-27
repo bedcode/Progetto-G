@@ -12,6 +12,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -24,7 +26,7 @@ import javax.swing.border.Border;
  *
  * @author Aciredef
  */
-public class SupervisorFrame extends JFrame {
+public class SupervisorFrame extends JFrame implements ActionListener {
     private Campus c;
     private String email;
     private JLabel name;
@@ -117,8 +119,17 @@ public class SupervisorFrame extends JFrame {
         borderWest.add(changePassword);
         borderEast.add(Box.createRigidArea(new Dimension(1,0)));
         borderEast.add(exit);
+        newReservation.addActionListener(this);
         
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+         if(ae.getActionCommand().equals("Nuova Prenotazione"))
+             this.setVisible(false);
+         MakeReservationFrame f = new MakeReservationFrame();
+         f.setVisible(true);
     }
 }

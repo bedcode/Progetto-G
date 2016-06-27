@@ -114,6 +114,8 @@ public class Account {
      * Method to delete a teacher account from local instance and database.
      *
      * @param email email of a teacher
+     * @return 0 if the Teacher is deleted 1 if not
+     * 
      */
     public int deleteTeacherAccount(String email) {
         if ((checkAccount(email) != null) && (users.get(email) instanceof Teacher)) {

@@ -120,10 +120,10 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         borderEast.add(Box.createRigidArea(new Dimension(1,0)));
         borderEast.add(exit);
         newReservation.addActionListener(this);
-        
-        
+        deleteTeacher.addActionListener(this);
+        addTeacher.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+            }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -135,6 +135,11 @@ public class SupervisorFrame extends JFrame implements ActionListener {
          if(ae.getActionCommand().equalsIgnoreCase("Inserisci Account Docente")) {
              this.setVisible(false);
              AddNewTeacherAccountFrame f = new AddNewTeacherAccountFrame();
+             f.setVisible(true);
+         }
+         if(ae.getActionCommand().equalsIgnoreCase("Elimina Account Docente")) {
+             this.setVisible(false);
+             DeleteTeacherAccountFrame f = new DeleteTeacherAccountFrame();
              f.setVisible(true);
          }
     }

@@ -25,7 +25,7 @@ import javax.swing.JTextField;
  *
  * @author Aciredef
  */
-public class AddNewTeacherAccountFrame extends JFrame implements ActionListener {
+public class DeleteTeacherAccountFrame extends JFrame implements ActionListener {
     private JLabel intro, email, esito;
     private JButton conferma, home;
     private JTextField emailT;
@@ -34,12 +34,12 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
     private JPanel south;
     private Account a;
     
-    public AddNewTeacherAccountFrame() throws HeadlessException {
+    public DeleteTeacherAccountFrame() throws HeadlessException {
         this.setLayout(new BorderLayout());
         this.setSize(400,600);
         this.setResizable(false);
         a = Account.getInstance();
-        intro = new JLabel("Aggiungi docente");
+        intro = new JLabel("Elimina docente");
         email = new JLabel("Inserisci email del docente");
         conferma = new JButton ("conferma");
         home = new JButton("Home");
@@ -57,6 +57,7 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
         email.setFont(new Font("Calibri", 20,20));
         north.add(home);
         north.add(intro);
+        
         centre.add(email);
         centre.add(emailT);
         emailT.setMargin(new Insets(20,20,20,20));
@@ -79,19 +80,19 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
     public void actionPerformed(ActionEvent ae) {
         if(ae.getActionCommand().equals("conferma")) {
             String e = emailT.getText();
-            User t = a.addNewTeacherAccount(new Teacher(e));
-            if (t == null) {
-                esito.setText("Non posso inserire il docente,\n controllare l'email");
+            int t = a.deleteTeacherAccount(e);
+            if (t == 1) {
+                esito.setText("Non posso eliminare il docente,\n controllare l'email");
             }
             else
-                esito.setText("Docente inserito con successo");
+                esito.setText("Docente eliminato con successo");
         }
-        if(ae.getActionCommand().equals("Home")) {
+            if(ae.getActionCommand().equals("Home")) {
             this.setVisible(false);
             SupervisorFrame s = new SupervisorFrame("");
             s.setVisible(true);
         }
+        
     }
-    
     
 }

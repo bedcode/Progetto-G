@@ -77,21 +77,25 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getActionCommand().equals("conferma")) {
+        if (ae.getActionCommand().equals("conferma")) {
             String e = emailT.getText();
-            User t = a.addNewTeacherAccount(new Teacher(e));
-            if (t == null) {
+            try {
+                User t = a.addNewTeacherAccount(new Teacher(e));
+                if (t == null) {
+                    esito.setText("Non posso inserire il docente,\n controllare l'email");
+                } else {
+                    esito.setText("Docente inserito con successo");
+                }
+            } catch (StringIndexOutOfBoundsException ex) {
                 esito.setText("Non posso inserire il docente,\n controllare l'email");
             }
-            else
-                esito.setText("Docente inserito con successo");
+            this.emailT.setText("");
         }
-        if(ae.getActionCommand().equals("Home")) {
+        if (ae.getActionCommand().equals("Home")) {
             this.setVisible(false);
             SupervisorFrame s = new SupervisorFrame("");
             s.setVisible(true);
         }
     }
-    
     
 }

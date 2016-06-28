@@ -86,6 +86,7 @@ public class DeleteTeacherAccountFrame extends JFrame implements ActionListener 
             }
             else
                 esito.setText("Docente eliminato con successo");
+            this.emailT.setText("");
         }
             if(ae.getActionCommand().equals("Home")) {
             this.setVisible(false);

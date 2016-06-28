@@ -8,7 +8,6 @@ package Utenti;
 import Facade.DbFacadeHandler;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 /**
  * This class manages accounts and login logic.

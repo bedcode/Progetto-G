@@ -205,24 +205,6 @@ public class Campus  {
     }
 
     /**
-     * this method is used for updating the classrooms of the campus
-     *
-     * @throws FileNotFoundException
-     * @throws IOException
-     */
-    public void updateRegister() throws FileNotFoundException, IOException {
-        FileReader file = new FileReader("classi.txt");
-        BufferedReader in = new BufferedReader(file);
-        while (in.ready()) {
-            StringTokenizer st = new StringTokenizer(in.readLine());
-            Classroom cl = new Classroom(st.nextToken(), new Requirements(Integer.parseInt(st.nextToken()), Boolean.parseBoolean(st.nextToken()), Boolean.parseBoolean(st.nextToken()), Boolean.parseBoolean(st.nextToken()), st.nextToken()));
-            classi.add(cl);
-        }
-
-        Collections.sort(classi);
-    }
-
-    /**
      * this method check if startHour and endHour are correct parameters
      *
      * @param startHour start time of a reservation

@@ -7,15 +7,11 @@ package PrenotareAula;
 
 import Facade.DbFacadeHandler;
 import Utenti.Account;
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 /**
  *
@@ -23,15 +19,15 @@ import java.util.StringTokenizer;
  */
 public class Campus  {
 
-    private static Campus instance=new Campus("unipv");
+    private static Campus instance = new Campus("unipv");
     private String name;
-    List<Classroom> classi;
-    List<Account> accounts;
+    private List<Classroom> classi;
+    private List<Account> accounts;
 
     private Campus(String name) {
         this.name = name;
         classi = DbFacadeHandler.getInstance().obtainClassroom();
-        accounts=DbFacadeHandler.getInstance().obtainAccount();
+        accounts = DbFacadeHandler.getInstance().obtainAccount();
     }
     
     public static Campus getInstance() {

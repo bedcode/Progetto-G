@@ -117,9 +117,9 @@ public class ReservationRegister {
                 res.remove(i);
                 Collections.sort(res);
                 return true;
-            }    
-                
-            
+            }
+
+
         }
         return false;
     }

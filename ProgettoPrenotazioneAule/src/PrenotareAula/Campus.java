@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ * This class manages all the operations of the system.
+ * 
  * @author Federico
  */
 public class Campus  {
@@ -155,6 +156,7 @@ public class Campus  {
     public boolean deleteReservation(int id) {
         for (Classroom cl : classi) {
             if(cl.getResReg().deleteReservation(id)==true) {
+                cl.getResReg().deleteReservation(id);
                 DbFacadeHandler.getInstance().deleteReservation(id);
                 return true;
             }       

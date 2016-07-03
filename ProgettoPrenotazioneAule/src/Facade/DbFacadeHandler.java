@@ -9,7 +9,9 @@ import PrenotareAula.Campus;
 import PrenotareAula.Classroom;
 import PrenotareAula.Requirements;
 import PrenotareAula.Reservation;
-import Utenti.*;
+import Utenti.Account;
+import Utenti.Supervisor;
+import Utenti.Teacher;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,7 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This class handles connection and data exchange with a online database.
+ * 
  * @author Federico
  */
 public class DbFacadeHandler {

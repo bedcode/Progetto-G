@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 /**
  *
@@ -53,7 +55,7 @@ public class Login extends JFrame {
         benvenuto = new JLabel("Benvenuto in XClassLive, inserisci e-mail e password");
         email = new JLabel("e-mail");
         password = new JLabel("password");
-        errpassword=new JLabel("combinazione nome utente password errata!");
+        errpassword=new JLabel("nome utente o password errati!");
         emailField = new JTextField();
         passwordField = new JPasswordField();
         login = new JButton("Login");
@@ -66,6 +68,9 @@ public class Login extends JFrame {
         Dimension d=new Dimension(100, 500);
         this.setSize(500, 500);
         this.setLocationRelativeTo(null);
+        this.setTitle("XClassLive Login");
+        Border padding = BorderFactory.createEmptyBorder(15, 15, 15, 15);
+        main.setBorder(padding);
         main.add(upperArea, BorderLayout.NORTH);
         main.add(lowerArea, BorderLayout.CENTER);
         main.add(borderEast, BorderLayout.EAST);

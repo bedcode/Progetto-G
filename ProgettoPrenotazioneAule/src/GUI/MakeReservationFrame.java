@@ -131,7 +131,7 @@ public class MakeReservationFrame extends JFrame {
         main.add(descrizioneField);
         main.add(accetta);
         main.add(declina);
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

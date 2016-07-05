@@ -30,7 +30,7 @@ import javax.swing.border.Border;
  * @author Aciredef
  */
 public class AddNewTeacherAccountFrame extends JFrame implements ActionListener {
-    private JLabel intro, email, esito;
+    private JLabel  email, esito;
     private JButton conferma, home;
     private JTextField emailT;
     private JPanel centre;
@@ -41,9 +41,10 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
     public AddNewTeacherAccountFrame() throws HeadlessException {
         this.setLayout(new BorderLayout());
         this.setSize(400,300);
-        this.setResizable(true);
+        this.setResizable(false);
+        this.setTitle("Aggiungi Docente");
         a = Account.getInstance();
-        intro = new JLabel("Aggiungi docente");
+        
         email = new JLabel("Inserisci email del docente:");
         conferma = new JButton ("conferma");
         home = new JButton("Torna alla Home");
@@ -63,7 +64,7 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
         this.add(east, BorderLayout.EAST);
         west.add(new JPanel());
         east.add(new JPanel());
-        intro.setFont(new Font("Calibri", 30,30));
+        
         email.setFont(new Font("Calibri", 20,20));
         
         
@@ -72,7 +73,7 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
         
         home.setIcon(i);
         centre.add(new JPanel());
-        centre.add(intro);
+        
         centre.add(new JPanel());
         centre.add(email);
         

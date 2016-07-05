@@ -63,9 +63,9 @@ public class Login extends JFrame {
     
     private void initComponents() {
         this.add(main);
-        this.setLocationRelativeTo(null);
         Dimension d=new Dimension(100, 500);
         this.setSize(500, 500);
+        this.setLocationRelativeTo(null);
         main.add(upperArea, BorderLayout.NORTH);
         main.add(lowerArea, BorderLayout.CENTER);
         main.add(borderEast, BorderLayout.EAST);

@@ -48,7 +48,9 @@ public class MakeReservationFrame extends JFrame {
     private JLabel blackboard;
     private JLabel whiteboard;
     private JLabel laboratori;
+    private JLabel descrizione;
     private JTextField capacitaField;
+    private JTextField descrizioneField;
     private JLabel startHourLabel;
     private JLabel endHourLabel;
     private JComboBox startHour;
@@ -66,7 +68,7 @@ public class MakeReservationFrame extends JFrame {
     String[] hours = {"9", "10", "11", "12", "13", "14", "15", "16", "17", "18"};
 
     public MakeReservationFrame() {
-        main = new JPanel(new GridLayout(11, 2));
+        main = new JPanel(new GridLayout(12, 2));
         intestazione = new JLabel("compila i campi per fare una prenotazione");
         capacita = new JLabel("capacità");
         data = new JLabel("data");
@@ -86,6 +88,8 @@ public class MakeReservationFrame extends JFrame {
         accetta = new JButton("accetta");
         declina = new JButton("esci");
         model = new UtilDateModel();
+        descrizione=new JLabel("descrizione prenotazione");
+        descrizioneField=new JTextField("aggiungere una descrizione");
         Properties p = new Properties();
         p.put("text.today", "Today");
         p.put("text.month", "Month");
@@ -123,6 +127,8 @@ public class MakeReservationFrame extends JFrame {
         main.add(whiteboardCheck);
         main.add(laboratori);
         main.add(laboratoriBox);
+        main.add(descrizione);
+        main.add(descrizioneField);
         main.add(accetta);
         main.add(declina);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -142,7 +148,7 @@ public class MakeReservationFrame extends JFrame {
 
         };
         accetta.addActionListener(al);
-
+        this.setLocationRelativeTo(null);
     }
 ;
 

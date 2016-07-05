@@ -122,6 +122,7 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         newReservation.addActionListener(this);
         deleteTeacher.addActionListener(this);
         addTeacher.addActionListener(this);
+        changePassword.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
 
@@ -142,5 +143,11 @@ public class SupervisorFrame extends JFrame implements ActionListener {
              DeleteTeacherAccountFrame f = new DeleteTeacherAccountFrame();
              f.setVisible(true);
          }
+         if(ae.getActionCommand().equalsIgnoreCase("Cambia Password")){
+             this.setVisible(false);
+             ChangePasswordFrame f = new ChangePasswordFrame (email);
+             f.setVisible(true);
+         }
+         
     }
 }

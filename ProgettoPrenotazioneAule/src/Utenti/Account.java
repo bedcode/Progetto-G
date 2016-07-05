@@ -140,6 +140,7 @@ public class Account {
      * @return boolean value
      */
     public boolean setNewPassword(String emailLogin, String email, String oldp, String newp) {
+        DbFacadeHandler.getInstance().obtainAccount();
         if ((emailLogin.equals(email) == false) || (users.get(email) == null)) {
             System.out.println("Email inserita non valida");
             return false;

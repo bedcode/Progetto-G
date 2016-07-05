@@ -110,7 +110,7 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
             }
             this.emailT.setText("");
         }
-        if (ae.getActionCommand().equals("Home")) {
+        if (ae.getActionCommand().equals("Torna alla Home")) {
             this.setVisible(false);
             SupervisorFrame s = new SupervisorFrame("");
             s.setVisible(true);

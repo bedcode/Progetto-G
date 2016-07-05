@@ -98,7 +98,8 @@ public class ChangePasswordFrame extends JFrame implements ActionListener {
         errpassword.setHorizontalAlignment(JLabel.CENTER);
         home.addActionListener(this);
         conferma.addActionListener(this);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
 
     @Override
@@ -121,8 +122,7 @@ public class ChangePasswordFrame extends JFrame implements ActionListener {
         }
          if (ae.getActionCommand().equals("Torna alla Home")) {
             this.setVisible(false);
-            SupervisorFrame s = new SupervisorFrame(emailLog);
-            s.setVisible(true);
+            
         }
     }
 }

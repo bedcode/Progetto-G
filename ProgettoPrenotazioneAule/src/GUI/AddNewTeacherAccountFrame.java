@@ -49,7 +49,7 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
         conferma = new JButton ("conferma");
         home = new JButton("Torna alla Home");
         emailT = new JTextField ();
-        centre = new JPanel(new GridLayout(8,1));
+        centre = new JPanel(new GridLayout(7,1));
         north = new JPanel(new GridLayout(3,1));
         south = new JPanel(new GridLayout(3,1));
         east = new JPanel(new GridLayout(3,1));
@@ -78,8 +78,7 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
         centre.add(email);
         
         centre.add(emailT);
-        emailT.setMargin(new Insets(20,20,20,20));
-        emailT.setSize(10,10);
+        
         emailT.setEditable(true);
         emailT.setEnabled(true);
         this.add(south, BorderLayout.SOUTH);
@@ -91,7 +90,8 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
         south.add(new JPanel());
         conferma.addActionListener(this);
         home.addActionListener(this);
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
 
     @Override
@@ -112,8 +112,7 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
         }
         if (ae.getActionCommand().equals("Torna alla Home")) {
             this.setVisible(false);
-            SupervisorFrame s = new SupervisorFrame("");
-            s.setVisible(true);
+            
         }
     }
     

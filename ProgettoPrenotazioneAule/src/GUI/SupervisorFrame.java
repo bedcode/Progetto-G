@@ -123,31 +123,38 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         deleteTeacher.addActionListener(this);
         addTeacher.addActionListener(this);
         changePassword.addActionListener(this);
+        exit.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
          if(ae.getActionCommand().equals("Nuova Prenotazione")){
-             this.setVisible(false);
+             this.setVisible(true);
          MakeReservationFrame f = new MakeReservationFrame();
          f.setVisible(true);
          }
          if(ae.getActionCommand().equalsIgnoreCase("Inserisci Account Docente")) {
-             this.setVisible(false);
+             this.setVisible(true);
              AddNewTeacherAccountFrame f = new AddNewTeacherAccountFrame();
              f.setVisible(true);
          }
          if(ae.getActionCommand().equalsIgnoreCase("Elimina Account Docente")) {
-             this.setVisible(false);
+             this.setVisible(true);
              DeleteTeacherAccountFrame f = new DeleteTeacherAccountFrame();
              f.setVisible(true);
          }
          if(ae.getActionCommand().equalsIgnoreCase("Cambia Password")){
-             this.setVisible(false);
+             this.setVisible(true);
              ChangePasswordFrame f = new ChangePasswordFrame (email);
              f.setVisible(true);
          }
+         if(ae.getActionCommand().equalsIgnoreCase("Esci")) {
+             this.dispose();
+             Login l = new Login();
+             l.setVisible(true);
+         }
+                 
          
     }
 }

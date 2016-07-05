@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- package PrenotareAula;
- import java.util.Calendar;
+package PrenotareAula;
+import java.util.Date;
+import java.text.SimpleDateFormat;
  /**
  *
  * @author Fabio
@@ -13,26 +14,57 @@
 public class Reservation implements Comparable<Reservation>{
     
     //Class variables
-    private static int nextId = 0; //The Id used the next time a new reservation is created
-    
+    private static int nextId; //The ID used the next time a reservation is created
+    private static String dateFormat = "dd/MM/yyyy"; //The date format used to display the reservations
     //Instance variables
-    private int id = 0;
-    private Calendar c = null;
-    private int startHour = 0;
-    private int endHour = 0;
-        
+    private int id;
+    private Date date;
+    private int startHour;
+    private int endHour;
+    private String description;      
+    
     /**
-     * 
-     * @param c The Calendar object describing the date of the reservation
-     * @param startHour The integer value representing the Start Time of the Reservation
-     * @param endHour The integer value representing the End Time of the Reservation
+     * @param date The Date object representing the date of the reservation
+     * @param startHour The integer value representing the Start Time of the reservation
+     * @param endHour The integer value representing the End Time of the reservation
+     */  
+    public Reservation(Date date, int startHour, int endHour) {
+        this(nextId, date, startHour, endHour, "-");
+        nextId++;
+    }
+    
+    /**
+     * @param date The Date object representing the date of the reservation
+     * @param startHour The integer value representing the Start Time of the reservation
+     * @param endHour The integer value representing the End Time of the reservation
+     * @param description The string object representing a description of the reservation
+     */  
+    public Reservation(Date date, int startHour, int endHour, String description) {
+        this(nextId, date, startHour, endHour, description);
+        nextId++;
+    }
+    
+    /**
+     * @param id The integer value representing the ID of the reservation
+     * @param date The Date object representing the date of the reservation
+     * @param startHour The integer value representing the Start Time of the reservation
+     * @param endHour The integer value representing the End Time of the reservation
+     * @param description The string object representing a description of the reservation
      */
-    public Reservation(Calendar c, int startHour, int endHour){
-        this.id = nextId;
-        this.c = c;
+    public Reservation(int id, Date date, int startHour, int endHour, String description){
+        this.id = id;
+        this.date = date;
         this.startHour = startHour;
         this.endHour = endHour;
-        nextId++;    
+        this.description = description;        
+    }
+    
+    /**
+     * @param id The integer value representing the ID of the reservation
+     */
+    public Reservation(int id) {
+        this.nextId = id;
+        this.nextId++;
     }
     
     /**
@@ -45,18 +77,22 @@ public class Reservation implements Comparable<Reservation>{
     */
     @Override
     public String toString(){
-        String s;
-        return s = "Reservation number: " + this.id + "\n" +
-                   "Date: " + this.c.get(Calendar.DAY_OF_MONTH) + "/" +
-                              this.c.get(Calendar.MONTH) + "/" + 
-                              this.c.get(Calendar.YEAR) + "\n" +
-                   "Time: " + this.startHour + ":00-" + this.endHour + ":00\n";
+        SimpleDateFormat format = new SimpleDateFormat(dateFormat);
+        String s = "Reservation number: " + this.id + "\n" +
+                   "Date: " + format.format(this.date) + "\n" +                                                 
+                   "Time: " + this.startHour + ":00-" + this.endHour + ":00\n";                   
+        
+        if(!(this.description.equals("-")))
+            s += "Description: " + this.description + "\n\n";
+        else
+            s += "\n";            
+        
+        return s;
     }    
 
     /*
-        Getter methods
-    */   
-    
+        Getter and setter methods
+    */       
     /**
      * 
      * @return The integer ID of the reservation 
@@ -67,10 +103,19 @@ public class Reservation implements Comparable<Reservation>{
     
     /**
      * 
-     * @return The Calendar object representing the date of the reservation
+     * @return The Date object representing the date of the reservation
      */
-    public Calendar getDate(){
-        return this.c;
+    public Date getDate(){
+        return this.date;
+    }
+    
+    /**
+     * 
+     * @return A string representing the date of the reservation in SQL format    
+     */
+    public String getDBDate(){                
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);        
     }
     
     /**
@@ -88,6 +133,22 @@ public class Reservation implements Comparable<Reservation>{
     public int getEndHour(){
         return this.endHour;
     }
+    
+    /**
+     * 
+     * @return The String object representing the description of the reservation
+     */
+    public String getDescription(){
+        return this.description;
+    }
+    
+    /**
+     * @param id The new ID to be set
+     */
+    public void setId(int id){
+        this.id = id;
+    }   
+    
     
     /**
      * 
@@ -114,5 +175,19 @@ public class Reservation implements Comparable<Reservation>{
             
         
     }
+    
+    /**
+     * 
+     * @param d The new date format to be used (example: "dd/MM/yyyy")
+     */
+    public static void setDateFormat(String d){
+        dateFormat = d;    
+    }
+    
+    
+    
+    
         
 }
+
+

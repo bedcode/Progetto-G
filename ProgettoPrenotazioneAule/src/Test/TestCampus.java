@@ -18,12 +18,15 @@ import java.util.GregorianCalendar;
 public class TestCampus {
      
     public static void main(String[] args) throws IOException {
-       Campus cp=new Campus("unipv");
+       Campus cp=Campus.getInstance();
+       cp.updateReservation();
        Calendar ca=new GregorianCalendar();
-       ca.set(1993, 2, 1);
-       Requirements r= new Requirements(100, false, true, false, "none");
-       cp.askForReservation(r, ca, 14, 16);
-       cp.askForReservation(r, ca, 10 , 18);
+       ca.set(2000, 2, 1);
+       Requirements r= new Requirements(200, true, true, true, "none");
+       cp.askForReservation(r, ca.getTime(), 12, 14, "-");
+       ca.set(1990, 2, 1);
+       cp.askForReservation(r, ca.getTime(), 12 , 14, "-");
+       cp.printAllClassroomReservation();
     }
     
 }

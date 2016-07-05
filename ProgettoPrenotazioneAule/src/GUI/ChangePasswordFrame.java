@@ -56,7 +56,7 @@ public class ChangePasswordFrame extends JFrame implements ActionListener {
         borderWest = new JPanel();
         borderNorth = new JPanel();
         email = new JLabel("e-mail");
-        oldpassword = new JLabel("password attuale");
+        oldpassword = new JLabel("Password attuale");
         newpassword = new JLabel("Password nuova");
         errpassword = new JLabel();
         emailField = new JTextField();

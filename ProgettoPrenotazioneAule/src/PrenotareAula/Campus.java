@@ -6,7 +6,6 @@
 package PrenotareAula;
 
 import Facade.DbFacadeHandler;
-import Utenti.Account;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
@@ -23,12 +22,10 @@ public class Campus  {
     private static Campus instance = new Campus("unipv");
     private String name;
     private List<Classroom> classi;
-    private List<Account> accounts;
 
     private Campus(String name) {
         this.name = name;
         classi = DbFacadeHandler.getInstance().obtainClassroom();
-        accounts = DbFacadeHandler.getInstance().obtainAccount();
     }
     
     public static Campus getInstance() {

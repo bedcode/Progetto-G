@@ -12,7 +12,7 @@ import GUI.TeacherFrame;
 public class TestTeacherFrame {
     public static void main(String[] args){
         
-        new TeacherFrame();
+        new TeacherFrame("fabio.pozzli@unipv.it");
         
     }
 }

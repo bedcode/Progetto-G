@@ -100,7 +100,7 @@ public class Login extends JFrame {
                 String password=String.valueOf(passwordField.getPassword());
                 switch (Account.getInstance().login(email, password)) {
                     case 0:
-                        TeacherFrame tr=new TeacherFrame();
+                        TeacherFrame tr=new TeacherFrame(email);
                         setVisible(false);
                         tr.setVisible(true);
                         break;

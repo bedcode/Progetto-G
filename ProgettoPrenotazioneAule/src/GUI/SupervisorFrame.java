@@ -27,6 +27,7 @@ import javax.swing.border.Border;
  * @author Aciredef
  */
 public class SupervisorFrame extends JFrame implements ActionListener {
+
     private Campus c;
     private String email;
     private JLabel name;
@@ -46,12 +47,13 @@ public class SupervisorFrame extends JFrame implements ActionListener {
     private JPanel borderWest;
     private JPanel borderNorth;
     private Toolkit t;
+
     public SupervisorFrame(String email) throws HeadlessException {
         this.setVisible(true);
         this.email = email;
         c = Campus.getInstance();
-        name = new JLabel ( "Benvenuto Gestore: " +email);
-        selection = new JLabel("Scegli un'opzione tra le seguenti:" );
+        name = new JLabel("Benvenuto Gestore: " + email);
+        selection = new JLabel("Scegli un'opzione tra le seguenti:");
         newReservation = new JButton("Nuova Prenotazione");
         weeklyReservation = new JButton("Nuova prenotazione con cadenza settimanale");
         deleteReservation = new JButton("Elimina Prenotazione");
@@ -60,28 +62,26 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         addTeacher = new JButton("Inserisci Account Docente");
         deleteTeacher = new JButton("Elimina Account Docente");
         exit = new JButton("Esci");
-        
         initcomponents();
-        
+
     }
-    
+
     public void initcomponents() {
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension screen = t.getScreenSize();
-        Dimension s=new Dimension(50, 50);
-        Dimension c=new Dimension(100, 100);
-        Dimension d=new Dimension(600, 500);
-        this.setSize(screen);        
+        Dimension s = new Dimension(50, 50);
+        Dimension c = new Dimension(100, 100);
+        Dimension d = new Dimension(600, 500);
+        this.setSize(screen);
         Border b = BorderFactory.createEmptyBorder(15, 15, 15, 15);
         main = new JPanel(new BorderLayout());
         main.setBorder(b);
         this.add(main);
-        
-        upperArea = new JPanel(new GridLayout(4,1));
+        upperArea = new JPanel(new GridLayout(4, 1));
         lowerArea = new JPanel();
-        borderEast=new JPanel(new GridLayout(10,1));
-        borderWest=new JPanel(new GridLayout(10,1));
-        borderNorth=new JPanel();
+        borderEast = new JPanel(new GridLayout(10, 1));
+        borderWest = new JPanel(new GridLayout(10, 1));
+        borderNorth = new JPanel();
         this.setLocationRelativeTo(null);
         main.setVisible(true);
         main.add(upperArea, BorderLayout.NORTH);
@@ -94,30 +94,25 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         upperArea.setPreferredSize(c);
         upperArea.add(new JPanel());
         name.setFont(new Font("Calibri", 24, 24));
-        upperArea.add(name);        
+        upperArea.add(name);
         upperArea.add(new JPanel());
         selection.setFont(new Font("Calibri", 18, 18));
         upperArea.add(selection);
-        
-        
-        borderWest.add(Box.createRigidArea(new Dimension(1,0)));
+        borderWest.add(Box.createRigidArea(new Dimension(1, 0)));
         borderWest.add(newReservation);
-        borderWest.add(Box.createRigidArea(new Dimension(1,0)));
+        borderWest.add(Box.createRigidArea(new Dimension(1, 0)));
         borderWest.add(weeklyReservation);
-        borderWest.add(Box.createRigidArea(new Dimension(1,0)));
+        borderWest.add(Box.createRigidArea(new Dimension(1, 0)));
         borderWest.add(addTeacher);
-        borderWest.add(Box.createRigidArea(new Dimension(1,0)));
-        
-        
-        borderEast.add(Box.createRigidArea(new Dimension(1,0)));
+        borderWest.add(Box.createRigidArea(new Dimension(1, 0)));
+        borderEast.add(Box.createRigidArea(new Dimension(1, 0)));
         borderEast.add(printReservation);
-        borderEast.add(Box.createRigidArea(new Dimension(1,0)));
+        borderEast.add(Box.createRigidArea(new Dimension(1, 0)));
         borderEast.add(deleteReservation);
-        borderEast.add(Box.createRigidArea(new Dimension(1,0)));
-        
+        borderEast.add(Box.createRigidArea(new Dimension(1, 0)));
         borderEast.add(deleteTeacher);
         borderWest.add(changePassword);
-        borderEast.add(Box.createRigidArea(new Dimension(1,0)));
+        borderEast.add(Box.createRigidArea(new Dimension(1, 0)));
         borderEast.add(exit);
         newReservation.addActionListener(this);
         deleteTeacher.addActionListener(this);
@@ -125,36 +120,34 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         changePassword.addActionListener(this);
         exit.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            }
+    }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-         if(ae.getActionCommand().equals("Nuova Prenotazione")){
-             this.setVisible(true);
-         MakeReservationFrame f = new MakeReservationFrame();
-         f.setVisible(true);
-         }
-         if(ae.getActionCommand().equalsIgnoreCase("Inserisci Account Docente")) {
-             this.setVisible(true);
-             AddNewTeacherAccountFrame f = new AddNewTeacherAccountFrame();
-             f.setVisible(true);
-         }
-         if(ae.getActionCommand().equalsIgnoreCase("Elimina Account Docente")) {
-             this.setVisible(true);
-             DeleteTeacherAccountFrame f = new DeleteTeacherAccountFrame();
-             f.setVisible(true);
-         }
-         if(ae.getActionCommand().equalsIgnoreCase("Cambia Password")){
-             this.setVisible(true);
-             ChangePasswordFrame f = new ChangePasswordFrame (email);
-             f.setVisible(true);
-         }
-         if(ae.getActionCommand().equalsIgnoreCase("Esci")) {
-             this.dispose();
-             Login l = new Login();
-             l.setVisible(true);
-         }
-                 
-         
+        if (ae.getActionCommand().equals("Nuova Prenotazione")) {
+            this.setVisible(true);
+            MakeReservationFrame f = new MakeReservationFrame();
+            f.setVisible(true);
+        }
+        if (ae.getActionCommand().equalsIgnoreCase("Inserisci Account Docente")) {
+            this.setVisible(true);
+            AddNewTeacherAccountFrame f = new AddNewTeacherAccountFrame();
+            f.setVisible(true);
+        }
+        if (ae.getActionCommand().equalsIgnoreCase("Elimina Account Docente")) {
+            this.setVisible(true);
+            DeleteTeacherAccountFrame f = new DeleteTeacherAccountFrame();
+            f.setVisible(true);
+        }
+        if (ae.getActionCommand().equalsIgnoreCase("Cambia Password")) {
+            this.setVisible(true);
+            ChangePasswordFrame f = new ChangePasswordFrame(email);
+            f.setVisible(true);
+        }
+        if (ae.getActionCommand().equalsIgnoreCase("Esci")) {
+            this.dispose();
+            Login l = new Login();
+            l.setVisible(true);
+        }
     }
 }

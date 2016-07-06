@@ -9,11 +9,9 @@ import Utenti.Account;
 import Utenti.Teacher;
 import Utenti.User;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Icon;
@@ -23,19 +21,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 /**
  *
  * @author Aciredef
  */
 public class AddNewTeacherAccountFrame extends JFrame implements ActionListener {
-    private JLabel  email, esito;
+    private JLabel  email, esito, pass;
     private JButton conferma, home;
     private JTextField emailT;
     private JPanel centre;
     private JPanel north, east, west;
     private JPanel south;
+    
     private Account a;
     
     public AddNewTeacherAccountFrame() throws HeadlessException {
@@ -44,11 +42,11 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
         this.setResizable(false);
         this.setTitle("Aggiungi Docente");
         a = Account.getInstance();
-        
         email = new JLabel("Inserisci email del docente:");
         conferma = new JButton ("conferma");
         home = new JButton("Torna alla Home");
         emailT = new JTextField ();
+        pass = new JLabel();
         centre = new JPanel(new GridLayout(7,1));
         north = new JPanel(new GridLayout(3,1));
         south = new JPanel(new GridLayout(3,1));
@@ -64,30 +62,22 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
         this.add(east, BorderLayout.EAST);
         west.add(new JPanel());
         east.add(new JPanel());
-        
-        email.setFont(new Font("Calibri", 20,20));
-        
-        
+        email.setFont(new Font("Calibri", 20,20));            
         centre.add(home);
         Icon i = new ImageIcon("./images/Icon.jpg");
-        
         home.setIcon(i);
         centre.add(new JPanel());
-        
         centre.add(new JPanel());
         centre.add(email);
-        
         centre.add(emailT);
-        
         emailT.setEditable(true);
         emailT.setEnabled(true);
         this.add(south, BorderLayout.SOUTH);
         centre.add(new JPanel());
         centre.add(conferma);
-        
         south.add(new JPanel());
         south.add(esito);
-        south.add(new JPanel());
+        south.add(pass);
         conferma.addActionListener(this);
         home.addActionListener(this);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -100,18 +90,22 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
             String e = emailT.getText();
             try {
                 User t = a.addNewTeacherAccount(new Teacher(e));
+                
                 if (t == null) {
                     esito.setText("Non posso inserire il docente,\n controllare l'email");
+                    pass.setText("");
                 } else {
-                    esito.setText("Docente inserito con successo");
+                    esito.setText("Docente " + t.getName() + " " + t.getSurname() + " inserito con successo"  );
+                    pass.setText("Password : " + t.getPassword());
                 }
             } catch (StringIndexOutOfBoundsException ex) {
                 esito.setText("Non posso inserire il docente,\n controllare l'email");
+                pass.setText("");
             }
             this.emailT.setText("");
         }
         if (ae.getActionCommand().equals("Torna alla Home")) {
-            this.setVisible(false);
+            this.dispose();
             
         }
     }

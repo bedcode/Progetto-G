@@ -71,7 +71,6 @@ public class ChangePasswordFrame extends JFrame implements ActionListener {
 
     private void initComponents() {
         this.add(main);
-
         Dimension d = new Dimension(100, 500);
         this.setSize(500, 500);
         main.add(upperArea, BorderLayout.NORTH);
@@ -82,7 +81,6 @@ public class ChangePasswordFrame extends JFrame implements ActionListener {
         borderWest.setPreferredSize(d);
         upperArea.add(home);
         lowerArea.add(borderNorth);
-        
         lowerArea.add(email);
         lowerArea.add(emailField);
         lowerArea.add(oldpassword);
@@ -91,10 +89,7 @@ public class ChangePasswordFrame extends JFrame implements ActionListener {
         lowerArea.add(newpasswordField);
         lowerArea.add(new JPanel());
         lowerArea.add(conferma);
-        
         lowerArea.add(errpassword);
-        
-        
         errpassword.setHorizontalAlignment(JLabel.CENTER);
         home.addActionListener(this);
         conferma.addActionListener(this);
@@ -104,25 +99,24 @@ public class ChangePasswordFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getActionCommand().equalsIgnoreCase("Conferma")) {
+        if (ae.getActionCommand().equalsIgnoreCase("Conferma")) {
             String e = emailField.getText();
             String op = String.valueOf(oldpasswordField.getPassword());
             String np = String.valueOf(newpasswordField.getPassword());
             boolean fun = a.setNewPassword(emailLog, e, op, np);
-            if(fun == false) {
+            if (fun == false) {
                 errpassword.setForeground(Color.red);
                 errpassword.setText("combinazione nome utente password errata!");
-                
+
             }
-            if(fun == true){
+            if (fun == true) {
                 errpassword.setForeground(Color.black);
                 errpassword.setText("Password Cambiata");
             }
-                
+
         }
-         if (ae.getActionCommand().equals("Torna alla Home")) {
-            this.setVisible(false);
-            
+        if (ae.getActionCommand().equals("Torna alla Home")) {
+            this.dispose();
         }
     }
 }

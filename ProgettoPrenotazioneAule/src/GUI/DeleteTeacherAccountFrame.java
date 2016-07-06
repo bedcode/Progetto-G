@@ -28,61 +28,54 @@ import javax.swing.JTextField;
  * @author Aciredef
  */
 public class DeleteTeacherAccountFrame extends JFrame implements ActionListener {
-    private JLabel intro, email, esito;
+
+    private JLabel email, esito;
     private JButton conferma, home;
     private JTextField emailT;
     private JPanel centre;
     private JPanel north;
     private JPanel south, east, west;
     private Account a;
-    
+
     public DeleteTeacherAccountFrame() throws HeadlessException {
         this.setLayout(new BorderLayout());
-        this.setSize(400,300);
+        this.setSize(400, 300);
         this.setResizable(false);
         this.setTitle("Elimina Docente");
         a = Account.getInstance();
-        
         email = new JLabel("Inserisci email del docente:");
-        conferma = new JButton ("conferma");
+        conferma = new JButton("conferma");
         home = new JButton("Torna alla Home");
-        emailT = new JTextField ();
-        centre = new JPanel(new GridLayout(7,1));
-        north = new JPanel(new GridLayout(3,1));
-        south = new JPanel(new GridLayout(3,1));
-        east = new JPanel(new GridLayout(3,1));
-        west = new JPanel(new GridLayout(3,1));
+        emailT = new JTextField();
+        centre = new JPanel(new GridLayout(7, 1));
+        north = new JPanel(new GridLayout(3, 1));
+        south = new JPanel(new GridLayout(3, 1));
+        east = new JPanel(new GridLayout(3, 1));
+        west = new JPanel(new GridLayout(3, 1));
         esito = new JLabel();
         initcomponents();
-            }
-    private void initcomponents(){
+    }
+
+    private void initcomponents() {
         this.add(north, BorderLayout.NORTH);
         this.add(centre, BorderLayout.CENTER);
         this.add(west, BorderLayout.WEST);
         this.add(east, BorderLayout.EAST);
         west.add(new JPanel());
         east.add(new JPanel());
-        
-        email.setFont(new Font("Calibri", 20,20));
-        
-        
+        email.setFont(new Font("Calibri", 20, 20));
         centre.add(home);
         Icon i = new ImageIcon("./images/Icon.jpg");
-        
         home.setIcon(i);
         centre.add(new JPanel());
-        
         centre.add(new JPanel());
         centre.add(email);
-        
         centre.add(emailT);
-        
         emailT.setEditable(true);
         emailT.setEnabled(true);
         this.add(south, BorderLayout.SOUTH);
         centre.add(new JPanel());
         centre.add(conferma);
-        
         south.add(new JPanel());
         south.add(esito);
         south.add(new JPanel());
@@ -94,21 +87,21 @@ public class DeleteTeacherAccountFrame extends JFrame implements ActionListener 
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getActionCommand().equals("conferma")) {
+        if (ae.getActionCommand().equals("conferma")) {
             String e = emailT.getText();
             int t = a.deleteTeacherAccount(e);
             if (t == 1) {
                 esito.setText("Non posso eliminare il docente,\n controllare l'email");
-            }
-            else
+            } else {
                 esito.setText("Docente eliminato con successo");
+            }
             this.emailT.setText("");
         }
-            if(ae.getActionCommand().equals("Home")) {
-            this.setVisible(false);
-            
+        if (ae.getActionCommand().equals("Torna alla Home")) {
+            this.dispose();
+
         }
-        
+
     }
-    
+
 }

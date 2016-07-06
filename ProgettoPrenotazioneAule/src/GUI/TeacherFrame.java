@@ -10,68 +10,138 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+
 /**
  *
  * @author Aciredef
  */
 public class TeacherFrame extends JFrame implements ActionListener{
     
+    private final Dimension d = new Dimension(500, 500);
     private String email;
+    private JLabel welcome;
+    private JLabel choice;
+    private JButton makeRes;
+    private JButton viewRes;
+    private JButton changePW;
+    private JButton exit;
+    private JPanel panelLabel;
+    private JPanel panelButtons;
+    private JPanel panelMain;
     
+    /**
+     * 
+     * @param email The teacher's email used to display a welcome message
+     *              and to change the password
+     */
     public TeacherFrame(String email){
         
-        //frame
-        this.setSize(400, 400);
-        this.setLocationRelativeTo(null);
-        this.setTitle("Account Insegnante");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.email = email;
+        initFrame(d);
+        makeComponents();
+        addListeners();
         
-        //label
-        JLabel label = new JLabel("Benvenuto/a. Selezionare un'opzione.");
-        JPanel panelLabel = new JPanel();
-        panelLabel.add(label);
+    }
+    
+    /**
+     * 
+     * @param d Frame dimension. Can be changed using the constant above
+     */
+    private void initFrame(Dimension d){
         
+        setTitle("Account Insegnante");
+        setSize(d);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+    }
+    
+    /**
+     * Makes all the components: labels, buttons, panels
+     */
+    private void makeComponents(){
+        
+        //labels
+        welcome = new JLabel("Benvenuto utente " + email);
+        choice = new JLabel("Selezionare un'opzione.");
+        welcome.setFont(new Font("Calibri", 24, 24));
+        choice.setFont(new Font("Calibri", 18, 18));
+        panelLabel = new JPanel(new GridLayout(0, 1, 0, 0));
+        panelLabel.add(welcome);
+        panelLabel.add(choice);
+        panelLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+
         //buttons
-        JButton makeRes = new JButton("Prenotare un'aula");
-        JButton viewRes = new JButton("Visualizza prenotazioni");
-        JButton changePW = new JButton("Cambiare la password");
-        JButton exit = new JButton("Uscire dall'applicazione");
-        JPanel panelButtons = new JPanel(new GridLayout(4,1,100,10));
-        panelButtons.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        makeRes = new JButton("Prenotare aula");
+        viewRes = new JButton("Visualizzare prenotazioni");
+        changePW = new JButton("Cambiare password");
+        exit = new JButton("Uscire");
+        panelButtons = new JPanel(new GridLayout(0, 1, 10, 20));
+        panelButtons.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
         panelButtons.add(makeRes);        
         panelButtons.add(viewRes);
         panelButtons.add(changePW);
         panelButtons.add(exit);
-        changePW.addActionListener(this);
-        exit.addActionListener(this);
         
-        //main
-        JPanel panelMain = new JPanel(new GridLayout(2,1));
-        panelMain.add(panelLabel);
-        panelMain.add(panelButtons);  
-        
-        //add to frame
-        this.add(panelMain);
-        this.setVisible(true);
+        //main panel
+        panelMain = new JPanel(new BorderLayout());
+        panelMain.add(panelLabel, BorderLayout.NORTH);
+        panelMain.add(panelButtons, BorderLayout.CENTER);
+        panelMain.setBorder(BorderFactory.createEmptyBorder(25, 35, 20, 35));
+        add(panelMain);
         
     }
     
+    /**
+     * Add action listeners to components
+     */
+    private void addListeners(){
+            
+        makeRes.addActionListener(this);
+        viewRes.addActionListener(this);
+        changePW.addActionListener(this);
+        exit.addActionListener(this);
+        
+    }
+        
+    /**
+     * 
+     * @param ae The event caused by pressing the buttons
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
 
-        if (ae.getActionCommand().equalsIgnoreCase("Cambiare la Password")) {
+        if (ae.getActionCommand().equalsIgnoreCase("Prenotare Aula")) {
+            this.setVisible(true);
+            MakeReservationFrame f = new MakeReservationFrame();
+            f.setVisible(true);
+        }
+        
+        if (ae.getActionCommand().equalsIgnoreCase("Visualizzare prenotazioni")) {
+            this.setVisible(true);
+            PrintClassroomReservationFrame f = new PrintClassroomReservationFrame();
+            f.setVisible(true);
+        }
+        
+        if (ae.getActionCommand().equalsIgnoreCase("Cambiare Password")) {
             this.setVisible(true);
             ChangePasswordFrame f = new ChangePasswordFrame(email);
             f.setVisible(true);
         }
-        if (ae.getActionCommand().equalsIgnoreCase("Uscire dall'applicazione")) {
+        
+        if (ae.getActionCommand().equalsIgnoreCase("Uscire")) {
             this.dispose();
             Login l = new Login();
             l.setVisible(true);
         }
+        
     }
     
     

@@ -5,6 +5,8 @@
  */
 package Test;
 import GUI.TeacherFrame;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Fabio
@@ -12,7 +14,8 @@ import GUI.TeacherFrame;
 public class TestTeacherFrame {
     public static void main(String[] args){
         
-        new TeacherFrame("fabio.pozzli@unipv.it");
+        TeacherFrame t = new TeacherFrame("fabio.pozzoli@unipv.it");
+        t.setVisible(true);
         
     }
 }

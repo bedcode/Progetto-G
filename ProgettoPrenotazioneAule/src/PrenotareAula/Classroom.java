@@ -119,7 +119,7 @@ public class Classroom implements Comparable<Classroom> {
      * @return a string with the details of each reservation of the classroom
      */
     public String printClassroom() {
-        String s = "*****************\nAula: " + this.name + "\n";
+        String s = "\n*****************\nAula: " + this.name + "\n";
         if (this.resReg.printRegister().equals("")) {
             s += "Nessuna prenotazione effettuata";
         } else {

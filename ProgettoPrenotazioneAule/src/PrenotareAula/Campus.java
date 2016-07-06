@@ -163,11 +163,15 @@ public class Campus  {
     
     /**
      * method for printing all the reservation that was made in all the classroom of the campus
+     * @return a String with Reservation made 
      */
-    public void printAllClassroomReservation() {
+    public String printAllClassroomReservation() {
+        String s = "";
             for (Classroom cl : classi) {
+                s += cl.printClassroom();
                 System.out.println(cl.printClassroom());
-            }       
+            }   
+            return s;
     }
     
     /**

@@ -119,6 +119,7 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         addTeacher.addActionListener(this);
         changePassword.addActionListener(this);
         exit.addActionListener(this);
+        printReservation.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -148,6 +149,10 @@ public class SupervisorFrame extends JFrame implements ActionListener {
             this.dispose();
             Login l = new Login();
             l.setVisible(true);
+        }
+        if(ae.getActionCommand().equalsIgnoreCase("Visualizza le prenotazioni presenti")){
+            PrintClassroomReservationFrame f = new PrintClassroomReservationFrame();
+            f.setVisible(true);
         }
     }
 }

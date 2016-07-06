@@ -26,7 +26,8 @@ public class TestCampus {
        cp.askForReservation(r, ca.getTime(), 12, 14, "-");
        ca.set(1990, 2, 1);
        cp.askForReservation(r, ca.getTime(), 12 , 14, "-");
-       cp.printAllClassroomReservation();
+       String s = cp.printAllClassroomReservation();
+       System.out.println("\n\n\n\n\n\n" +s);
     }
     
 }

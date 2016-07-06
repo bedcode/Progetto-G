@@ -9,6 +9,7 @@ import PrenotareAula.Campus;
 import PrenotareAula.Requirements;
 import Utenti.Account;
 import Utenti.Teacher;
+import Utenti.User;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -198,7 +199,7 @@ public class TextUserInterface {
                     break;
                 case (2):
                     cp.updateReservation();
-                    cp.printAllClassroomReservation();
+                    System.out.println(cp.printAllClassroomReservation());
                     break;
                 case (3):
                     System.out.println("Inserire email");
@@ -254,12 +255,16 @@ public class TextUserInterface {
                     break;
                 case (4):
                     cp.updateReservation();
-                    cp.printAllClassroomReservation();
+                    System.out.println(cp.printAllClassroomReservation());
                     break;
                 case (5):
                     System.out.println("Inserire email Teacher");
                     Teacher t = new Teacher(tastiera.next());
-                    a.addNewTeacherAccount(t);
+                    User u = a.addNewTeacherAccount(t);
+                    if (u != null) {
+                        System.out.println("Docente: " + u.getName() + " " + t.getSurname());
+                        System.out.println("Password: " + u.getPassword() + "\n");
+                    }
                     break;
                 case (6):
                     System.out.println("Inserire email");

@@ -10,14 +10,18 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 /**
  *
  * @author Aciredef
  */
-public class TeacherFrame extends JFrame {
+public class TeacherFrame extends JFrame implements ActionListener{
     
-    public TeacherFrame(){
+    private String email;
+    
+    public TeacherFrame(String email){
         
         //frame
         this.setSize(400, 400);
@@ -41,6 +45,8 @@ public class TeacherFrame extends JFrame {
         panelButtons.add(viewRes);
         panelButtons.add(changePW);
         panelButtons.add(exit);
+        changePW.addActionListener(this);
+        exit.addActionListener(this);
         
         //main
         JPanel panelMain = new JPanel(new GridLayout(2,1));
@@ -51,6 +57,21 @@ public class TeacherFrame extends JFrame {
         this.add(panelMain);
         this.setVisible(true);
         
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+
+        if (ae.getActionCommand().equalsIgnoreCase("Cambiare la Password")) {
+            this.setVisible(true);
+            ChangePasswordFrame f = new ChangePasswordFrame(email);
+            f.setVisible(true);
+        }
+        if (ae.getActionCommand().equalsIgnoreCase("Uscire dall'applicazione")) {
+            this.dispose();
+            Login l = new Login();
+            l.setVisible(true);
+        }
     }
     
     

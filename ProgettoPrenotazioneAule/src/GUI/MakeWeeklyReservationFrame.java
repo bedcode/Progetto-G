@@ -37,8 +37,6 @@ import org.jdatepicker.impl.UtilDateModel;
  * @author Andrea
  */
 public class MakeWeeklyReservationFrame extends JFrame implements ActionListener{
-public class MakeWeeklyReservationFrame extends JFrame implements ActionListener {
-
     private JPanel main;
     private JLabel intestazione;
     private JLabel capacita;

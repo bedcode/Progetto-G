@@ -14,10 +14,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,18 +24,19 @@ import javax.swing.WindowConstants;
  *
  * @author Aciredef
  */
-public class ClassroomDialog extends JDialog implements ActionListener {
-
-    private List<String> d = new ArrayList<String>();
-    protected Date inizio;
+public class ClassroomDialogWeekly extends JDialog implements ActionListener{
+    private Date fine;
+    private Campus cp;
     private JLabel esito;
-    protected int startTime, endTime;
+    private List<String> d = new ArrayList<String>();
+    private Date inizio;
+    private int startTime, endTime;
     protected String des;
     protected Requirements r;
-    private Campus cp;
     private JPanel north, east, west, south;
-
-    public ClassroomDialog(List d, Requirements r, Date inizio, int startTime, int endTime, String des) {
+    public ClassroomDialogWeekly (List d, Requirements r, Date inizio, Date fine, int startTime, int endTime, String des) {
+        
+        this.fine = fine;
         this.d = d;
         this.r = r;
         cp = Campus.getInstance();
@@ -61,8 +58,6 @@ public class ClassroomDialog extends JDialog implements ActionListener {
         initcomponents();
     }
     
-    
-
     private void initcomponents() {
         this.add(north, BorderLayout.NORTH);
         this.add(east, BorderLayout.EAST);
@@ -93,29 +88,22 @@ public class ClassroomDialog extends JDialog implements ActionListener {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
     }
-
     @Override
     public void actionPerformed(ActionEvent ae) {
-        boolean make = cp.makeReservation(ae.getActionCommand(), r, inizio, startTime, endTime, des);
+        boolean make = cp.makeWeeklyReservation(ae.getActionCommand(), r, inizio, fine, startTime, endTime, des);
         if (make) {
-            esito.setText("Prenotazione effettuata");
+            esito.setText("Prenotazione settimanale effettuata");
             JDialog dia = new JDialog();
             dia.setVisible(true);
-            dia.add(new JLabel("Prenotazione effettuata"));
+            dia.add(new JLabel("Prenotazione settimanale effettuata"));
             this.dispose();
             dia.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            dia.setSize(200,100);
+            dia.setSize(300,100);
             dia.setLocationRelativeTo(null);
             dia.setResizable(false);
             
         } else {
             esito.setText("Prenotazione fallita");
         }
-
-        
-            
-            this.dispose();
-        
-
     }
 }

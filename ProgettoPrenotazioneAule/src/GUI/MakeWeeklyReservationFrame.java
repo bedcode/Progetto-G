@@ -36,7 +36,7 @@ import org.jdatepicker.impl.UtilDateModel;
  *
  * @author Andrea
  */
-public class MakeWeeklyReservationFrame extends JFrame {
+public class MakeWeeklyReservationFrame extends JFrame implements ActionListener{
 
     private JPanel main;
     private JLabel intestazione;
@@ -60,7 +60,7 @@ public class MakeWeeklyReservationFrame extends JFrame {
     private Checkbox whiteboardCheck;
     private JButton accetta;
     private JButton declina;
-    private DateModel model;
+    private DateModel model, model1;
     private JDatePanelImpl datePanelInizio;
     private JDatePickerImpl datePickerInizio;
     private JDatePanelImpl datePanelFine;
@@ -90,15 +90,20 @@ public class MakeWeeklyReservationFrame extends JFrame {
         accetta = new JButton("accetta");
         declina = new JButton("esci");
         model = new UtilDateModel();
+        model1 = new UtilDateModel();
         descrizione = new JLabel("descrizione prenotazione");
         descrizioneField = new JTextField("aggiungere una descrizione");
         Properties p = new Properties();
         p.put("text.today", "Today");
         p.put("text.month", "Month");
         p.put("text.year", "Year");
+        Properties p1 = new Properties();
+        p1.put("text.today", "Today");
+        p1.put("text.month", "Month");
+        p1.put("text.year", "Year");
         datePanelInizio = new JDatePanelImpl(model, p);
         datePickerInizio = new JDatePickerImpl(datePanelInizio, new DateLabelFormatter());
-        datePanelFine = new JDatePanelImpl(model, p);
+        datePanelFine = new JDatePanelImpl(model1, p1);
         datePickerFine = new JDatePickerImpl(datePanelFine, new DateLabelFormatter());
         initComponents();
     }
@@ -140,22 +145,45 @@ public class MakeWeeklyReservationFrame extends JFrame {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try{
                 String[] date = datePickerInizio.getJFormattedTextField().getText().split("-");
                 Calendar ca = new GregorianCalendar(Integer.parseInt(date[0]), (Integer.parseInt(date[1]) - 1), Integer.parseInt(date[2]));
                 Date inizio = ca.getTime();
-                date = datePickerInizio.getJFormattedTextField().getText().split("-");
-                ca = new GregorianCalendar(Integer.parseInt(date[0]), (Integer.parseInt(date[1]) - 1), Integer.parseInt(date[2]));
-                Date fine = ca.getTime();
-                Requirements re = new Requirements(Integer.parseInt(capacitaField.getText()), blackboardCheck.getState(), whiteboardCheck.getState(), proiettoreCheck.getState(), laboratoriBox.getToolTipText());
+                String[] date1 = datePickerFine.getJFormattedTextField().getText().split("-");
+                Calendar cs= new GregorianCalendar(Integer.parseInt(date1[0]), (Integer.parseInt(date1[1]) - 1), Integer.parseInt(date1[2]));
+                Date fine = cs.getTime();
+                String lab = (String)laboratoriBox.getSelectedItem();
+                if(lab.equalsIgnoreCase("Aula regolare")){
+                    lab = null;
+                }    
+                else if(lab.equalsIgnoreCase("Aula computer")){
+                    lab = "computer";
+                }
+                else if(lab.equalsIgnoreCase("Aula biologia")){
+                    lab = "biologia";
+                }
+                else if(lab.equalsIgnoreCase("Aula disegno")){
+                    lab = "disegno";
+                }
+                else if(lab.equalsIgnoreCase("Aula materiale elettrico")){
+                    lab = "materiale elettrico";
+                }
+                Requirements re = new Requirements(Integer.parseInt(capacitaField.getText()), blackboardCheck.getState(), whiteboardCheck.getState(), proiettoreCheck.getState(), lab);
                 int startTime = Integer.parseInt(startHour.getSelectedItem().toString());
                 int endTime = Integer.parseInt(endHour.getSelectedItem().toString());
                 String des = descrizioneField.getText();
-                try {
+                
                     List d = Campus.getInstance().askForReservationedited(re, inizio, startTime, endTime, des);
-                    ClassroomDialog c = new ClassroomDialog(d, re, ca.getTime(), startTime, endTime, des);
+                    ClassroomDialogWeekly c = new ClassroomDialogWeekly(d, re, inizio, fine, startTime, endTime, des);
                     c.setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(MakeReservationFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                catch(NumberFormatException ex) {
+                    ex.getMessage();
+                }
+                catch(IndexOutOfBoundsException ex) {
+                    ex.getMessage();
                 }
 
             }
@@ -163,7 +191,14 @@ public class MakeWeeklyReservationFrame extends JFrame {
         };
         accetta.addActionListener(al);
         this.setLocationRelativeTo(null);
+        
     }
 ;
+        @Override
+    public void actionPerformed(ActionEvent ae) {
+       if(ae.getActionCommand().equalsIgnoreCase("esci")){
+           this.dispose();
+       }
+    }
 
 }

@@ -121,6 +121,7 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         exit.addActionListener(this);
         printReservation.addActionListener(this);
         deleteReservation.addActionListener(this);
+        weeklyReservation.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -157,6 +158,10 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         }
         if(ae.getActionCommand().equalsIgnoreCase("Elimina Prenotazione")){
             DeleteReservationFrame f = new DeleteReservationFrame();
+            f.setVisible(true);
+        }
+        if(ae.getActionCommand().equalsIgnoreCase("Nuova prenotazione con cadenza settimanale")){
+            MakeWeeklyReservationFrame f = new MakeWeeklyReservationFrame();
             f.setVisible(true);
         }
     }

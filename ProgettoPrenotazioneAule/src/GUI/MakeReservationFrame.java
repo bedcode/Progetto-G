@@ -142,19 +142,19 @@ public class MakeReservationFrame extends JFrame implements ActionListener {
                 Calendar ca = new GregorianCalendar(Integer.parseInt(date[0]), (Integer.parseInt(date[1])-1), Integer.parseInt(date[2]));
                 String lab = (String)laboratoriBox.getSelectedItem();
                 if(lab.equalsIgnoreCase("Aula regolare")){
-                    lab = "n";
+                    lab = null;
                 }    
                 else if(lab.equalsIgnoreCase("Aula computer")){
-                    lab = "pc";
+                    lab = "computer";
                 }
                 else if(lab.equalsIgnoreCase("Aula biologia")){
-                    lab = "bio";
+                    lab = "biologia";
                 }
                 else if(lab.equalsIgnoreCase("Aula disegno")){
-                    lab = "dis";
+                    lab = "disegno";
                 }
                 else if(lab.equalsIgnoreCase("Aula materiale elettrico")){
-                    lab = "ele";
+                    lab = "materiale elettrico";
                 }
                 
                 Requirements re = new Requirements(Integer.parseInt(capacitaField.getText()), blackboardCheck.getState(), whiteboardCheck.getState(), proiettoreCheck.getState(), lab );

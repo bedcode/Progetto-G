@@ -137,19 +137,26 @@ public class MakeReservationFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] date = datePicker.getJFormattedTextField().getText().split("-");
+                try {
                 Calendar ca = new GregorianCalendar(Integer.parseInt(date[0]), (Integer.parseInt(date[1])-1), Integer.parseInt(date[2]));
+
                 Requirements re = new Requirements(Integer.parseInt(capacitaField.getText()), blackboardCheck.getState(), whiteboardCheck.getState(), proiettoreCheck.getState(), laboratoriBox.getToolTipText());
                 int startTime = Integer.parseInt(startHour.getSelectedItem().toString());
                 int endTime =  Integer.parseInt(endHour.getSelectedItem().toString());
                 String des = descrizioneField.getText();
-                try {
+                
                     List d = Campus.getInstance().askForReservationedited(re, ca.getTime(), startTime ,endTime, des);
                     ClassroomDialog c = new ClassroomDialog(d, re, ca.getTime(), startTime ,endTime, des);
                     c.setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(MakeReservationFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                catch(NumberFormatException ex) {
+                    ex.getMessage();
+                }
+                catch(IndexOutOfBoundsException ex) {
+                    ex.getMessage();
+                }
             }
 
         };

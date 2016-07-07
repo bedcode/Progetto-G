@@ -8,6 +8,7 @@ package PrenotareAula;
 import Facade.DbFacadeHandler;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -190,8 +191,8 @@ public class Campus  {
      * @return boolean value
      */
     public boolean askUser(Classroom cl) {
-        Scanner tastiera = new Scanner(System.in);
         System.out.println("Si desidera prenotare l'aula " + cl.getName() + " ? (Y|N)");
+        Scanner tastiera = new Scanner(System.in);
         if (tastiera.next().equals("Y")) {
             return true;
         } else {
@@ -229,4 +230,43 @@ public class Campus  {
     public void closeConnection() {
         DbFacadeHandler.getInstance().closeConnection();
     }
+    
+    
+    
+    
+    
+    
+    public List askForReservationedited(Requirements req, Date ca, int startHour, int endHour, String description) throws FileNotFoundException, IOException {
+        List<String> ClassroomOk = new ArrayList<String>();
+        if (this.checkTime(startHour, endHour) == true) {
+            for (Classroom cl : classi) {
+                if (cl.verifyReservation(req, ca, startHour, endHour) == 1) {
+                    ClassroomOk.add(cl.getName());                    
+                }
+            }
+            ClassroomOk.add("Requisiti Simili");
+            for (Classroom cl : classi) {
+                if (cl.verifyReservation(req, ca, startHour, endHour) == -3 || cl.verifyReservation(req, ca, startHour, endHour) == -4) {
+                    ClassroomOk.add(cl.getName()); 
+                }
+            }            
+                                        
+            
+            
+        } else {
+            System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");            
+        }
+        return ClassroomOk;
+    }
+    public boolean makeReservation (String name, Requirements req, Date ca, int startHour, int endHour, String description) {
+        for (Classroom cl : classi) {
+            if (cl.getName().equalsIgnoreCase(name)){
+                cl.getResReg().makeReservation(ca, startHour, endHour, description);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
 }

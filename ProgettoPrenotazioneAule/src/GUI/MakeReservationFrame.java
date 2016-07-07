@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -136,10 +137,15 @@ public class MakeReservationFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] date = datePicker.getJFormattedTextField().getText().split("-");
-                Calendar ca = new GregorianCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
-                Requirements re = new Requirements(100, blackboardCheck.getState(), whiteboardCheck.getState(), proiettoreCheck.getState(), laboratoriBox.getToolTipText());
+                Calendar ca = new GregorianCalendar(Integer.parseInt(date[0]), (Integer.parseInt(date[1])-1), Integer.parseInt(date[2]));
+                Requirements re = new Requirements(Integer.parseInt(capacitaField.getText()), blackboardCheck.getState(), whiteboardCheck.getState(), proiettoreCheck.getState(), laboratoriBox.getToolTipText());
+                int startTime = Integer.parseInt(startHour.getSelectedItem().toString());
+                int endTime =  Integer.parseInt(endHour.getSelectedItem().toString());
+                String des = descrizioneField.getText();
                 try {
-                    Campus.getInstance().askForReservation(re, ca.getTime(), Integer.parseInt(startHour.getSelectedItem().toString()), Integer.parseInt(endHour.getSelectedItem().toString()), null);
+                    List d = Campus.getInstance().askForReservationedited(re, ca.getTime(), startTime ,endTime, des);
+                    ClassroomDialog c = new ClassroomDialog(d, re, ca.getTime(), startTime ,endTime, des);
+                    c.setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(MakeReservationFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }

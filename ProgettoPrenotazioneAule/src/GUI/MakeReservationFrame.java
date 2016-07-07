@@ -39,7 +39,7 @@ import org.jdatepicker.impl.UtilDateModel;
  *
  * @author Federico
  */
-public class MakeReservationFrame extends JFrame {
+public class MakeReservationFrame extends JFrame implements ActionListener {
 
     private JPanel main;
     private JLabel intestazione;
@@ -65,7 +65,7 @@ public class MakeReservationFrame extends JFrame {
     JDatePanelImpl datePanel;
     DateModel model;
     JDatePickerImpl datePicker;
-    String[] labList = {"Aula regolare", "Aula computer", "Aula materiale elettrico", "Aula biologia"};
+    String[] labList = {"Aula regolare", "Aula computer", "Aula materiale elettrico", "Aula biologia", "Aula Disegno"};
     String[] hours = {"9", "10", "11", "12", "13", "14", "15", "16", "17", "18"};
 
     public MakeReservationFrame() {
@@ -90,7 +90,7 @@ public class MakeReservationFrame extends JFrame {
         declina = new JButton("esci");
         model = new UtilDateModel();
         descrizione=new JLabel("descrizione prenotazione");
-        descrizioneField=new JTextField("aggiungere una descrizione");
+        descrizioneField=new JTextField("");
         Properties p = new Properties();
         p.put("text.today", "Today");
         p.put("text.month", "Month");
@@ -132,6 +132,7 @@ public class MakeReservationFrame extends JFrame {
         main.add(descrizioneField);
         main.add(accetta);
         main.add(declina);
+        declina.addActionListener(this);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         ActionListener al = new ActionListener() {
             @Override
@@ -139,8 +140,24 @@ public class MakeReservationFrame extends JFrame {
                 String[] date = datePicker.getJFormattedTextField().getText().split("-");
                 try {
                 Calendar ca = new GregorianCalendar(Integer.parseInt(date[0]), (Integer.parseInt(date[1])-1), Integer.parseInt(date[2]));
-
-                Requirements re = new Requirements(Integer.parseInt(capacitaField.getText()), blackboardCheck.getState(), whiteboardCheck.getState(), proiettoreCheck.getState(), laboratoriBox.getToolTipText());
+                String lab = (String)laboratoriBox.getSelectedItem();
+                if(lab.equalsIgnoreCase("Aula regolare")){
+                    lab = "n";
+                }    
+                else if(lab.equalsIgnoreCase("Aula computer")){
+                    lab = "pc";
+                }
+                else if(lab.equalsIgnoreCase("Aula biologia")){
+                    lab = "bio";
+                }
+                else if(lab.equalsIgnoreCase("Aula disegno")){
+                    lab = "dis";
+                }
+                else if(lab.equalsIgnoreCase("Aula materiale elettrico")){
+                    lab = "ele";
+                }
+                
+                Requirements re = new Requirements(Integer.parseInt(capacitaField.getText()), blackboardCheck.getState(), whiteboardCheck.getState(), proiettoreCheck.getState(), lab );
                 int startTime = Integer.parseInt(startHour.getSelectedItem().toString());
                 int endTime =  Integer.parseInt(endHour.getSelectedItem().toString());
                 String des = descrizioneField.getText();
@@ -160,9 +177,21 @@ public class MakeReservationFrame extends JFrame {
             }
 
         };
+        
+        
         accetta.addActionListener(al);
         this.setLocationRelativeTo(null);
     }
 ;
 
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+       if(ae.getActionCommand().equalsIgnoreCase("esci")){
+           this.dispose();
+       }
+    }
+
+
 }
+
+    

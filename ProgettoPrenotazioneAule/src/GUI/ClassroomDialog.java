@@ -44,7 +44,7 @@ public class ClassroomDialog extends JDialog implements ActionListener {
         this.r = r;
         cp = Campus.getInstance();
         cp.updateReservation();
-        this.setSize(900, 400);
+        this.setSize(500, 300);
         esito = new JLabel();
         this.setResizable(false);
         this.setLayout(new BorderLayout());

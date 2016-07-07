@@ -250,14 +250,13 @@ public class Campus  {
                     ClassroomOk.add(cl.getName()); 
                 }
             }            
-                                        
-            
-            
+   
         } else {
             System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");            
         }
         return ClassroomOk;
     }
+    
     public boolean makeReservation (String name, Requirements req, Date ca, int startHour, int endHour, String description) {
         for (Classroom cl : classi) {
             if (cl.getName().equalsIgnoreCase(name)){
@@ -268,5 +267,13 @@ public class Campus  {
         return false;
     }
     
-    
+    public boolean makeWeeklyReservation(String name, Requirements req, Date startDate, Date endDate, int startHour, int endHour, String description) {
+        for (Classroom cl : classi) {
+            if (cl.getName().equalsIgnoreCase(name)){
+                cl.getResReg().makeWeeklyReservation(startDate, endDate, startHour, endHour, description);
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -140,6 +140,7 @@ public class MakeWeeklyReservationFrame extends JFrame implements ActionListener
         main.add(descrizioneField);
         main.add(accetta);
         main.add(declina);
+        declina.addActionListener(this);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         ActionListener al = new ActionListener() {
             @Override

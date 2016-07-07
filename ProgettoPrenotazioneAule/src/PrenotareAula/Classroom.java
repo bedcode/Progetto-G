@@ -38,7 +38,7 @@ public class Classroom implements Comparable<Classroom> {
      * checkRequirements() documentation
      */
     public int verifyReservation(Requirements req, Date d, int startHour, int endHour) {
-        //if (checkSpecial(req)) {
+        if (checkSpecial(req)) {
             if ((checkRequirements(req) == 0) && resReg.isReserved(d, startHour, endHour) == false) {
                 //System.out.println("Trovata aula libera che soddisfa i requisiti richiesti: " + this.name);
                 return 1;
@@ -47,7 +47,7 @@ public class Classroom implements Comparable<Classroom> {
                 //System.out.println("Aula non disponibile");
                 return checkRequirements(req);
             }
-        //}
+        }
         return 2;
     }
 

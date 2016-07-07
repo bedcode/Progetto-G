@@ -37,6 +37,7 @@ import org.jdatepicker.impl.UtilDateModel;
  * @author Andrea
  */
 public class MakeWeeklyReservationFrame extends JFrame implements ActionListener{
+public class MakeWeeklyReservationFrame extends JFrame implements ActionListener {
 
     private JPanel main;
     private JLabel intestazione;
@@ -92,7 +93,7 @@ public class MakeWeeklyReservationFrame extends JFrame implements ActionListener
         model = new UtilDateModel();
         model1 = new UtilDateModel();
         descrizione = new JLabel("descrizione prenotazione");
-        descrizioneField = new JTextField("aggiungere una descrizione");
+        descrizioneField = new JTextField("");
         Properties p = new Properties();
         p.put("text.today", "Today");
         p.put("text.month", "Month");
@@ -185,9 +186,7 @@ public class MakeWeeklyReservationFrame extends JFrame implements ActionListener
                 catch(IndexOutOfBoundsException ex) {
                     ex.getMessage();
                 }
-
             }
-
         };
         accetta.addActionListener(al);
         this.setLocationRelativeTo(null);

@@ -7,9 +7,7 @@ package GUI;
 
 import PrenotareAula.Campus;
 import PrenotareAula.Requirements;
-import java.awt.BorderLayout;
 import java.awt.Checkbox;
-import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,9 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import org.jdatepicker.DateModel;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -62,11 +58,11 @@ public class MakeReservationFrame extends JFrame implements ActionListener {
     private Checkbox whiteboardCheck;
     private JButton accetta;
     private JButton declina;
-    JDatePanelImpl datePanel;
-    DateModel model;
-    JDatePickerImpl datePicker;
-    String[] labList = {"Aula regolare", "Aula computer", "Aula materiale elettrico", "Aula biologia", "Aula Disegno"};
-    String[] hours = {"9", "10", "11", "12", "13", "14", "15", "16", "17", "18"};
+    private JDatePanelImpl datePanel;
+    private DateModel model;
+    private JDatePickerImpl datePicker;
+    private String[] labList = {"Aula regolare", "Aula computer", "Aula materiale elettrico", "Aula biologia", "Aula Disegno"};
+    private String[] hours = {"9", "10", "11", "12", "13", "14", "15", "16", "17", "18"};
 
     public MakeReservationFrame() {
         main = new JPanel(new GridLayout(12, 2));

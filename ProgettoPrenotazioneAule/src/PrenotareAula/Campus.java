@@ -160,7 +160,7 @@ public class Campus  {
      * @param endHour end time of a reservation
      * @return boolean value
      */
-    public boolean checkTime(int startHour, int endHour) {
+    private boolean checkTime(int startHour, int endHour) {
         if (endHour <= startHour) {
             return false;
         }

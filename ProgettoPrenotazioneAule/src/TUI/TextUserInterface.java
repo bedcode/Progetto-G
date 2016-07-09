@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -72,13 +73,12 @@ public class TextUserInterface {
         Scanner tastieraPrenotazione = new Scanner(System.in);
         System.out.println("Inserire la capacità dell'aula che si vuole prenotare");
         int capacity = tastieraPrenotazione.nextInt();
-//        System.out.println("Inserire le caratteristiche dell'aula che si vuole prenotare");
-//        System.out.println("Utilizzare il formato true/true/false/null, per indicare lavagna/lucidi/proiettore/requisiti speciali");
-//        System.out.println("Legenda requisiti speciali: n -> aula normale, pc -> aula computer, ele -> aula materiale elettrico, bio -> aula biologia");
-//        String requirements = tastieraPrenotazione.next();
-//        StringTokenizer str = new StringTokenizer(requirements);
-//        Requirements req = new Requirements(capacity, Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), writeSpecial(str.nextToken("/")));
-        Requirements req = new Requirements(capacity, true, true, true, null);
+        System.out.println("Inserire le caratteristiche dell'aula che si vuole prenotare");
+        System.out.println("Utilizzare il formato true/true/false/null, per indicare lavagna/lucidi/proiettore/requisiti speciali");
+        System.out.println("Legenda requisiti speciali: n -> aula normale, pc -> aula computer, ele -> aula materiale elettrico, bio -> aula biologia");
+        String requirements = tastieraPrenotazione.next();
+        StringTokenizer str = new StringTokenizer(requirements);
+        Requirements req = new Requirements(capacity, Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), writeSpecial(str.nextToken("/")));
         System.out.println("Inserire la data in cui si vuole effettuare la prenotazione aaaa/mm/dd");
         String data = tastieraPrenotazione.next();
         StringTokenizer st = new StringTokenizer(data);
@@ -92,7 +92,15 @@ public class TextUserInterface {
         tastieraPrenotazione.useDelimiter("\n");
         String description = tastieraPrenotazione.next();
         cp.updateReservation();
-        cp.askForReservation(req, date, startHour, endHour, description);
+        List<String> c = cp.askForReservation(req, date, startHour, endHour, description);
+        int risp = askUser(c);
+        if (risp >= 0) {
+            if (cp.makeReservation(c.get(risp), req, date, startHour, endHour, description)) {
+                System.out.println("Prenotazione effettuata");
+            }
+        } else {
+            System.out.println("Prenotazione non effettuata");
+        }
     }
 
     /**
@@ -106,13 +114,12 @@ public class TextUserInterface {
         Scanner tastieraPrenotazione = new Scanner(System.in);
         System.out.println("Inserire la capacità dell'aula che si vuole prenotare");
         int capacity = tastieraPrenotazione.nextInt();
-//        System.out.println("Inserire le caratteristiche dell'aula che si vuole prenotare");
-//        System.out.println("Utilizzare il formato true/true/false/null, per indicare lavagna/lucidi/proiettore/requisiti speciali");
-//        System.out.println("Legenda requisiti speciali: n -> aula normale, pc -> aula computer, ele -> aula materiale elettrico, bio -> aula biologia, dis -> disegno");
-//        String requirements = tastieraPrenotazione.next();
-//        StringTokenizer str = new StringTokenizer(requirements);
-//        Requirements req = new Requirements(capacity, Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), writeSpecial(str.nextToken("/")));
-        Requirements req = new Requirements(capacity, true, true, true, null);
+        System.out.println("Inserire le caratteristiche dell'aula che si vuole prenotare");
+        System.out.println("Utilizzare il formato true/true/false/null, per indicare lavagna/lucidi/proiettore/requisiti speciali");
+        System.out.println("Legenda requisiti speciali: n -> aula normale, pc -> aula computer, ele -> aula materiale elettrico, bio -> aula biologia, dis -> disegno");
+        String requirements = tastieraPrenotazione.next();
+        StringTokenizer str = new StringTokenizer(requirements);
+        Requirements req = new Requirements(capacity, Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), Boolean.valueOf(str.nextToken("/")), writeSpecial(str.nextToken("/")));
         System.out.println("Inserire la data in cui si vuole iniziare la prenotazione aaaa/mm/dd");
         String data = tastieraPrenotazione.next();
         StringTokenizer st = new StringTokenizer(data);
@@ -131,7 +138,48 @@ public class TextUserInterface {
         tastieraPrenotazione.useDelimiter("\n");
         String description = tastieraPrenotazione.next();
         cp.updateReservation();
-        cp.askForWeeklyReservation(req, startDate, endDate, startHour, endHour, description);
+        List<String> c = cp.askForReservation(req, startDate, startHour, endHour, description);
+        int risp = askUser(c);
+        if (risp >= 0) {
+            if (cp.makeWeeklyReservation(c.get(risp), req, startDate, endDate, startHour, endHour, description)) {
+                System.out.println("Prenotazione effettuata");
+            }
+        } else {
+            System.out.println("Prenotazione non effettuata");
+        }
+    }
+
+    /**
+     * This method asks to the user which classroom he wants to reserve.
+     *
+     * @param c list of string which contains the names of the classrooms that could be reserved.
+     * @return index in the list of the classroom that the user wants to
+     * reserve, -1 in case of error or if there aren't choices classrooms.
+     */
+    private static int askUser(List<String> c) {
+        int i = 0;
+        for (i = 0; !(c.get(i).equalsIgnoreCase("Requisiti Simili")); i++) {
+            System.out.println("Si desidera prenotare l'aula " + c.get(i) + " ? (Y|N)");
+            Scanner tastiera = new Scanner(System.in);
+            if (tastiera.next().equalsIgnoreCase("Y")) {
+                return i;
+            } else {
+                continue;
+            }
+        }
+        i++;
+        for (int j = i; j < c.size(); j++) {
+            System.out.println("Non è stata trovata un'aula con i requisiti richiesti, tuttavia è possibile prenotare l'aula " + c.get(i) + " che presenta requisiti simili");
+            System.out.println("Si desidera prenotare l'aula " + c.get(j) + "? (Y|N)");
+            Scanner tastiera = new Scanner(System.in);
+            if (tastiera.next().equalsIgnoreCase("Y")) {
+                return j;
+            } else {
+                continue;
+            }
+        }
+        System.out.println("Nessuna aula trovata con i requisiti inseriti");
+        return -1;
     }
 
     /**

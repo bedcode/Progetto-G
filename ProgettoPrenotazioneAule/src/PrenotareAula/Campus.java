@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * This class manages all the operations of the system.
@@ -42,64 +41,64 @@ public class Campus  {
     }
     
     /**
-     * this method is used for asking the campus to make a reservation, if there aren't classrooms with the specified requirements available
-     * the campus suggests a classroom which has similar requirements
-     * If the user doesn't find a classroom suitable for his needs, he must ask again for a reservation with different parameters
-     * 
+     * This method is used for asking the campus to make a reservation, if there aren't classrooms with the specified requirements available
+     * the campus suggests a classroom which has similar requirements.
+     * If the user doesn't find a classroom suitable for his needs, he must ask again for a reservation with different parameters.
      * 
      * @param req requirements of a classroom
-     * @param ca calendar to indicate the date of the reservation
+     * @param d date of the reservation
+     * @param startHour start time of the reservation
+     * @param endHour end time of the reservation
+     * @param description description of the reservation
+     * @return list of string which contains the names of the classrooms that could be reserved.
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
+    public List askForReservation(Requirements req, Date d, int startHour, int endHour, String description) throws FileNotFoundException, IOException {
+        List<String> ClassroomOk = new ArrayList<>();
+        if (this.checkTime(startHour, endHour) == true) {
+            for (Classroom cl : classi) {
+                if (cl.verifyReservation(req, d, startHour, endHour) == 1) {
+                    ClassroomOk.add(cl.getName());
+                }
+            }
+            ClassroomOk.add("Requisiti Simili");
+            for (Classroom cl : classi) {
+                if (cl.verifyReservation(req, d, startHour, endHour) == -3 || cl.verifyReservation(req, d, startHour, endHour) == -4) {
+                    ClassroomOk.add(cl.getName());
+                }
+            }
+        } else {
+            System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");
+        }
+        return ClassroomOk;
+    }
+    
+    /**
+     * This method makes a reservation in the specified classroom.
+     * 
+     * @param name name of the classroom to reserve
+     * @param req requirements of a classroom
+     * @param d date of the reservation
      * @param startHour start time of the reservation
      * @param endHour end time of the reservation
      * @param description description of the reservation
      * @return boolean value
-     * @throws FileNotFoundException
-     * @throws IOException 
      */
-
-    public boolean askForReservation(Requirements req, Date ca, int startHour, int endHour, String description) throws FileNotFoundException, IOException {
-        if (this.checkTime(startHour, endHour) == true) {
-            for (Classroom cl : classi) {
-                if (cl.verifyReservation(req, ca, startHour, endHour) == 1) {
-                    if (askUser(cl) == true) {
-                        cl.getResReg().makeReservation(ca, startHour, endHour, description);
-                        System.out.println("prenotazione effettuata aula: " + cl.getName());
-                        return true;
-                    } else {
-                        System.out.println("prenotazione non effettuata");
-                    }
-                }
+    public boolean makeReservation(String name, Requirements req, Date d, int startHour, int endHour, String description) {
+        for (Classroom cl : classi) {
+            if (cl.getName().equalsIgnoreCase(name)) {
+                cl.getResReg().makeReservation(d, startHour, endHour, description);
+                return true;
             }
-            for (Classroom cl : classi) {
-                if (cl.verifyReservation(req, ca, startHour, endHour) == -3 || cl.verifyReservation(req, ca, startHour, endHour) == -4) {
-                    System.out.println("non è stata trovata un'aula con i requisiti richiesti, tuttavia è possibile prenotare " + cl.getName()+ " con " + cl.getRequirements().toString());
-                    if (askUser(cl) == true) {
-                        cl.getResReg().makeReservation(ca, startHour, endHour, description);
-                        System.out.println("prenotazione effettuata aula: " + cl.getName());
-                        return true;
-                    } else {
-                        System.out.println("prenotazione non effettuata");
-                    }
-                }
-            }
-            
-            System.out.println("non è disponibile un'aula con i requisiti specificati o con requisiti simili, effettuare una nuova prenotazione in orari differenti");
-            
-                   
-            
-            
-        } else {
-            System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");
-            return false;
         }
         return false;
     }
-    
+
     /**
-     * this method is used for asking the campus to make a semestral reservation, if there aren't classrooms with the specified requirements available
-     * the campus suggests a classroom which has similar requirements
-     * If the user doesn't find a classroom suitable for his needs, he must ask again for a reservation with different parameters
+     * This method makes a semestral reservation in the specified classroom.
      * 
+     * @param name name of the classroom to reserve
      * @param req requirements of a classroom
      * @param startDate initial date of the reservation
      * @param endDate final date of the reservation
@@ -107,44 +106,17 @@ public class Campus  {
      * @param endHour end time of the reservation
      * @param description description of the reservation
      * @return boolean value
-     * @throws FileNotFoundException
-     * @throws IOException 
      */
-    public boolean askForWeeklyReservation(Requirements req, Date startDate, Date endDate, int startHour, int endHour, String description) throws FileNotFoundException, IOException {
-        if (this.checkTime(startHour, endHour) == true) {
-            for (Classroom cl : classi) {
-                if (cl.verifyReservation(req, startDate, startHour, endHour) == 1) {
-                    if (askUser(cl) == true) {
-                        cl.getResReg().makeWeeklyReservation(startDate, endDate, startHour, endHour, description);
-                        System.out.println("prenotazione effettuata aula: " + cl.getName());
-                        return true;
-                    } else {
-                        System.out.println("prenotazione non effettuata");
-                    }
-                }
+    public boolean makeWeeklyReservation(String name, Requirements req, Date startDate, Date endDate, int startHour, int endHour, String description) {
+        for (Classroom cl : classi) {
+            if (cl.getName().equalsIgnoreCase(name)) {
+                cl.getResReg().makeWeeklyReservation(startDate, endDate, startHour, endHour, description);
+                return true;
             }
-            for (Classroom cl : classi) {
-                if (cl.verifyReservation(req, startDate, startHour, endHour) == -3 || cl.verifyReservation(req, startDate, startHour, endHour) == -4) {
-                    System.out.println("non è stata trovata un'aula con i requisiti richiesti, tuttavia è possibile prenotare " + cl.getName() + " con " + cl.getRequirements().toString());
-                    if (askUser(cl) == true) {
-                        cl.getResReg().makeWeeklyReservation(startDate, endDate, startHour, endHour, description);
-                        System.out.println("prenotazione effettuata aula: " + cl.getName());
-                        return true;
-                    } else {
-                        System.out.println("prenotazione non effettuata");
-                    }
-                }
-            }
-
-            System.out.println("non è disponibile un'aula con i requisiti specificati o con requisiti simili, effettuare una nuova prenotazione in orari differenti");
-
-        } else {
-            System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");
-            return false;
         }
         return false;
     }
-        
+    
     /**
      * this method deletes a reservation that was made previously
      * 
@@ -185,26 +157,6 @@ public class Campus  {
     }
 
     /**
-     * this method asks the User if campus has to make the reservation, the user
-     * must answer with yes (Y) or no (N)
-     *
-     * @return boolean value
-     */
-    public boolean askUser(Classroom cl) {
-        System.out.println("Si desidera prenotare l'aula " + cl.getName() + " ? (Y|N)");
-        Scanner tastiera = new Scanner(System.in);
-        if (tastiera.next().equals("Y")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public List<Classroom> getClassi() {
-        return classi;
-    }
-
-    /**
      * this method check if startHour and endHour are correct parameters
      *
      * @param startHour start time of a reservation
@@ -231,49 +183,7 @@ public class Campus  {
         DbFacadeHandler.getInstance().closeConnection();
     }
     
-    
-    
-    
-    
-    
-    public List askForReservationedited(Requirements req, Date ca, int startHour, int endHour, String description) throws FileNotFoundException, IOException {
-        List<String> ClassroomOk = new ArrayList<String>();
-        if (this.checkTime(startHour, endHour) == true) {
-            for (Classroom cl : classi) {
-                if (cl.verifyReservation(req, ca, startHour, endHour) == 1) {
-                    ClassroomOk.add(cl.getName());                    
-                }
-            }
-            ClassroomOk.add("Requisiti Simili");
-            for (Classroom cl : classi) {
-                if (cl.verifyReservation(req, ca, startHour, endHour) == -3 || cl.verifyReservation(req, ca, startHour, endHour) == -4) {
-                    ClassroomOk.add(cl.getName()); 
-                }
-            }            
-   
-        } else {
-            System.out.println("errore nell'inserimento dei tempi di inizio e fine prenotazione");            
-        }
-        return ClassroomOk;
-    }
-    
-    public boolean makeReservation (String name, Requirements req, Date ca, int startHour, int endHour, String description) {
-        for (Classroom cl : classi) {
-            if (cl.getName().equalsIgnoreCase(name)){
-                cl.getResReg().makeReservation(ca, startHour, endHour, description);
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public boolean makeWeeklyReservation(String name, Requirements req, Date startDate, Date endDate, int startHour, int endHour, String description) {
-        for (Classroom cl : classi) {
-            if (cl.getName().equalsIgnoreCase(name)){
-                cl.getResReg().makeWeeklyReservation(startDate, endDate, startHour, endHour, description);
-                return true;
-            }
-        }
-        return false;
+    public List<Classroom> getClassi() {
+        return classi;
     }
 }

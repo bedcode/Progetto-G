@@ -34,6 +34,7 @@ public class ClassroomDialogWeekly extends JDialog implements ActionListener{
     protected String des;
     protected Requirements r;
     private JPanel north, east, west, south;
+    
     public ClassroomDialogWeekly (List d, Requirements r, Date inizio, Date fine, int startTime, int endTime, String des) {
         
         this.fine = fine;

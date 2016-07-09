@@ -14,10 +14,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -61,8 +57,6 @@ public class ClassroomDialog extends JDialog implements ActionListener {
         initcomponents();
     }
     
-    
-
     private void initcomponents() {
         this.add(north, BorderLayout.NORTH);
         this.add(east, BorderLayout.EAST);
@@ -111,9 +105,7 @@ public class ClassroomDialog extends JDialog implements ActionListener {
         } else {
             esito.setText("Prenotazione fallita");
         }
-
-        
-            
+   
             this.dispose();
         
 

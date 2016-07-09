@@ -6,13 +6,10 @@
 package GUI;
 
 import Utenti.Account;
-import Utenti.Teacher;
-import Utenti.User;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Icon;

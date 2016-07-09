@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import PrenotareAula.Campus;
 import Utenti.Account;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -42,7 +41,7 @@ public class ChangePasswordFrame extends JFrame implements ActionListener {
     private JPasswordField oldpasswordField, newpasswordField;
     private JButton conferma, home;
     private String emailLog;
-    Account a;
+    private Account a;
 
     public ChangePasswordFrame(String emailLog) {
         this.emailLog = emailLog;

@@ -31,7 +31,7 @@ public class DeleteReservationFrame extends JFrame implements ActionListener{
     private JPanel centre;
     private JPanel north;
     private JPanel south, east, west;
-    Campus cp;
+    private Campus cp;
 
     public DeleteReservationFrame() throws HeadlessException {
        cp = Campus.getInstance();

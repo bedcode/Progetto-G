@@ -11,13 +11,10 @@ import java.awt.Checkbox;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -161,8 +158,6 @@ public class MakeReservationFrame extends JFrame implements ActionListener {
                     List d = Campus.getInstance().askForReservation(re, ca.getTime(), startTime ,endTime);
                     ClassroomDialog c = new ClassroomDialog(d, re, ca.getTime(), startTime ,endTime, des);
                     c.setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(MakeReservationFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 catch(NumberFormatException ex) {
                     ex.getMessage();

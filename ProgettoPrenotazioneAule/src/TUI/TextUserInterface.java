@@ -69,7 +69,7 @@ public class TextUserInterface {
      * @param ca an instance of calendar
      * @throws IOException
      */
-    private static void reservation(Campus cp, Calendar ca) throws IOException {
+    private static void reservation(Campus cp, Calendar ca) {
         Scanner tastieraPrenotazione = new Scanner(System.in);
         System.out.println("Inserire la capacità dell'aula che si vuole prenotare");
         int capacity = tastieraPrenotazione.nextInt();
@@ -110,7 +110,7 @@ public class TextUserInterface {
      * @param ca an instance of calendar
      * @throws IOException
      */
-    private static void semestralReservation(Campus cp, Calendar ca) throws IOException {
+    private static void semestralReservation(Campus cp, Calendar ca) {
         Scanner tastieraPrenotazione = new Scanner(System.in);
         System.out.println("Inserire la capacità dell'aula che si vuole prenotare");
         int capacity = tastieraPrenotazione.nextInt();

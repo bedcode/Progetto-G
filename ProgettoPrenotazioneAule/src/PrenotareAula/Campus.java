@@ -53,7 +53,7 @@ public class Campus  {
      * @throws FileNotFoundException
      * @throws IOException 
      */
-    public List askForReservation(Requirements req, Date d, int startHour, int endHour) throws FileNotFoundException, IOException {
+    public List askForReservation(Requirements req, Date d, int startHour, int endHour) {
         List<String> ClassroomOk = new ArrayList<>();
         if (this.checkTime(startHour, endHour) == true) {
             for (Classroom cl : classi) {

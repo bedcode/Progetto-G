@@ -92,7 +92,7 @@ public class TextUserInterface {
         tastieraPrenotazione.useDelimiter("\n");
         String description = tastieraPrenotazione.next();
         cp.updateReservation();
-        List<String> c = cp.askForReservation(req, date, startHour, endHour, description);
+        List<String> c = cp.askForReservation(req, date, startHour, endHour);
         int risp = askUser(c);
         if (risp >= 0) {
             if (cp.makeReservation(c.get(risp), req, date, startHour, endHour, description)) {
@@ -138,7 +138,7 @@ public class TextUserInterface {
         tastieraPrenotazione.useDelimiter("\n");
         String description = tastieraPrenotazione.next();
         cp.updateReservation();
-        List<String> c = cp.askForReservation(req, startDate, startHour, endHour, description);
+        List<String> c = cp.askForReservation(req, startDate, startHour, endHour);
         int risp = askUser(c);
         if (risp >= 0) {
             if (cp.makeWeeklyReservation(c.get(risp), req, startDate, endDate, startHour, endHour, description)) {

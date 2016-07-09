@@ -49,12 +49,11 @@ public class Campus  {
      * @param d date of the reservation
      * @param startHour start time of the reservation
      * @param endHour end time of the reservation
-     * @param description description of the reservation
      * @return list of string which contains the names of the classrooms that could be reserved.
      * @throws FileNotFoundException
      * @throws IOException 
      */
-    public List askForReservation(Requirements req, Date d, int startHour, int endHour, String description) throws FileNotFoundException, IOException {
+    public List askForReservation(Requirements req, Date d, int startHour, int endHour) throws FileNotFoundException, IOException {
         List<String> ClassroomOk = new ArrayList<>();
         if (this.checkTime(startHour, endHour) == true) {
             for (Classroom cl : classi) {

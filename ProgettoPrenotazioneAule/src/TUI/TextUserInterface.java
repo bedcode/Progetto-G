@@ -67,7 +67,6 @@ public class TextUserInterface {
      *
      * @param cp an instance of campus
      * @param ca an instance of calendar
-     * @throws IOException
      */
     private static void reservation(Campus cp, Calendar ca) {
         Scanner tastieraPrenotazione = new Scanner(System.in);
@@ -108,7 +107,6 @@ public class TextUserInterface {
      *
      * @param cp an instance of campus
      * @param ca an instance of calendar
-     * @throws IOException
      */
     private static void semestralReservation(Campus cp, Calendar ca) {
         Scanner tastieraPrenotazione = new Scanner(System.in);

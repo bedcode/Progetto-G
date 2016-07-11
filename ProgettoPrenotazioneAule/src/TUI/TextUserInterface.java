@@ -29,8 +29,19 @@ public class TextUserInterface {
 
     public static void main(String[] args) throws IOException {
         Campus cp = Campus.getInstance();
-        System.out.println("Benvenuto in XClassLive, software di prenotazione aule");
-        login();
+        System.out.println("Benvenuto in XClassLive, software di prenotazione aule\n");
+        System.out.println("Per visualizzare l'elenco delle prenotazioni premere P");
+        System.out.println("Per effettuare il login premere L");
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        if (s.equalsIgnoreCase("P")) {
+            cp.updateReservation();
+            cp.printAllClassroomReservation();
+        } else if (s.equalsIgnoreCase("L")) {
+            login();
+        } else {
+            System.out.println("Inserimento errato: si prega di riprovare.");
+        }
     }
 
     /**

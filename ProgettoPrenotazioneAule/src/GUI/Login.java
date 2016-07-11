@@ -39,14 +39,14 @@ public class Login extends JFrame {
     private JLabel errpassword;
     private JTextField emailField;
     private JPasswordField passwordField;
-    private JButton login;
+    private JButton login, reservation;
 
     public Login() {
         Account a = Account.getInstance();
         Campus cp = Campus.getInstance();
         main = new JPanel(new BorderLayout());
         upperArea = new JPanel(new BorderLayout());
-        lowerArea = new JPanel(new GridLayout(12,1));
+        lowerArea = new JPanel(new GridLayout(8,1));
         borderEast=new JPanel();
         borderWest=new JPanel();
         borderNorth=new JPanel();
@@ -56,6 +56,7 @@ public class Login extends JFrame {
         errpassword=new JLabel("nome utente o password errati!");
         emailField = new JTextField();
         passwordField = new JPasswordField();
+        reservation = new JButton("Visualizza prenotazioni come ospite");
         login = new JButton("Login");
         initComponents();
     }
@@ -65,6 +66,7 @@ public class Login extends JFrame {
         this.add(main);
         Dimension d=new Dimension(100, 500);
         this.setSize(500, 500);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setTitle("XClassLive Login");
         Border padding = BorderFactory.createEmptyBorder(15, 15, 15, 15);
@@ -84,6 +86,8 @@ public class Login extends JFrame {
         lowerArea.add(new JPanel());
         lowerArea.add(login);
         lowerArea.add(errpassword);
+        
+        main.add(reservation, BorderLayout.SOUTH);
         errpassword.setHorizontalAlignment(JLabel.CENTER);
         errpassword.setForeground(Color.red);
         errpassword.setVisible(false);
@@ -117,7 +121,16 @@ public class Login extends JFrame {
             }
         };
         login.addActionListener(loginAl);
-        
+        ActionListener l = new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               PrintClassroomReservationFrame f = new PrintClassroomReservationFrame();
+               f.setVisible(true);
+            }
+            
+        };
+        reservation.addActionListener(l);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     }

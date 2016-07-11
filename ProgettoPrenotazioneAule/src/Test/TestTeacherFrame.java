@@ -5,7 +5,6 @@
  */
 package Test;
 import GUI.TeacherFrame;
-import javax.swing.JFrame;
 
 /**
  *

@@ -18,8 +18,8 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 
 /**
- *
- * @author Aciredef
+ * This class shows the option that a Teacher can do
+ * @author Fabio
  */
 public class TeacherFrame extends JFrame implements ActionListener{
     
@@ -49,10 +49,7 @@ public class TeacherFrame extends JFrame implements ActionListener{
         
     }
     
-    /**
-     * 
-     * @param d Frame dimension. Can be changed using the constant above
-     */
+    
     private void initFrame(Dimension d){
         
         setTitle("Account Insegnante");
@@ -63,7 +60,7 @@ public class TeacherFrame extends JFrame implements ActionListener{
         
     }
     
-    /**
+    /*
      * Makes all the components: labels, buttons, panels
      */
     private void makeComponents(){

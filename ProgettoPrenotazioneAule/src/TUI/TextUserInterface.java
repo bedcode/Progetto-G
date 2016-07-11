@@ -21,7 +21,7 @@ import java.util.StringTokenizer;
 /**
  * The class allows to use XClassLive software in textual mode.
  *
- * @author Federico
+ * @author Federico/Andrea
  */
 public class TextUserInterface {
 

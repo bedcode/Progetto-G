@@ -10,7 +10,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,8 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**
- *
- * @author Aciredef
+ * This class shows options that can do the Supervisor 
+ * @author Federica
  */
 public class SupervisorFrame extends JFrame implements ActionListener {
 
@@ -47,8 +46,12 @@ public class SupervisorFrame extends JFrame implements ActionListener {
     private JPanel borderWest;
     private JPanel borderNorth;
     private Toolkit t;
-
-    public SupervisorFrame(String email) throws HeadlessException {
+/**
+ * 
+ * @param email 
+ * 
+ */
+    public SupervisorFrame(String email)  {
         this.setVisible(true);
         this.email = email;
         c = Campus.getInstance();

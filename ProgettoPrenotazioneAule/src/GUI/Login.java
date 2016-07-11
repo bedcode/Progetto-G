@@ -23,8 +23,9 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 /**
- *
- * @author Aciredef
+ * This class make the login after the user write his/her email and password or 
+ * it shows guest the reservation register pushing the reservation button 
+ * @author Federico
  */
 public class Login extends JFrame {
     private JPanel main;

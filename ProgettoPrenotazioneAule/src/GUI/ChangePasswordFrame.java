@@ -22,8 +22,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Aciredef
+ * This class, re-writing your email login, your old password and your new, changes 
+ * the password
+ * @author Federica
  */
 public class ChangePasswordFrame extends JFrame implements ActionListener {
 

@@ -9,7 +9,7 @@ import GUI.SupervisorFrame;
 
 /**
  *
- * @author Aciredef
+ * @author Federica
  */
 public class TestSupervisorFrame {
     public static void main(String[] args) {

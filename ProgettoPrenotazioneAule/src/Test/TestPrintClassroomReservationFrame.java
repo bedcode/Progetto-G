@@ -9,7 +9,7 @@ import GUI.PrintClassroomReservationFrame;
 
 /**
  *
- * @author Aciredef
+ * @author Federica
  */
 public class TestPrintClassroomReservationFrame {
     public static void main(String[] args) {

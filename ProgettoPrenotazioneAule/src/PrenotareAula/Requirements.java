@@ -6,7 +6,7 @@
 package PrenotareAula;
 
 /**
- *
+ * This class represents requirements of a generic Classroom
  * @author Federico
  */
 public class Requirements {
@@ -16,7 +16,14 @@ public class Requirements {
     private boolean whiteboard;
     private boolean projector;
     private String specialRequirements;
-
+/**
+ * 
+ * @param capacity number of people that can contain
+ * @param blackboard true/false
+ * @param whiteboard true/false
+ * @param projector true/false
+ * @param specialRequirements 
+ */
     public Requirements(int capacity, boolean blackboard, boolean whiteboard, boolean projector, String specialRequirements) {
         this.capacity = capacity;
         this.blackboard = blackboard;

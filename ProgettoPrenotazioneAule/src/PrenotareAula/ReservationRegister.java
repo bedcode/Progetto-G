@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author Federica
+ * @author Federica/Andrea
  * The Class deals with a Register of Reservations
  */
 public class ReservationRegister {

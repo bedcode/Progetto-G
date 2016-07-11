@@ -9,7 +9,6 @@ import PrenotareAula.Campus;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Icon;
@@ -22,8 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author Aciredef
+ * This class prints Reservations 
+ * @author Federica
  */
 public class PrintClassroomReservationFrame extends JFrame implements ActionListener{
     private JTextArea print;
@@ -32,7 +31,7 @@ public class PrintClassroomReservationFrame extends JFrame implements ActionList
     private JLabel intro;
     private Campus cp;
 
-    public PrintClassroomReservationFrame() throws HeadlessException {
+    public PrintClassroomReservationFrame() {
         this.setTitle("Visualizza Prenotazioni");
         this.setLayout(new BorderLayout());
         this.setSize(400,300);

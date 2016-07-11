@@ -21,8 +21,9 @@ import javax.swing.JRadioButton;
 import javax.swing.WindowConstants;
 
 /**
- *
- * @author Aciredef
+ *This class shows what you can reserve and after your choice make the reservation
+ * evry week from the start date to the day before the end date
+ * @author Federica
  */
 public class ClassroomDialogWeekly extends JDialog implements ActionListener{
     private Date fine;
@@ -34,7 +35,17 @@ public class ClassroomDialogWeekly extends JDialog implements ActionListener{
     protected String des;
     protected Requirements r;
     private JPanel north, east, west, south;
-    
+    /**
+     * 
+     * @param d list of things free
+     * @param r requirements for the reservation
+     * @param inizio date of start
+     * @param fine date of end
+     * @param startTime 
+     * @param endTime
+     * @param des description
+     * note: if start and end date are the same no date is reserved
+     */
     public ClassroomDialogWeekly (List d, Requirements r, Date inizio, Date fine, int startTime, int endTime, String des) {
         
         this.fine = fine;

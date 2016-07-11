@@ -9,7 +9,7 @@ import GUI.DeleteReservationFrame;
 
 /**
  *
- * @author Aciredef
+ * @author Federica
  */
 public class TestDeleteReservationFrame {
     public static void main(String[] args) {

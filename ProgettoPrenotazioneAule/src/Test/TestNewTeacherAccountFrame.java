@@ -9,7 +9,7 @@ import GUI.AddNewTeacherAccountFrame;
 
 /**
  *
- * @author Aciredef
+ * @author Federica
  */
 public class TestNewTeacherAccountFrame {
     public static void main(String[] args) {

@@ -9,7 +9,6 @@ import PrenotareAula.Campus;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Icon;
@@ -21,8 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Aciredef
+ * This class, writing the id of the reservation, deletes it 
+ * @author Federica
  */
 public class DeleteReservationFrame extends JFrame implements ActionListener{
     private JButton delete, home;
@@ -33,7 +32,7 @@ public class DeleteReservationFrame extends JFrame implements ActionListener{
     private JPanel south, east, west;
     private Campus cp;
 
-    public DeleteReservationFrame() throws HeadlessException {
+    public DeleteReservationFrame() {
        cp = Campus.getInstance();
        this.setLayout(new BorderLayout());
        this.setSize(400, 300);

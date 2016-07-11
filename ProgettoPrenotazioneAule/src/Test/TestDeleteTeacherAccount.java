@@ -9,7 +9,7 @@ import GUI.DeleteTeacherAccountFrame;
 
 /**
  *
- * @author Aciredef
+ * @author Federica
  */
 public class TestDeleteTeacherAccount {
     public static void main(String[] args) {

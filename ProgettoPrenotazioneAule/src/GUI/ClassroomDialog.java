@@ -21,8 +21,8 @@ import javax.swing.JRadioButton;
 import javax.swing.WindowConstants;
 
 /**
- *
- * @author Aciredef
+ * This class shows what you can reserve and after your choice make the reservation
+ * @author Federica
  */
 public class ClassroomDialog extends JDialog implements ActionListener {
 
@@ -34,7 +34,15 @@ public class ClassroomDialog extends JDialog implements ActionListener {
     protected Requirements r;
     private Campus cp;
     private JPanel north, east, west, south;
-
+    /**
+     * 
+     * @param d list of String 
+     * @param r requirements of the reservation
+     * @param inizio date of the reservation
+     * @param startTime 
+     * @param endTime
+     * @param des description
+     */
     public ClassroomDialog(List d, Requirements r, Date inizio, int startTime, int endTime, String des) {
         this.d = d;
         this.r = r;

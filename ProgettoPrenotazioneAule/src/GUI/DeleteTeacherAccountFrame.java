@@ -9,7 +9,6 @@ import Utenti.Account;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Icon;
@@ -21,8 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Aciredef
+ *This class deletes a Teacher account
+ * @author Federica
  */
 public class DeleteTeacherAccountFrame extends JFrame implements ActionListener {
 
@@ -34,7 +33,7 @@ public class DeleteTeacherAccountFrame extends JFrame implements ActionListener 
     private JPanel south, east, west;
     private Account a;
 
-    public DeleteTeacherAccountFrame() throws HeadlessException {
+    public DeleteTeacherAccountFrame()  {
         this.setLayout(new BorderLayout());
         this.setSize(400, 300);
         this.setResizable(false);

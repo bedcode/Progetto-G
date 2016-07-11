@@ -11,7 +11,6 @@ import Utenti.User;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Icon;
@@ -23,8 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Aciredef
+ * This class, writing an email in the format name.surname@unipv.it, adds a
+ * teacher account
+ * @author Federica
  */
 public class AddNewTeacherAccountFrame extends JFrame implements ActionListener {
     private JLabel  email, esito, pass;
@@ -36,7 +36,7 @@ public class AddNewTeacherAccountFrame extends JFrame implements ActionListener 
     
     private Account a;
     
-    public AddNewTeacherAccountFrame() throws HeadlessException {
+    public AddNewTeacherAccountFrame() {
         this.setLayout(new BorderLayout());
         this.setSize(400,300);
         this.setResizable(false);

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * This class manages all the operations of the system.
  * 
- * @author Federico
+ * @author Federico/Andrea
  */
 public class Campus  {
 

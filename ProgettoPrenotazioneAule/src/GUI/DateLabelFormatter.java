@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
 import javax.swing.JFormattedTextField;
 
 /**
- *
+ * this class establish the date format
  * @author Federico
  */
 class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {

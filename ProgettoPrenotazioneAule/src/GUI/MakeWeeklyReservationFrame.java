@@ -30,7 +30,8 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 /**
- *
+ * This class lets make reservation every week between two dates, after compiling 
+ * some fields.
  * @author Andrea
  */
 public class MakeWeeklyReservationFrame extends JFrame implements ActionListener{

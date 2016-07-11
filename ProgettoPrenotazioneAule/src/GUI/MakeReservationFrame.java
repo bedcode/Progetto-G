@@ -29,8 +29,8 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 /**
- *
- * @author Federico
+ * this class lets make a reservation, compiling some fields.
+ * @author Federico/Federica
  */
 public class MakeReservationFrame extends JFrame implements ActionListener {
 

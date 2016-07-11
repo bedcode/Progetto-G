@@ -5,7 +5,6 @@
  */
 package Test;
 
-import PrenotareAula.Reservation;
 import PrenotareAula.ReservationRegister;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,7 +12,7 @@ import java.util.GregorianCalendar;
 
 /**
  *
- * @author Aciredef
+ * @author Federica
  */
 public class TestReservationRegister {
     public static void main(String[] args) {

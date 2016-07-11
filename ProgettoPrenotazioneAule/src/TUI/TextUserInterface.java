@@ -36,7 +36,7 @@ public class TextUserInterface {
         String s = in.nextLine();
         if (s.equalsIgnoreCase("P")) {
             cp.updateReservation();
-            cp.printAllClassroomReservation();
+            System.out.println(cp.printAllClassroomReservation());
         } else if (s.equalsIgnoreCase("L")) {
             login();
         } else {

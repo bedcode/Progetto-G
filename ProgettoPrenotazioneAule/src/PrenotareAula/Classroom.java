@@ -33,8 +33,8 @@ public class Classroom implements Comparable<Classroom> {
      * @param d date of the request reservation
      * @param startHour start time of the request reservation
      * @param endHour end time of the request reservation
-     * @return integer value: 1 -> the classroom respects the requirements and
-     * is free, 2 -> the classroom is not free, for other return values see
+     * @return integer value: 1 if the classroom respects the requirements and
+     * is free, 2 if the classroom is not free, for other return values see
      * checkRequirements() documentation
      */
     public int verifyReservation(Requirements req, Date d, int startHour, int endHour) {

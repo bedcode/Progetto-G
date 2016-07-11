@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**
- * This class shows options that can do the Supervisor 
+ * This class shows options that the Supervisor can do 
  * @author Federica
  */
 public class SupervisorFrame extends JFrame implements ActionListener {

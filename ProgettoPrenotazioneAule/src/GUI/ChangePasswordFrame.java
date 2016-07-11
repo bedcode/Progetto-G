@@ -22,7 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
- * This class, re-writing your email login, your old password and your new, changes 
+ * This class, re-writing your email login, your old password and your new one, changes 
  * the password
  * @author Federica
  */

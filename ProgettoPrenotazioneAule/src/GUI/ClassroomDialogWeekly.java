@@ -22,7 +22,7 @@ import javax.swing.WindowConstants;
 
 /**
  *This class shows what you can reserve and after your choice make the reservation
- * evry week from the start date to the day before the end date
+ * every week from the start date to the day before the end date
  * @author Federica
  */
 public class ClassroomDialogWeekly extends JDialog implements ActionListener{

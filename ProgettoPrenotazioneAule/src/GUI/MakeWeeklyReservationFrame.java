@@ -171,7 +171,9 @@ public class MakeWeeklyReservationFrame extends JFrame implements ActionListener
                 int endTime = Integer.parseInt(endHour.getSelectedItem().toString());
                 String des = descrizioneField.getText();
                 
-                    List d = Campus.getInstance().askForReservation(re, inizio, startTime, endTime);
+                    Campus cp = Campus.getInstance();
+                    cp.updateReservation();
+                    List d = cp.askForReservation(re, inizio, startTime, endTime);
                     ClassroomDialogWeekly c = new ClassroomDialogWeekly(d, re, inizio, fine, startTime, endTime, des);
                     c.setVisible(true);
                 }

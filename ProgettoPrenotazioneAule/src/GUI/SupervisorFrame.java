@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import PrenotareAula.Campus;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -27,7 +26,6 @@ import javax.swing.border.Border;
  */
 public class SupervisorFrame extends JFrame implements ActionListener {
 
-    private Campus c;
     private String email;
     private JLabel name;
     private JLabel selection;
@@ -44,17 +42,16 @@ public class SupervisorFrame extends JFrame implements ActionListener {
     private JPanel lowerArea;
     private JPanel borderEast;
     private JPanel borderWest;
-    private JPanel borderNorth;
-    private Toolkit t;
-/**
- * 
- * @param email 
- * 
- */
-    public SupervisorFrame(String email)  {
+
+    /**
+     *
+     * @param email The supervisor's email used to display a welcome message and
+     * to change the password
+     *
+     */
+    public SupervisorFrame(String email) {
         this.setVisible(true);
         this.email = email;
-        c = Campus.getInstance();
         name = new JLabel("Benvenuto Gestore: " + email);
         selection = new JLabel("Scegli un'opzione tra le seguenti:");
         newReservation = new JButton("Nuova Prenotazione");
@@ -65,11 +62,10 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         addTeacher = new JButton("Inserisci Account Docente");
         deleteTeacher = new JButton("Elimina Account Docente");
         exit = new JButton("Esci");
-        initcomponents();
-
+        initComponents();
     }
 
-    public void initcomponents() {
+    public void initComponents() {
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension screen = t.getScreenSize();
         Dimension s = new Dimension(50, 50);
@@ -84,7 +80,6 @@ public class SupervisorFrame extends JFrame implements ActionListener {
         lowerArea = new JPanel();
         borderEast = new JPanel(new GridLayout(10, 1));
         borderWest = new JPanel(new GridLayout(10, 1));
-        borderNorth = new JPanel();
         this.setLocationRelativeTo(null);
         main.setVisible(true);
         main.add(upperArea, BorderLayout.NORTH);

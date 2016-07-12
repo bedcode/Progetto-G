@@ -155,7 +155,9 @@ public class MakeReservationFrame extends JFrame implements ActionListener {
                 int endTime =  Integer.parseInt(endHour.getSelectedItem().toString());
                 String des = descrizioneField.getText();
                 
-                    List d = Campus.getInstance().askForReservation(re, ca.getTime(), startTime ,endTime);
+                    Campus cp = Campus.getInstance();
+                    cp.updateReservation();
+                    List d = cp.askForReservation(re, ca.getTime(), startTime ,endTime);
                     ClassroomDialog c = new ClassroomDialog(d, re, ca.getTime(), startTime ,endTime, des);
                     c.setVisible(true);
                 }

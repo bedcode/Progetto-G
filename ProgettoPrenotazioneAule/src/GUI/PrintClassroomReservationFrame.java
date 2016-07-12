@@ -46,9 +46,9 @@ public class PrintClassroomReservationFrame extends JFrame implements ActionList
         west = new JPanel(new GridLayout(4,1));
         south = new JPanel(new GridLayout(2,1));
         intro = new JLabel ("Visualizza le prenotazioni presenti:");
-        initcomponents();
+        initComponents();
     }
-    private void initcomponents(){
+    private void initComponents(){
         JScrollPane scrollPane = new JScrollPane(print);
         this.add(scrollPane, BorderLayout.CENTER);
         this.add(north, BorderLayout.NORTH);

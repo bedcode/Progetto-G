@@ -48,10 +48,10 @@ public class DeleteReservationFrame extends JFrame implements ActionListener{
        east = new JPanel(new GridLayout(3, 1));
        west = new JPanel(new GridLayout(3, 1));
        esito = new JLabel();
-       initcomponents();
+       initComponents();
     }
     
-    private void initcomponents() {
+    private void initComponents() {
         this.add(north, BorderLayout.NORTH);
         this.add(centre, BorderLayout.CENTER);
         this.add(west, BorderLayout.WEST);

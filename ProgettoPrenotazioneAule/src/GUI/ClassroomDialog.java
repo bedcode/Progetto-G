@@ -62,10 +62,10 @@ public class ClassroomDialog extends JDialog implements ActionListener {
         east.setVisible(false);
         north = new JPanel(new GridLayout(1, 2));
         south = new JPanel(new GridLayout(3, 3));
-        initcomponents();
+        initComponents();
     }
     
-    private void initcomponents() {
+    private void initComponents() {
         this.add(north, BorderLayout.NORTH);
         this.add(east, BorderLayout.EAST);
         this.add(west, BorderLayout.WEST);

@@ -100,10 +100,11 @@ public class ClassroomDialog extends JDialog implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         boolean make = cp.makeReservation(ae.getActionCommand(), r, inizio, startTime, endTime, des);
         if (make) {
-            esito.setText("Prenotazione effettuata");
+            esito.setText("Prenotazione effettuata!");
             JDialog dia = new JDialog();
             dia.setVisible(true);
-            dia.add(new JLabel("Prenotazione effettuata"));
+            dia.add(esito);
+            esito.setHorizontalAlignment(JLabel.CENTER);
             this.dispose();
             dia.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             dia.setSize(200,100);
@@ -111,7 +112,7 @@ public class ClassroomDialog extends JDialog implements ActionListener {
             dia.setResizable(false);
             
         } else {
-            esito.setText("Prenotazione fallita");
+            esito.setText("Prenotazione fallita!");
         }
    
             this.dispose();

@@ -66,7 +66,7 @@ public class Login extends JFrame {
     private void initComponents() {
         this.add(main);
         Dimension d=new Dimension(100, 500);
-        this.setSize(500, 500);
+        this.setSize(500, 330);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setTitle("XClassLive Login");

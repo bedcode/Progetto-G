@@ -67,7 +67,7 @@ public class MakeWeeklyReservationFrame extends JFrame implements ActionListener
 
     public MakeWeeklyReservationFrame() {
         main = new JPanel(new GridLayout(13, 2));
-        intestazione = new JLabel("compila i campi per fare una prenotazione con cadenza settimanale");
+        intestazione = new JLabel("compila per fare una prenotazione settimanale");
         capacita = new JLabel("capacità");
         dataInizio = new JLabel("data inizio prenotazione");
         dataFine = new JLabel("data fine prenotazione");

@@ -106,7 +106,7 @@ public class ClassroomDialogWeekly extends JDialog implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
-        boolean make = cp.makeReservation(ae.getActionCommand(), r, inizio, startTime, endTime, des);
+        boolean make = cp.makeWeeklyReservation(ae.getActionCommand(), r, inizio, fine, startTime, endTime, des);
         if (make) {
             esito.setText("Prenotazione effettuata!");
             JDialog dia = new JDialog();

@@ -23,7 +23,7 @@ import javax.swing.BorderFactory;
  */
 public class TeacherFrame extends JFrame implements ActionListener{
     
-    private final Dimension d = new Dimension(500, 500);
+    private final Dimension d = new Dimension(570, 500);
     private String email;
     private JLabel welcome;
     private JLabel choice;

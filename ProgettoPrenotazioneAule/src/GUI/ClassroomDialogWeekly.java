@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,6 +36,8 @@ public class ClassroomDialogWeekly extends JDialog implements ActionListener{
     protected String des;
     protected Requirements r;
     private JPanel north, east, west, south;
+    private JButton conferma;
+
     /**
      * 
      * @param d list of things free
@@ -53,6 +56,7 @@ public class ClassroomDialogWeekly extends JDialog implements ActionListener{
         this.r = r;
         cp = Campus.getInstance();
         cp.updateReservation();
+        conferma=new JButton("OK");
         this.setSize(500, 300);
         esito = new JLabel();
         this.setResizable(false);
@@ -102,20 +106,34 @@ public class ClassroomDialogWeekly extends JDialog implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
-        boolean make = cp.makeWeeklyReservation(ae.getActionCommand(), r, inizio, fine, startTime, endTime, des);
+        boolean make = cp.makeReservation(ae.getActionCommand(), r, inizio, startTime, endTime, des);
         if (make) {
-            esito.setText("Prenotazione settimanale effettuata");
+            esito.setText("Prenotazione effettuata!");
             JDialog dia = new JDialog();
             dia.setVisible(true);
-            dia.add(new JLabel("Prenotazione settimanale effettuata"));
+            dia.add(esito, BorderLayout.CENTER);
+            esito.setHorizontalAlignment(JLabel.CENTER);
+            dia.add(conferma, BorderLayout.SOUTH);
+            conferma.setHorizontalAlignment(JButton.CENTER);            
             this.dispose();
             dia.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            dia.setSize(300,100);
+            dia.setSize(200,100);
             dia.setLocationRelativeTo(null);
             dia.setResizable(false);
+            ActionListener al=new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dia.dispose();
+                }
+            };
+            conferma.addActionListener(al);
             
         } else {
-            esito.setText("Prenotazione fallita");
+            esito.setText("Prenotazione fallita!");
         }
+   
+            this.dispose();
+        
+
     }
 }

@@ -8,12 +8,14 @@ package GUI;
 import PrenotareAula.Campus;
 import PrenotareAula.Requirements;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,6 +36,7 @@ public class ClassroomDialog extends JDialog implements ActionListener {
     protected Requirements r;
     private Campus cp;
     private JPanel north, east, west, south;
+    private JButton conferma;
     /**
      * 
      * @param d list of String 
@@ -46,6 +49,7 @@ public class ClassroomDialog extends JDialog implements ActionListener {
     public ClassroomDialog(List d, Requirements r, Date inizio, int startTime, int endTime, String des) {
         this.d = d;
         this.r = r;
+        conferma=new JButton("OK");
         cp = Campus.getInstance();
         cp.updateReservation();
         this.setSize(500, 300);
@@ -103,13 +107,22 @@ public class ClassroomDialog extends JDialog implements ActionListener {
             esito.setText("Prenotazione effettuata!");
             JDialog dia = new JDialog();
             dia.setVisible(true);
-            dia.add(esito);
+            dia.add(esito, BorderLayout.CENTER);
             esito.setHorizontalAlignment(JLabel.CENTER);
+            dia.add(conferma, BorderLayout.SOUTH);
+            conferma.setHorizontalAlignment(JButton.CENTER);            
             this.dispose();
             dia.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             dia.setSize(200,100);
             dia.setLocationRelativeTo(null);
             dia.setResizable(false);
+            ActionListener al=new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dia.dispose();
+                }
+            };
+            conferma.addActionListener(al);
             
         } else {
             esito.setText("Prenotazione fallita!");

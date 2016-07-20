@@ -181,8 +181,8 @@ public class DbFacadeHandler {
             String query = "select max(id) from Reservation";
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                int id = rs.getInt(1);
-                Reservation r = new Reservation(id);
+                int id = rs.getInt(1);                
+                Reservation.setNextId(id);
             }
             rs.close();
             stmt.close();

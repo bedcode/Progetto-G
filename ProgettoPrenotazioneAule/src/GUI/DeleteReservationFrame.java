@@ -95,7 +95,6 @@ public class DeleteReservationFrame extends JFrame implements ActionListener{
             this.idt.setText("");
         }
         if (ae.getActionCommand().equals("Torna alla Home")) {
-            //cp.closeConnection();
             this.dispose();
 
         }

@@ -79,7 +79,7 @@ public class TeacherFrame extends JFrame implements ActionListener{
         makeRes = new JButton("Prenotare aula");
         viewRes = new JButton("Visualizzare prenotazioni");
         changePW = new JButton("Cambiare password");
-        exit = new JButton("Uscire");
+        exit = new JButton("Esci");
         panelButtons = new JPanel(new GridLayout(0, 1, 10, 20));
         panelButtons.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
         panelButtons.add(makeRes);        
@@ -133,7 +133,7 @@ public class TeacherFrame extends JFrame implements ActionListener{
             f.setVisible(true);
         }
         
-        if (ae.getActionCommand().equalsIgnoreCase("Uscire")) {
+        if (ae.getActionCommand().equalsIgnoreCase("Esci")) {
             this.dispose();
             Login l = new Login();
             l.setVisible(true);

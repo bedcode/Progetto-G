@@ -28,9 +28,7 @@ import java.util.List;
 public class DbFacadeHandler {
 
     private static final DbFacadeHandler instance = new DbFacadeHandler();
-    private final String URL = "jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7112944?user=sql7112944&password=QavZjtyIJw";
     private Connection conn;
-    private Statement stmt;
 
     public static DbFacadeHandler getInstance() {
         return instance;
@@ -38,25 +36,12 @@ public class DbFacadeHandler {
 
     private DbFacadeHandler() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");            
-        } catch(ClassNotFoundException e){
-            System.err.println("Unable to load jdbc driver.");
-            e.printStackTrace();
-            System.exit(-1);
+            DriverManager.setLoginTimeout(10);
+            conn = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7112944?user=sql7112944&password=QavZjtyIJw");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
     }
-    
-    /**
-     * Open a connection to the database
-     * @return The statement if the connection was open succesfully
-     * @throws java.sql.SQLException 
-     */
-    public Statement openConnection () throws SQLException{
-        DriverManager.setLoginTimeout(10);
-        conn = DriverManager.getConnection(URL);
-        stmt = conn.createStatement();
-        return stmt;                
-    }    
 
     /**
      * Method to close the connection to database.
@@ -78,10 +63,17 @@ public class DbFacadeHandler {
      */
     public List<Classroom> obtainClassroom() {
 
-        List<Classroom> classi = new ArrayList();        
+        List<Classroom> classi = new ArrayList();
 
         try {
-            stmt = openConnection();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+
+        try {
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select nome, capacita, blackboard, whiteboard, projector, laboratory from Classroom join Accessories A on nome=A.classroom");
             while (rs.next()) {
                 Requirements re = new Requirements(rs.getInt(2), rs.getBoolean(3), rs.getBoolean(4), rs.getBoolean(5), rs.getString(6));
@@ -90,13 +82,10 @@ public class DbFacadeHandler {
             }
             rs.close();
             stmt.close();
-            closeConnection();
         } catch (SQLException E) {
-            System.err.println("Unable to retrieve classrooms from database.");
-            System.err.println("SQLException: " + E.getMessage());
-            System.err.println("SQLState:     " + E.getSQLState());
-            System.err.println("VendorError:  " + E.getErrorCode());
-            System.exit(-1);
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
         }
 
         return classi;
@@ -109,10 +98,17 @@ public class DbFacadeHandler {
      */
     public List<Account> obtainAccount() {
 
-        List<Account> accounts = new ArrayList();        
+        List<Account> accounts = new ArrayList();
 
         try {
-            stmt = openConnection();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+
+        try {
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * from Supervisor");
             while (rs.next()) {
                 Supervisor s = new Supervisor(rs.getString(1), rs.getString(4));
@@ -126,13 +122,10 @@ public class DbFacadeHandler {
             }
             rs2.close();
             stmt.close();
-            closeConnection();
         } catch (SQLException E) {
-            System.err.println("Unable to retrieve accounts from database.");
-            System.err.println("SQLException: " + E.getMessage());
-            System.err.println("SQLState:     " + E.getSQLState());
-            System.err.println("VendorError:  " + E.getErrorCode());
-            System.exit(-1);
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
         }
 
         return accounts;
@@ -144,7 +137,15 @@ public class DbFacadeHandler {
     public void updateReservation() {
 
         try {
-            stmt = openConnection();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+
+        try {
+            Statement stmt = conn.createStatement();
             String query = "SELECT * from Reservation";
             ResultSet rs = stmt.executeQuery(query);
             for (Classroom cl : Campus.getInstance().getClassi()) {
@@ -157,13 +158,10 @@ public class DbFacadeHandler {
             }
             rs.close();
             stmt.close();
-            closeConnection();
         } catch (SQLException E) {
-            System.err.println("Unable to retrieve reservations from database.");
-            System.err.println("SQLException: " + E.getMessage());
-            System.err.println("SQLState:     " + E.getSQLState());
-            System.err.println("VendorError:  " + E.getErrorCode());
-            System.exit(-1);
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
     
@@ -171,9 +169,15 @@ public class DbFacadeHandler {
      * Method to read maximum id from database.
      */
     public void readId() {
-        
         try {
-            stmt = openConnection();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+        try {
+            Statement stmt = conn.createStatement();
             String query = "select max(id) from Reservation";
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
@@ -182,13 +186,10 @@ public class DbFacadeHandler {
             }
             rs.close();
             stmt.close();
-            closeConnection();
         } catch (SQLException E) {
-            System.err.println("Unable to read the maximum ID from database.");
-            System.err.println("SQLException: " + E.getMessage());
-            System.err.println("SQLState:     " + E.getSQLState());
-            System.err.println("VendorError:  " + E.getErrorCode());
-            System.exit(-1);
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
 
@@ -200,18 +201,20 @@ public class DbFacadeHandler {
      * @param t a teacher instance
      */
     public void insertTeacherAccount(Teacher t) {
-        
         try {
-            stmt = openConnection();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+        try {
+            Statement stmt = conn.createStatement();
             String query = "insert into Teacher values('" + t.getEmail() + "', '" + t.getName() + "', '" + t.getSurname() + "', '" + t.getPassword() + "')";
             stmt.executeUpdate(query);
-            stmt.close();
-            closeConnection();
         } catch (SQLException E) {
-            System.err.println("Unable to insert new account.");
-            System.err.println("SQLException: " + E.getMessage());
-            System.err.println("SQLState:     " + E.getSQLState());
-            System.err.println("VendorError:  " + E.getErrorCode());
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
 
@@ -221,18 +224,20 @@ public class DbFacadeHandler {
      * @param email email of a teacher
      */
     public void deleteTeacherAccount(String email) {
-       
         try {
-            stmt = openConnection();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+        try {
+            Statement stmt = conn.createStatement();
             String query = "delete from Teacher where mail = '" + email + "'";
             stmt.executeUpdate(query);
-            stmt.close();
-            closeConnection();
         } catch (SQLException E) {
-            System.err.println("Unable to delete account.");
-            System.err.println("SQLException: " + E.getMessage());
-            System.err.println("SQLState:     " + E.getSQLState());
-            System.err.println("VendorError:  " + E.getErrorCode());
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
 
@@ -244,10 +249,15 @@ public class DbFacadeHandler {
      * @param user type of a user: 0 represents teacher, 1 represents supervisor
      */
     public void changePassword(String email, String newPassword, int user) {
-        
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
         String query = null;
         try {
-            stmt = openConnection();
+            Statement stmt = conn.createStatement();
             if (user == 0) {
                 query = "update Teacher set passw = '" + newPassword + "' where mail = '" + email + "'";
             }
@@ -255,13 +265,10 @@ public class DbFacadeHandler {
                 query = "update Supervisor set passw = '" + newPassword + "' where mail = '" + email + "'";
             }
             stmt.executeUpdate(query);
-            stmt.close();
-            closeConnection();
         } catch (SQLException E) {
-            System.err.println("Unable to change password.");
-            System.err.println("SQLException: " + E.getMessage());
-            System.err.println("SQLState:     " + E.getSQLState());
-            System.err.println("VendorError:  " + E.getErrorCode());
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
 
@@ -272,18 +279,23 @@ public class DbFacadeHandler {
      * @param cl classroom where you book
      */
     public void writeReservation(Reservation r, String cl) {
-       
+
         try {
-            stmt = openConnection();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+        
+        try {
+            Statement stmt = conn.createStatement();
             String query = "INSERT into Reservation values('" + r.getId() + "', '" + r.getDBDate() + "', '" + r.getStartHour() + "', '" + r.getEndHour() + "', '" + r.getDescription() + "', '" + cl + "', null, null)";
             stmt.executeUpdate(query);
             stmt.close();
-            closeConnection();
         } catch (SQLException E) {
-            System.err.println("Unable to write reservation.");
-            System.err.println("SQLException: " + E.getMessage());
-            System.err.println("SQLState:     " + E.getSQLState());
-            System.err.println("VendorError:  " + E.getErrorCode());
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
 
@@ -293,18 +305,20 @@ public class DbFacadeHandler {
      * @param id id a reservation
      */
     public void deleteReservation(int id) {
-        
         try {
-            stmt = openConnection();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception E) {
+            System.err.println("Non trovo il driver da caricare.");
+            E.printStackTrace();
+        }
+        try {
+            Statement stmt = conn.createStatement();
             String query = "delete from Reservation where id = " + id;
             stmt.executeUpdate(query);
-            stmt.close();
-            closeConnection();
         } catch (SQLException E) {
-            System.err.println("Unable to delete reservation.");
-            System.err.println("SQLException: " + E.getMessage());
-            System.err.println("SQLState:     " + E.getSQLState());
-            System.err.println("VendorError:  " + E.getErrorCode());
+            System.out.println("SQLException: " + E.getMessage());
+            System.out.println("SQLState:     " + E.getSQLState());
+            System.out.println("VendorError:  " + E.getErrorCode());
         }
     }
 }

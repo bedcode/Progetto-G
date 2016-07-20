@@ -78,7 +78,7 @@ public class PrintClassroomReservationFrame extends JFrame implements ActionList
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getActionCommand().equals("Torna alla Home")) {
-            cp.closeConnection();
+            //cp.closeConnection();
             this.dispose();
 
         }

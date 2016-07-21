@@ -160,6 +160,7 @@ public class MakeReservationFrame extends JFrame implements ActionListener {
                     List d = cp.askForReservation(re, ca.getTime(), startTime ,endTime);
                     ClassroomDialog c = new ClassroomDialog(d, re, ca.getTime(), startTime ,endTime, des);
                     c.setVisible(true);
+                    dispose();
                 }
                 catch(NumberFormatException ex) {
                     ex.getMessage();

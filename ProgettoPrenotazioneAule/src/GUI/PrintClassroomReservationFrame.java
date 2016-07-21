@@ -34,7 +34,7 @@ public class PrintClassroomReservationFrame extends JFrame implements ActionList
     public PrintClassroomReservationFrame() {
         this.setTitle("Visualizza Prenotazioni");
         this.setLayout(new BorderLayout());
-        this.setSize(400,300);
+        this.setSize(450,700);
         this.setResizable(false);
         cp = Campus.getInstance();
         cp.updateReservation();

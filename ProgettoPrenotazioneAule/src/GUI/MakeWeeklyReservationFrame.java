@@ -176,6 +176,8 @@ public class MakeWeeklyReservationFrame extends JFrame implements ActionListener
                     List d = cp.askForReservation(re, inizio, startTime, endTime);
                     ClassroomDialogWeekly c = new ClassroomDialogWeekly(d, re, inizio, fine, startTime, endTime, des);
                     c.setVisible(true);
+                    dispose();
+
                 }
                 catch(NumberFormatException ex) {
                     ex.getMessage();

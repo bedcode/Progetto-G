@@ -124,7 +124,7 @@ public class ReservationRegister {
         return false;
     }
     /**
-     * this method make weekly Reservation between two dates
+     * this method make weekly Reservation between two dates excluding the last day
      * @param d1 start date int yyyy, mm, dd
      * @param d2 end date int yyyy, mm, dd
      * @param startHour Start time of the reservation

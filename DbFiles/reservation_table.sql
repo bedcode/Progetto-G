@@ -1,0 +1,11 @@
+create table Reservation (ID int(11) primary key,
+                          giorno date,
+                          start_time int(2),
+                          end_time int(2),
+                          description varchar(100),
+                          classroom varchar(100),
+                          teacher varchar(100),
+                          supervisor varchar(100),
+                          foreign key (classroom) references Classroom(nome),
+                          foreign key (teacher) references Teacher(mail),
+                          foreign key (supervisor) references Supervisor(mail))
